@@ -1,13 +1,28 @@
 import { clsx } from "clsx";
 
+import { Button } from "antd";
+import AppLogo from "../base/AppLogo";
+
 function Header() {
   return (
     <div
       className={clsx(
-        "flex flex-row py-6 px-10 bg-dark justify-between items-center",
+        "flex flex-row py-4 px-24 bg-dark justify-between items-center",
         ""
       )}
-    ></div>
+    >
+      <AppLogo />
+
+      <Button
+        className={clsx("bg-primary text-dark text-lg", "")}
+        type="ghost"
+        shape="round"
+        icon=""
+        size="large"
+      >
+        List API
+      </Button>
+    </div>
   );
 }
 

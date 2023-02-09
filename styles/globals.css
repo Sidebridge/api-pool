@@ -43,3 +43,18 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.patternBg {
+  background-image: url("../assets/images/illustrations/background-pattern.png");
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+.press {
+  transition: transform 0.8s ease;
+  cursor: pointer;
+}
+.press:hover {
+  transform: scale(0.98);
+  opacity: 0.9;
+}

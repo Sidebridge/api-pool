@@ -21,9 +21,13 @@ module.exports = {
         body: "#F8F8FB",
         dark: {
           DEFAULT: "#131313",
+          matte: "#181818",
         },
         accent: {
           DEFAULT: "#F2B925",
+        },
+        grey: {
+          DEFAULT: "#6A6A6A",
         },
       },
     },

@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 
 import type { NextPage } from "next";
 
+import Hero from "@/components/landing-page/Hero";
 type Prop = {};
 
 const Home: NextPage = () => {
@@ -20,8 +20,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>Hello there</h1>
+      <main className="flex flex-col relative">
+        <Hero />
       </main>
     </>
   );
