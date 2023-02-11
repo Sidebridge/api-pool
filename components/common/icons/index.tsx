@@ -9,7 +9,9 @@ type AppIconProps = {
 };
 
 const AppIcon = ({ icon, name, styles }: AppIconProps) => {
-  return <Image className={styles} src={iconMap[icon]} alt={name} />;
+  return (
+    <Image className={styles} src={iconMap[icon as keyof {}]} alt={name} />
+  );
 };
 
 export default AppIcon;
