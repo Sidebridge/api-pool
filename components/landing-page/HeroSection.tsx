@@ -57,6 +57,7 @@ const Hero = () => {
         width="650"
         height="480"
         alt="APIPool Logo"
+        priority
       />
     </section>
   );
