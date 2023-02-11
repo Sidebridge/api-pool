@@ -2,8 +2,9 @@ import Head from "next/head";
 
 import type { NextPage } from "next";
 
-import Hero from "@/components/landing-page/Hero";
-type Prop = {};
+import Hero from "@/components/landing-page/HeroSection";
+import Explore from "@/components/landing-page/ExploreSection";
+import Footer from "@/components/common/layout/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -20,8 +21,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col relative">
+      <main className="w-screen flex flex-col relative">
         <Hero />
+        <Explore />
+        <section
+          id="footer"
+          className="w-full p-20 py-10 border-t border-grey-light bg-dark-matte"
+        >
+          <Footer />
+        </section>
       </main>
     </>
   );

@@ -14,7 +14,7 @@ function Header() {
       <AppLogo />
 
       <Button
-        className={clsx("bg-primary text-dark text-lg", "")}
+        className={clsx("bg-primary text-dark text-lg leading-relaxed", "")}
         type="ghost"
         shape="round"
         icon=""
