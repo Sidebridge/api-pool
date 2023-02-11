@@ -47,16 +47,13 @@ const ApiCard = ({ isHovered }: CardProp) => {
       <div className="supported-langs p-3 flex flex-row items-center border-b border-gray-400 border-opacity-20 text-light">
         {["Javascript", "PHP", "Python"].map((lang) => (
           <div
-            key="lang"
+            key={lang}
             className="rounded-full border text-grey border-grey border-opacity-30 leading-relaxed p-0.5 px-3 mr-2"
           >
             {lang}
           </div>
         ))}
-        <div
-          key="lang"
-          className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30"
-        >
+        <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
           <span>+3</span>
         </div>
       </div>
