@@ -3,6 +3,7 @@ import AppIcon from "../icons";
 import FeaturedTag from "./FeaturedTag";
 
 import FlutterwaveBg from "../../../assets/images/pictures/flutterwave.png";
+import BookmarkBtn from "./BookmarkButton";
 
 type CardProp = {
   isHovered: boolean;
@@ -12,14 +13,14 @@ const ApiCard = ({ isHovered }: CardProp) => {
   return (
     <div
       className={clsx(
-        "w-full flex flex-col bg-dark-matte border border-grey border-opacity-50 rounded-2xl h-full text-white",
+        "w-full flex flex-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-white",
         "hover:border-primary hover:border-opacity-70"
       )}
     >
       <div className="card-title p-3.5 pb-5">
         <div
           className={clsx(
-            "snapshot w-full text-2xl text-black rounded-lg h-36 flex flex-col justify-center items-center",
+            "snapshot w-full text-2xl relative text-black rounded-md h-36 flex flex-col justify-center items-center",
             isHovered && "bg-white"
           )}
           style={{
@@ -28,6 +29,8 @@ const ApiCard = ({ isHovered }: CardProp) => {
             backgroundRepeat: "no-repeat",
           }}
         >
+          <BookmarkBtn styles="absolute top-2 right-2" />
+
           {isHovered && <h1>Sendwave</h1>}
         </div>
         <div className="flex flex-row justify-between items-center mt-5">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "antd";
 
 import heroImage from "../../assets/images/illustrations/hero-image.png";
+import AppIcon from "../common/icons";
 
 const Hero = () => {
   return (
@@ -41,12 +42,13 @@ const Hero = () => {
           <Button
             className={clsx(
               "text-white bg-transparent border border-white ml-6 h-12 w-36 text-lg press",
-              ""
+              "flex flex-row items-center justify-center"
             )}
             type="ghost"
             shape="round"
           >
             <span>List API</span>
+            <AppIcon icon="ArrowRightWhite" name="arrow" styles="ml-2.5" />
           </Button>
         </div>
       </div>
