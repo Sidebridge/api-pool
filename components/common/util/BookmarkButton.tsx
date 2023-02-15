@@ -12,7 +12,7 @@ const BookmarkBtn = ({ styles, active = false }: BookmarkBtnProp) => {
     <Tooltip title="Bookmark" placement="bottomRight">
       <div
         className={clsx(
-          "flex items-center justify-center rounded-full w-7 h-7 bg-black press",
+          "flex center rounded-full w-7 h-7 bg-black press",
           styles
         )}
       >

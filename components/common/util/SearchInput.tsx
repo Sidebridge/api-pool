@@ -12,8 +12,8 @@ const SearchInput = () => {
   };
 
   return (
-    <div className="flex flex-row w-full rounded-full border border-grey">
-      <div className="flex flex-row items-center p-1 pl-3 w-full">
+    <div className="align-row w-full rounded-full border border-grey">
+      <div className="align-row items-center p-1 pl-3 w-full">
         <AppIcon icon="Search" name="search" />
         <Input
           className={clsx(

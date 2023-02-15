@@ -58,3 +58,27 @@
   transform: scale(0.98);
   opacity: 0.9;
 }
+
+.light-border {
+  @apply border-grey border-opacity-30;
+}
+
+.align-row {
+  @apply flex flex-row;
+}
+
+.align-col {
+  @apply flex flex-col;
+}
+
+.centered-row {
+  @apply flex flex-row center;
+}
+
+.center {
+  @apply items-center justify-center;
+}
+
+.row-btwn {
+  @apply flex flex-row justify-between;
+}

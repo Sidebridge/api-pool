@@ -31,11 +31,11 @@ const Explore = () => {
     <section
       id="explore-section"
       className={clsx(
-        "flex flex-col w-full justify-between items-center pt-28 px-24 pb-10"
+        "align-col w-full justify-between items-center pt-28 px-24 pb-10"
       )}
     >
-      <div className="w-full flex flex-row items-center justify-between">
-        <div className="flex flex-col w-6/12">
+      <div className="w-full align-row items-center justify-between">
+        <div className="align-col w-6/12">
           <h2
             className="w-10/12 font-bold mb-6 text-white text-5xl"
             style={{ lineHeight: "67px" }}
@@ -50,16 +50,16 @@ const Explore = () => {
           </p>
         </div>
 
-        <div className="flex flex-col w-4/12">
+        <div className="align-col w-4/12">
           <SearchInput />
 
-          <div className="w-full flex flex-row flex-wrap gap-x-4 justify-between content-start items-center mt-5">
+          <div className="w-full align-row flex-wrap gap-x-4 justify-between content-start items-center mt-5">
             {domains.map((domain) => (
               <div
                 key={domain.id}
                 className={clsx(
                   "p-3 px-4 mb-4 text-base press capitalize border border-grey rounded-full",
-                  "flex-grow flex flex-row items-center justify-center",
+                  "flex-grow align-row center",
                   selectedDomain !== domain.id &&
                     "hover:border-primary hover:border-opacity-60",
                   selectedDomain === domain.id && "border-primary"
@@ -74,7 +74,7 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className="featured-list w-full flex flex-row flex-wrap justify-between gap-x-1 content-start mt-12">
+      <div className="featured-list w-full align-row flex-wrap justify-between gap-x-1 content-start mt-12">
         {[1, 2, 3, 4, 5, 6].map((card) => (
           <div
             className="h-fit mb-12 press"
@@ -90,7 +90,7 @@ const Explore = () => {
 
       <Button
         className={clsx(
-          "text-dark flex flex-row items-center bg-primary ml-6 h-12 p-4 px-12 text-xl press mt-6",
+          "text-dark align-row items-center bg-primary ml-6 h-12 p-4 px-12 text-xl press mt-6",
           ""
         )}
         type="ghost"

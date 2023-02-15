@@ -11,10 +11,10 @@ const Hero = () => {
     <section
       id="hero-section"
       className={clsx(
-        "flex flex-row w-full justify-between items-center py-20 px-24"
+        "align-row w-full justify-between items-center py-20 px-24"
       )}
     >
-      <div className={clsx("flex flex-col w-6/12 ")}>
+      <div className={clsx("align-col w-6/12 ")}>
         <h1
           className="w-10/12 font-bold mb-8 text-white text-6xl"
           style={{ lineHeight: "67px" }}
@@ -26,7 +26,7 @@ const Hero = () => {
           in one convenient place. Easy comparison, quick decisions.
         </p>
 
-        <div className="flex flex-row items-center mt-12">
+        <div className="align-row items-center mt-12">
           <Button
             className={clsx(
               "bg-primary text-dark border-none h-12 w-44 text-lg press",
@@ -42,7 +42,7 @@ const Hero = () => {
           <Button
             className={clsx(
               "text-white bg-transparent border border-white ml-6 h-12 w-36 text-lg press",
-              "flex flex-row items-center justify-center"
+              "align-row center"
             )}
             type="ghost"
             shape="round"

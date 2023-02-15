@@ -13,14 +13,14 @@ const ApiCard = ({ isHovered }: CardProp) => {
   return (
     <div
       className={clsx(
-        "w-full flex flex-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-white",
+        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-white",
         "hover:border-primary hover:border-opacity-70"
       )}
     >
       <div className="card-title p-3.5 pb-5">
         <div
           className={clsx(
-            "snapshot w-full text-2xl relative text-black rounded-md h-36 flex flex-col justify-center items-center",
+            "snapshot w-full text-2xl relative text-black rounded-md h-36 align-col justify-center items-center",
             isHovered && "bg-white"
           )}
           style={{
@@ -33,7 +33,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
 
           {isHovered && <h1>Sendwave</h1>}
         </div>
-        <div className="flex flex-row justify-between items-center mt-5">
+        <div className="align-row justify-between items-center mt-5">
           <h3 className="text-xl">Sendwave</h3>
           <FeaturedTag />
         </div>
@@ -47,11 +47,11 @@ const ApiCard = ({ isHovered }: CardProp) => {
         </p>
       </div>
 
-      <div className="supported-langs p-3 flex flex-row items-center border-b border-gray-400 border-opacity-20 text-light">
+      <div className="supported-langs p-3 align-row items-center border-b border-gray-400 border-opacity-20 text-light">
         {["Javascript", "PHP", "Python"].map((lang) => (
           <div
             key={lang}
-            className="rounded-full border text-grey border-grey border-opacity-30 leading-relaxed p-0.5 px-3 mr-2"
+            className="rounded-full border text-grey light-border leading-relaxed p-0.5 px-3 mr-2"
           >
             {lang}
           </div>
@@ -61,11 +61,11 @@ const ApiCard = ({ isHovered }: CardProp) => {
         </div>
       </div>
 
-      <div className="card-actions flex flex-row px-3.5 py-6">
+      <div className="card-actions align-row px-3.5 py-6">
         <div
           className={clsx(
-            "view-brief press flex flex-row items-center rounded-full text-white",
-            "border-2 border-grey border-opacity-30 leading-relaxed p-2 px-5 mr-2",
+            "view-brief press align-row items-center rounded-full text-white",
+            "border-2 light-border leading-relaxed p-2 px-5 mr-2",
             "hover:border-primary hover:bg-dark"
           )}
         >
@@ -76,7 +76,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
 
         <div
           className={clsx(
-            "view-brief press flex flex-row items-center rounded-full text-white",
+            "view-brief press align-row items-center rounded-full text-white",
             "border-2 border-grey bg-grey-light border-opacity-30 leading-relaxed p-2 px-5 mr-2",
             "hover:border-primary hover:bg-primary hover:bg-opacity-20"
           )}

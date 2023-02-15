@@ -9,6 +9,10 @@ import ArrowRightBlack from "../../../assets/images/svg/arrow_right_black.svg";
 import ArrowRightWhite from "../../../assets/images/svg/arrow_right_white.svg";
 import DonateWhite from "../../../assets/images/svg/donate_white.svg";
 import BookmarkWhite from "../../../assets/images/svg/bookmark_white.svg";
+import RoundCloseWhite from "../../../assets/images/svg/round_close_white.svg";
+import ArrowLeftGreen from "../../../assets/images/svg/arrow_left_green.svg";
+import WebBlack from "../../../assets/images/svg/web_black.svg";
+import UserPrimary from "../../../assets/images/svg/user_primary.svg";
 
 const Icons = {
   Search,
@@ -22,6 +26,10 @@ const Icons = {
   ArrowRightWhite,
   DonateWhite,
   BookmarkWhite,
+  RoundCloseWhite,
+  ArrowLeftGreen,
+  WebBlack,
+  UserPrimary,
 };
 
 export default Icons;

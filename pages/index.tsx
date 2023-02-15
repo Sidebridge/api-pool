@@ -21,15 +21,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-screen flex flex-col relative">
-        <Hero />
-        <Explore />
-        <section
-          id="footer"
-          className="w-full p-20 py-10 border-t border-grey-light bg-dark-matte"
-        >
-          <Footer />
-        </section>
+      <main className="w-screen align-col relative">
+        <div className="w-full align-col scroll">
+          <Hero />
+          <Explore />
+          <section
+            id="footer"
+            className="w-full p-20 py-10 border-t border-grey-light bg-dark-matte"
+          >
+            <Footer />
+          </section>
+        </div>
       </main>
     </>
   );

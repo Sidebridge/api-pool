@@ -6,11 +6,17 @@ type AppIconProps = {
   icon: string;
   name: string;
   styles?: string;
+  onClick?: () => void;
 };
 
-const AppIcon = ({ icon, name, styles }: AppIconProps) => {
+const AppIcon = ({ icon, name, styles, onClick }: AppIconProps) => {
   return (
-    <Image className={styles} src={iconMap[icon as keyof {}]} alt={name} />
+    <Image
+      className={styles}
+      src={iconMap[icon as keyof {}]}
+      alt={name}
+      onClick={onClick}
+    />
   );
 };
 
