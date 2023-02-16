@@ -28,8 +28,8 @@ const BaseModal = ({ children, isOpen = true, onClose }: BaseModalProps) => {
             />
 
             <div
-              className="mt-4 w-full rounded-3xl bg-dark-matte border-2 border-grey border-opacity-50 overflow-y-scroll"
-              style={{ maxHeight: "95%", height: "95%" }}
+              className="mt-4 w-full rounded-3xl h-fit bg-dark-matte border-2 border-grey border-opacity-50 overflow-y-scroll"
+              style={{ maxHeight: "95%" }}
             >
               {children}
             </div>

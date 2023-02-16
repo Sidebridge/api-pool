@@ -1,6 +1,6 @@
 import AppIcon from "@/components/common/icons";
 import RatingStars from "@/components/common/util/RatingStars";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -47,15 +47,58 @@ const Reviews = () => {
 
   return (
     <>
-      <div className="align-col w-full h-fit">
-        <div className="w-full h-fit align-col">{reviewList}</div>
+      <div className="align-col w-full h-auto">
+        {/* <div className="w-full h-fit align-col">{reviewList}</div> */}
 
-        {/* <form className="p-5 align-col text-white">
+        <form className="p-5 align-col text-white">
           <div className="align-col">
-            <label htmlFor="reviewer-company">Company (Optional)</label>
-            <Input placeholder="Enter your company's name" value={company} />
+            <label
+              htmlFor="reviewer-company font-light"
+              className="font-light w-fit"
+            >
+              Company (Optional)
+            </label>
+            <Input
+              id="reviewer-company"
+              className={clsx(
+                "bg-transparent border light-border mt-2 rounded-3xl p-2 px-4 text-white text-lg",
+                "placeholder:text-grey placeholder:font-light focus:outline-none focus:border-grey hover:border-grey"
+              )}
+              placeholder="Enter your company's name"
+            />
           </div>
-        </form> */}
+
+          <div className="align-col mt-4">
+            <label htmlFor="reviewer-review" className="font-light w-fit">
+              Review
+            </label>
+            <Input.TextArea
+              id="reviewer-review"
+              className={clsx(
+                "bg-transparent border light-border mt-2 rounded-3xl p-4 py-2 text-white text-lg",
+                "placeholder:text-grey placeholder:font-light focus:outline-none focus:border-grey hover:border-grey"
+              )}
+              placeholder="Share your experience using this API"
+              maxLength={1000}
+              rows={8}
+            />
+            <p className="w-full p-1.5 text-right text-grey font-light text-xs -mt-8 -ml-3">
+              0/1000 words
+            </p>
+          </div>
+
+          <Button
+            className={clsx(
+              "bg-primary text-dark border-none h-12 w-52 text-lg press mt-6 ml-auto",
+              ""
+            )}
+            shape="round"
+            type="ghost"
+            icon=""
+          >
+            Submit Your Review
+          </Button>
+        </form>
       </div>
     </>
   );
