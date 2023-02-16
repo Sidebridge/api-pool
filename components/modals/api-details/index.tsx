@@ -1,9 +1,17 @@
 import AppIcon from "@/components/common/icons";
+import RatingStars from "@/components/common/util/RatingStars";
 import clsx from "clsx";
+import { useState } from "react";
 import Brief from "./Brief";
 import Reviews from "./Reviews";
 
 const ApiDetails = () => {
+  const [rate, setRate] = useState(0);
+
+  function handleStarRating(star: number) {
+    setRate(star);
+  }
+
   return (
     <div className="align-col w-full bg-dark-matte text-white">
       <div className="detail-title w-full row-btwn border-b light-border p-5">
@@ -19,7 +27,7 @@ const ApiDetails = () => {
         </div>
 
         <div className="title-right">
-          <div
+          {/* <div
             className={clsx(
               "press align-row items-center rounded-full text-white",
               "border-2 light-border  bg-grey-light leading-relaxed p-1.5 px-5",
@@ -27,6 +35,20 @@ const ApiDetails = () => {
             )}
           >
             <span>Write Review</span>
+          </div> */}
+
+          <div className="align-col">
+            <span className="ml-auto text-2xl">
+              <RatingStars
+                rate={rate}
+                type="fill"
+                action="mark"
+                onClick={(star) => handleStarRating(star)}
+              />
+            </span>
+            <span className="text-xs text-white font-light text-right ml-auto">
+              Rate your Experience
+            </span>
           </div>
         </div>
       </div>

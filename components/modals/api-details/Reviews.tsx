@@ -26,7 +26,7 @@ const Reviews = () => {
         </div>
 
         <div className="centered-row h-fit">
-          <RatingStars rate={3} />
+          <RatingStars rate={3} onClick={() => {}} />
         </div>
       </div>
 

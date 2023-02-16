@@ -66,7 +66,7 @@ const Brief = () => {
           <span className="text-5xl mt-2.5 font-normal">4.0</span>
 
           <p className="pt-0.5">
-            <RatingStars rate={4} />
+            <RatingStars rate={4} onClick={() => {}} />
           </p>
         </div>
 

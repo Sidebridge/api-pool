@@ -1,14 +1,43 @@
+import clsx from "clsx";
+
 type RatingStarsProps = {
   rate: number;
+  type?: string;
+  action?: string;
+  onClick: (star: number) => void;
 };
 
-const RatingStars = ({ rate }: RatingStarsProps) => {
+const RatingStars = ({
+  rate,
+  type = "outline",
+  action = "view",
+  onClick,
+}: RatingStarsProps) => {
+  const starClasses = (star: number): string =>
+    `mr-1 ${star <= rate ? "text-primary" : "text-white"} ${
+      action === "mark" && "cursor-pointer"
+    }`;
+
   return (
     <>
       {[1, 2, 3, 4, 5].map((star) => (
         <>
-          {star <= rate && <span className="text-primary mr-1">&#9733;</span>}
-          {star > rate && <span className="text-white mr-1">&#9734;</span>}
+          {type === "outline" && (
+            <span
+              className={clsx(starClasses(star))}
+              onClick={() => onClick(star)}
+            >
+              &#9734;
+            </span>
+          )}
+          {type !== "outline" && (
+            <span
+              className={clsx(starClasses(star))}
+              onClick={() => onClick(star)}
+            >
+              &#9733;
+            </span>
+          )}
         </>
       ))}
     </>
