@@ -5,10 +5,11 @@ import type { NextPage } from "next";
 import Hero from "@/components/landing-page/HeroSection";
 import Explore from "@/components/landing-page/ExploreSection";
 import Footer from "@/components/common/layout/Footer";
+import MainLayout from "@/components/layout/MainLayout";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <MainLayout>
       <Head>
         <title>
           APIPool - Find third-party api and services for your next project.
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
           </section>
         </div>
       </main>
-    </>
+    </MainLayout>
   );
 };
 

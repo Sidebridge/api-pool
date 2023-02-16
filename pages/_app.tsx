@@ -15,12 +15,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <MainLayout>
+    <>
       <Component {...pageProps} />
 
       <BaseModal isOpen={isModalOpen} onClose={() => toggleModal(false)}>
         <ApiDetails />
       </BaseModal>
-    </MainLayout>
+    </>
   );
 }

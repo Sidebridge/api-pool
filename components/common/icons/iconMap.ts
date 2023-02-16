@@ -13,6 +13,9 @@ import RoundCloseWhite from "../../../assets/images/svg/round_close_white.svg";
 import ArrowLeftGreen from "../../../assets/images/svg/arrow_left_green.svg";
 import WebBlack from "../../../assets/images/svg/web_black.svg";
 import UserPrimary from "../../../assets/images/svg/user_primary.svg";
+import AppleLogo from "../../../assets/images/svg/apple_logo.svg";
+import GoogleLogo from "../../../assets/images/svg/google_logo.svg";
+import GithubWhite from "../../../assets/images/svg/github_white.svg";
 
 const Icons = {
   Search,
@@ -30,6 +33,9 @@ const Icons = {
   ArrowLeftGreen,
   WebBlack,
   UserPrimary,
+  AppleLogo,
+  GoogleLogo,
+  GithubWhite,
 };
 
 export default Icons;

@@ -72,7 +72,11 @@
 }
 
 .centered-row {
-  @apply flex flex-row center;
+  @apply flex flex-row items-center justify-center;
+}
+
+.centered-col {
+  @apply flex flex-col items-center justify-center;
 }
 
 .center {

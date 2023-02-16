@@ -4,7 +4,7 @@ import iconMap from "./iconMap";
 
 type AppIconProps = {
   icon: string;
-  name: string;
+  name?: string;
   styles?: string;
   onClick?: () => void;
 };
@@ -14,7 +14,7 @@ const AppIcon = ({ icon, name, styles, onClick }: AppIconProps) => {
     <Image
       className={styles}
       src={iconMap[icon as keyof {}]}
-      alt={name}
+      alt={name || ""}
       onClick={onClick}
     />
   );
