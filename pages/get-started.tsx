@@ -1,21 +1,26 @@
-import clsx from "clsx";
 import Image from "next/image";
 import { NextPage } from "next";
+import Link from "next/link";
 
 import appPreview from "../assets/images/illustrations/app_view.png";
-import Pill from "@/components/common/base/BasePill";
+import AppLogo from "../assets/images/logo/favicon.png";
+import BasePill from "@/components/common/base/BasePill";
 
-const SignupIntegrations = [
-  { name: "Google", icon: "GoogleLogo" },
-  { name: "Github", icon: "GithubWhite" },
-  { name: "Apple", icon: "AppleLogo" },
-];
+import AuthIntegrations from "@/public/constants/integrations";
 
 const Register: NextPage = () => {
   return (
     <div className="h-screen w-screen align-row">
-      <div className="w-1/2 h-full centered-col">
-        <div className="align-col w-10/12 h-fit">
+      <div className="w-1/2 h-full centered-col relatve">
+        <Link href="/">
+          <Image
+            src={AppLogo}
+            alt="Api Pool Logo"
+            className="absolute top-16 left-20"
+          />
+        </Link>
+
+        <div className="align-col w-9/12 h-fit">
           <h2 className="text-3xl text-white">Get Started</h2>
 
           <p className="text-grey mt-2">
@@ -23,12 +28,12 @@ const Register: NextPage = () => {
           </p>
 
           <div className="centered-col w-full mt-6">
-            {SignupIntegrations.map((integration) => (
-              <Pill
+            {AuthIntegrations.map((integration) => (
+              <BasePill
                 key={integration.name}
                 text={`Sign up with ${integration.name}`}
                 preIcon={integration.icon}
-                styles="w-full mb-4 press"
+                styles="w-full mb-4 press border-2"
               />
             ))}
           </div>

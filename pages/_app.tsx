@@ -6,6 +6,7 @@ import "@/styles/globals.css";
 
 import MainLayout from "../components/layout/MainLayout";
 import ApiDetails from "@/components/modals/api-details";
+import LoginOptions from "@/components/modals/LoginOptions";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isModalOpen, setModalState] = useState(true);
@@ -18,8 +19,20 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Component {...pageProps} />
 
-      <BaseModal isOpen={isModalOpen} onClose={() => toggleModal(false)}>
+      <BaseModal
+        styles="border-2 border-grey border-opacity-50"
+        isOpen={false}
+        onClose={() => toggleModal(false)}
+      >
         <ApiDetails />
+      </BaseModal>
+
+      <BaseModal
+        styles="border-t-2 border-primary"
+        isOpen={isModalOpen}
+        onClose={() => toggleModal(false)}
+      >
+        <LoginOptions />
       </BaseModal>
     </>
   );
