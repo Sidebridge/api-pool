@@ -20,8 +20,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
       <div className="card-title p-3.5 pb-5">
         <div
           className={clsx(
-            "snapshot w-full text-2xl relative text-black rounded-md h-36 align-col justify-center items-center",
-            isHovered && "bg-white"
+            "snapshot w-full text-2xl relative text-black rounded-md h-36 align-col justify-center items-center bg-white"
           )}
           style={{
             backgroundImage: !isHovered ? `url(${FlutterwaveBg.src})` : "",

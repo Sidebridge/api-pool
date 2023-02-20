@@ -14,6 +14,7 @@ specifiers:
   postcss: ^8.4.21
   react: 18.2.0
   react-dom: 18.2.0
+  simpler-state: ^1.2.0
   tailwindcss: ^3.2.4
   typescript: 4.9.5
 
@@ -28,6 +29,7 @@ dependencies:
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  simpler-state: 1.2.0_react@18.2.0
   typescript: 4.9.5
 
 devDependencies:
@@ -2931,6 +2933,15 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
       object-inspect: 1.12.3
+    dev: false
+
+  /simpler-state/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-Gd6rlc3Rq0qQm78bGg+4qVJUvOPr874aN2LBxawQV71Q0f0Ub2HVqR4AUXnP26TgCL/PaQ/7yisbdJD8NJ8+oA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      '@babel/runtime': 7.20.13
+      react: 18.2.0
     dev: false
 
   /slash/3.0.0:
