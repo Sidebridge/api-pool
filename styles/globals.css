@@ -86,3 +86,7 @@
 .row-btwn {
   @apply flex flex-row justify-between;
 }
+
+.primary-checkbox[type="checkbox"]:checked::after {
+  background-color: red;
+}

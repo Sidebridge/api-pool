@@ -23,12 +23,16 @@ module.exports = {
           DEFAULT: "#131313",
           matte: "#181818",
         },
+        light: {
+          DEFAULT: "#E2E2E2",
+        },
         accent: {
           DEFAULT: "#F2B925",
         },
         grey: {
           DEFAULT: "#6A6A6A",
           light: "#222222",
+          faint: "#2C2C2C",
         },
       },
     },

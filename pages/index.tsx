@@ -26,12 +26,6 @@ const Home: NextPage = () => {
         <div className="w-full align-col scroll">
           <Hero />
           <Explore />
-          <section
-            id="footer"
-            className="w-full p-20 py-10 border-t border-grey-light bg-dark-matte"
-          >
-            <Footer />
-          </section>
         </div>
       </main>
     </MainLayout>

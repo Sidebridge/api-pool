@@ -4,7 +4,11 @@ import clsx from "clsx";
 
 import AppIcon from "../icons";
 
-const SearchInput = () => {
+type SearchInputProps = {
+  style?: string;
+};
+
+const SearchInput = ({ style }: SearchInputProps) => {
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -12,7 +16,12 @@ const SearchInput = () => {
   };
 
   return (
-    <div className="align-row w-full rounded-full border border-grey">
+    <div
+      className={clsx(
+        "align-row w-full rounded-full border border-grey",
+        style
+      )}
+    >
       <div className="align-row items-center p-1 pl-3 w-full">
         <AppIcon icon="Search" name="search" />
         <Input
