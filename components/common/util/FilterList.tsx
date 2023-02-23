@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type FilterListProps = {
   label: string;
-  value: any;
+  value: unknown;
   count?: number;
   styles?: string;
   onCheck: () => void;

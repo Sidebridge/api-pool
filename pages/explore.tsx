@@ -11,7 +11,7 @@ import SearchInput from "@/components/common/util/SearchInput";
 import ApiCard from "@/components/common/util/ApiCard";
 
 const Explore: NextPage = () => {
-  const hey = (val: any) => {
+  const hey = (val: unknown) => {
     console.log(val);
   };
 
@@ -38,7 +38,7 @@ const Explore: NextPage = () => {
         </div>
 
         <section className="w-full align-row border border-grey-faint rounded-3xl bg-dark-matte mb-32">
-          <div className="w-4/12 h-full  align-col">
+          <div className="w-3/12 h-full  align-col">
             <div className="row-btwn items-center h-20 px-6 text-light font-light border-b border-grey border-opacity-10">
               <span className="">Filter By 👇🏼</span>
 
@@ -134,18 +134,18 @@ const Explore: NextPage = () => {
             </div>
           </div>
 
-          <div className="w-8/12 h-full align-col border-l-2 border-grey-faint">
-            <div className="w-full row-btwn items-center h-20 px-6 text-light font-light border-b border-grey border-opacity-10">
+          <div className="w-9/12 h-full align-col border-l-2 border-grey-faint">
+            <div className="w-full row-btwn items-center h-20 px-10 text-light font-light border-b border-grey border-opacity-10">
               <SearchInput style="h-12 border-opacity-30 w-8/12" />
 
               <span className="text-grey">All API: 345</span>
             </div>
 
-            <div className="featured-list w-full px-6 align-row flex-wrap justify-between gap-x-1 content-start mt-5">
+            <div className="featured-list w-full px-10 align-row flex-wrap justify-between gap-x-1 content-start mt-5">
               {[1, 2, 3, 4, 5, 6].map((card) => (
                 <div
                   className="h-fit mb-12 press"
-                  style={{ width: "47%" }}
+                  style={{ width: "49%" }}
                   key={card}
                   onMouseEnter={() => cardHoverHandler(card)}
                   onMouseLeave={() => cardHoverHandler(null)}

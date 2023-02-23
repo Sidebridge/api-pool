@@ -13,7 +13,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
   return (
     <div
       className={clsx(
-        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-white",
+        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-light",
         "hover:border-primary hover:border-opacity-70"
       )}
     >
@@ -38,8 +38,8 @@ const ApiCard = ({ isHovered }: CardProp) => {
         </div>
       </div>
 
-      <div className="card-description px-3.5 py-4 border-y border-gray-400 border-opacity-20 text-base font-light">
-        <p>
+      <div className="card-description px-3.5 py-4 border-y border-gray-400 border-opacity-20 text-base font-light ">
+        <p className="opacity-75">
           Lorem ipsum dolor sit amet consectetur. Velit ullamcorper at sagittis
           dui sit pretium sem odio. Egestas a ut vestibulum at nunc odio id id.
           Odio auctor eget vestibulum aliquam odio ipsum etiam dolor.
@@ -63,7 +63,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
       <div className="card-actions align-row px-3.5 py-6">
         <div
           className={clsx(
-            "view-brief press align-row items-center rounded-full text-white",
+            "view-brief press align-row items-center rounded-full text-light",
             "border-2 light-border leading-relaxed p-2 px-5 mr-2",
             "hover:border-primary hover:bg-dark"
           )}
@@ -75,7 +75,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
 
         <div
           className={clsx(
-            "view-brief press align-row items-center rounded-full text-white",
+            "view-brief press align-row items-center rounded-full text-light",
             "border-2 border-grey bg-grey-light border-opacity-30 leading-relaxed p-2 px-5 mr-2",
             "hover:border-primary hover:bg-primary hover:bg-opacity-20"
           )}
