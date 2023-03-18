@@ -4,8 +4,6 @@ import { Provider } from "@supabase/supabase-js";
 import { fail } from "assert";
 import { useState } from "react";
 
-import { toggleLoginState } from "@/store/auth";
-
 const useAuth = () => {
   const { supabaseClient } = useSuperbase();
 
