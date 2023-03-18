@@ -2,13 +2,11 @@ import clsx from "clsx";
 import { NextPage } from "next";
 import { useState } from "react";
 
-import ExploreFilters from "@/public/constants/filters";
-
 import MainLayout from "@/components/layout/MainLayout";
-import { Button } from "antd";
-import FilterList from "@/components/common/util/FilterList";
-import SearchInput from "@/components/common/util/SearchInput";
-import ApiCard from "@/components/common/util/ApiCard";
+import CompareItem from "@/components/compare/CompareItem";
+
+import classes from "@/styles/compare.module.css";
+import AppIcon from "@/components/common/icons";
 
 const Compare: NextPage = () => {
   const hey = (val: unknown) => {
@@ -23,10 +21,10 @@ const Compare: NextPage = () => {
 
   return (
     <MainLayout>
-      <div className="w-full align-col items-center px-24">
-        <div className="explore-header centered-col w-full py-16 text-center">
-          <h1 className="text-5xl text-light font-bold">Compare API</h1>
-          <p className="text-grey mt-6 text-xl font-light">
+      <div className="items-center w-full px-24 align-col">
+        <div className="w-full py-16 text-center explore-header centered-col">
+          <h1 className="text-5xl font-bold text-light">Compare API</h1>
+          <p className="mt-6 text-xl font-light text-grey">
             Quickly compare from thousands of APIs and third-party services and
             <br />
             easily make technical choices for your next project.
@@ -36,16 +34,53 @@ const Compare: NextPage = () => {
           </p>
         </div>
 
-        <section className="w-full h-96 align-row bg-dark-matte mb-32">
-          <div className="w-4/12 h-full align-col border border-grey-faint rounded-br-none rounded-2xl">
-            <div className="row-btwn items-center h-20 px-6 text-light font-light border-b border-grey border-opacity-10">
+        <section className="w-full mb-32 border rounded-2xl align-row bg-dark-matte border-grey-faint">
+          <div className="w-4/12 h-full overflow-hidden align-col border-grey-faint rounded-2xl">
+            <div className="items-center h-20 px-12 font-light border-b row-btwn text-light border-grey border-opacity-10">
               <span className="">Features</span>
+            </div>
+
+            <div className="h-auto p-6 px-12 text-white align-col">
+              <div className={classes["compare-title"]}>
+                <AppIcon
+                  name="Available Date"
+                  icon="CalendarGreen"
+                  styles="w-5"
+                />
+                <span>Available Since</span>
+              </div>
+              <div className={classes["compare-title"]}>
+                <AppIcon name="Users" icon="UsersGreen" styles="w-5" />
+                <span>Number of Users</span>
+              </div>
+              <div className={clsx("h-40 w-full mb-4")}>
+                <div className={clsx(classes["compare-title"], "mb-0")}>
+                  <AppIcon name="Pricing" icon="DollarGreen" styles="w-5" />
+                  <span>Pricing</span>
+                </div>
+              </div>
+              <div className={classes["compare-title"]}>
+                <AppIcon
+                  name="Language Support"
+                  icon="CodeGreen"
+                  styles="w-5"
+                />
+                <span>Supported Language</span>
+              </div>
+              <div className={classes["compare-title"]}>
+                <AppIcon
+                  name="Availability"
+                  icon="EventAvailableGreen"
+                  styles="w-5"
+                />
+                <span>Availability</span>
+              </div>
             </div>
           </div>
 
-          <div className="w-4/12 h-full align-col border-l-0 border border-grey-faint rounded-t-2xl"></div>
+          <CompareItem styles="border-x border-grey-faint rounded-t-2xl" />
 
-          <div className="w-4/12 h-full align-col border border-l-0 border-grey-faint rounded-2xl rounded-bl-none"></div>
+          <CompareItem />
         </section>
       </div>
     </MainLayout>

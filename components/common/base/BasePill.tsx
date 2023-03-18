@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { MouseEventHandler } from "react";
 import AppIcon from "../icons";
 
 type BasePillProps = {
@@ -7,7 +8,7 @@ type BasePillProps = {
   postIcon?: string;
   text: string;
   styles?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 };
 
 const BasePill = ({
@@ -25,10 +26,10 @@ const BasePill = ({
         "hover:border-opacity-60",
         styles
       )}
-      onClick={() => onClick}
+      onClick={onClick}
     >
       {preIcon && <AppIcon name={name} icon={preIcon} styles="w-6 h-6 mr-3" />}
-      <span className="text-white font-light">{text}</span>
+      <span className="font-light text-white">{text}</span>
       {postIcon && (
         <AppIcon name={name} icon={postIcon} styles="w-6 h-6 ml-3" />
       )}

@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type FilterListProps = {
   label: string;
-  value: unknown;
+  value: string;
   count?: number;
   styles?: string;
   onCheck: () => void;
@@ -16,8 +16,8 @@ const FilterList = ({
   onCheck,
 }: FilterListProps) => {
   return (
-    <div className="w-full row-btwn items-center">
-      <div className="align-row items-center mb-2 ">
+    <div className="items-center w-full row-btwn">
+      <div className="items-center mb-2 align-row ">
         {/* <Checkbox className="" onChange={onCheck}>
           {label}
         </Checkbox> */}
@@ -35,13 +35,13 @@ const FilterList = ({
         />
         <label
           htmlFor={label}
-          className="ml-3 text-base font-light text-light cursor-pointer"
+          className="ml-3 text-base font-light cursor-pointer text-light"
         >
           {label}
         </label>
       </div>
 
-      <span className="text-grey font-light">{count}</span>
+      <span className="font-light text-grey">{count}</span>
     </div>
   );
 };

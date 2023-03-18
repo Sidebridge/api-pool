@@ -1,0 +1,7 @@
+.compare-title {
+  @apply flex flex-row items-center mb-4 font-light text-light;
+}
+
+.compare-title span {
+  @apply ml-3;
+}
