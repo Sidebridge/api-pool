@@ -90,3 +90,10 @@
 .primary-checkbox[type="checkbox"]:checked::after {
   background-color: red;
 }
+
+.disabled {
+  opacity: 60%;
+  touch-action: none;
+  pointer-events: none;
+  cursor: default;
+}

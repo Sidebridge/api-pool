@@ -17,6 +17,15 @@ import AppleLogo from "../../../assets/images/svg/apple_logo.svg";
 import GoogleLogo from "../../../assets/images/svg/google_logo.svg";
 import GithubWhite from "../../../assets/images/svg/github_white.svg";
 
+import EventAvailableGreen from "../../../assets/images/svg/event_available_green.svg";
+import DollarGreen from "../../../assets/images/svg/dollar_green.svg";
+import CalendarGreen from "../../../assets/images/svg/calendar_green.svg";
+import CodeGreen from "../../../assets/images/svg/code_green.svg";
+import UsersGreen from "../../../assets/images/svg/users_green.svg";
+import DropArrowGreen from "../../../assets/images/svg/drop_arrow_green.svg";
+
+import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
+
 const Icons = {
   Search,
   Ecommerce,
@@ -36,6 +45,13 @@ const Icons = {
   AppleLogo,
   GoogleLogo,
   GithubWhite,
+  EventAvailableGreen,
+  DollarGreen,
+  CalendarGreen,
+  CodeGreen,
+  UsersGreen,
+  DropArrowGreen,
+  LoaderGif,
 };
 
 export default Icons;

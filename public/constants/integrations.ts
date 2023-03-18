@@ -6,7 +6,7 @@ type AuthIntegration = {
 const AuthIntegrations: Array<AuthIntegration> = [
   { name: "Google", icon: "GoogleLogo" },
   { name: "Github", icon: "GithubWhite" },
-  { name: "Apple", icon: "AppleLogo" },
+  // { name: "Apple", icon: "AppleLogo" },
 ];
 
 export default AuthIntegrations;
