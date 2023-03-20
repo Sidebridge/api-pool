@@ -23,6 +23,9 @@ import CalendarGreen from "../../../assets/images/svg/calendar_green.svg";
 import CodeGreen from "../../../assets/images/svg/code_green.svg";
 import UsersGreen from "../../../assets/images/svg/users_green.svg";
 import DropArrowGreen from "../../../assets/images/svg/drop_arrow_green.svg";
+import BookmarksGreen from "../../../assets/images/svg/bookmarks.svg";
+import LogoutGreen from "../../../assets/images/svg/logout.svg";
+import ReviewStarGreen from "../../../assets/images/svg/star_half.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 
@@ -51,6 +54,9 @@ const Icons = {
   CodeGreen,
   UsersGreen,
   DropArrowGreen,
+  BookmarksGreen,
+  LogoutGreen,
+  ReviewStarGreen,
   LoaderGif,
 };
 

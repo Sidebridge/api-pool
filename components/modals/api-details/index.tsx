@@ -13,14 +13,14 @@ const ApiDetails = () => {
   }
 
   return (
-    <div className="align-col w-full bg-dark-matte text-white">
-      <div className="detail-title w-full row-btwn border-b light-border p-5">
-        <div className="title-left align-row content-start">
+    <div className="w-full text-white align-col bg-dark-matte">
+      <div className="w-full p-5 border-b detail-title row-btwn light-border">
+        <div className="content-start title-left align-row">
           <AppIcon icon="ArrowLeftGreen" name="arrow" styles="press -mt-4" />
 
-          <div className="align-col ml-4">
+          <div className="ml-4 align-col">
             <h3 className="text-xl">Sendwave</h3>
-            {/* <p className="font-light text-sm">
+            {/* <p className="text-sm font-light">
               Ratings & Reviews <span className="text-grey">(3 Reviews)</span>
             </p> */}
           </div>
@@ -46,14 +46,14 @@ const ApiDetails = () => {
                 onClick={(star) => handleStarRating(star)}
               />
             </span>
-            <span className="text-xs text-white font-light text-right ml-auto">
+            <span className="ml-auto text-xs font-light text-right text-white">
               Rate your Experience
             </span>
           </div>
         </div>
       </div>
 
-      <div className="detail-body w-full flex flex-grow overflow-y-scroll">
+      <div className="flex flex-grow w-full overflow-y-scroll detail-body">
         {/* <Brief /> */}
         <Reviews />
       </div>

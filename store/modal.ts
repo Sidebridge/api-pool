@@ -3,10 +3,12 @@ import produce from "immer";
 
 interface Modal {
   loginModal: boolean;
+  apiBriefModal: boolean;
 }
 
 export const modals: Entity<Modal> = entity({
   loginModal: false,
+  apiBriefModal: false,
 } as Modal);
 
 export const toggleModal = (modal: string, value: boolean) => {

@@ -15,12 +15,12 @@ const Reviews = () => {
     >
       <div className="row-btwn">
         <div className="centered-row">
-          <div className="w-10 h-10 flex center border-2 light-border rounded-full mr-3">
+          <div className="flex w-10 h-10 mr-3 border-2 rounded-full center light-border">
             <AppIcon name="reviewer" icon="UserPrimary" />
           </div>
 
-          <div className="align-col font-light">
-            <span className="text-white text-base">Emmanuel Adams</span>
+          <div className="font-light align-col">
+            <span className="text-base text-white">Emmanuel Adams</span>
             <span className="">Company&apos;s Name</span>
           </div>
         </div>
@@ -47,10 +47,10 @@ const Reviews = () => {
 
   return (
     <>
-      <div className="align-col w-full h-auto">
-        {/* <div className="w-full h-fit align-col">{reviewList}</div> */}
+      <div className="w-full h-auto align-col">
+        <div className="w-full h-fit align-col">{reviewList}</div>
 
-        <form className="p-5 align-col text-white">
+        {/* <form className="p-5 text-white align-col">
           <div className="align-col">
             <label
               htmlFor="reviewer-company font-light"
@@ -68,7 +68,7 @@ const Reviews = () => {
             />
           </div>
 
-          <div className="align-col mt-4">
+          <div className="mt-4 align-col">
             <label htmlFor="reviewer-review" className="font-light w-fit">
               Review
             </label>
@@ -98,7 +98,7 @@ const Reviews = () => {
           >
             Submit Your Review
           </Button>
-        </form>
+        </form> */}
       </div>
     </>
   );

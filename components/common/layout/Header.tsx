@@ -15,9 +15,10 @@ function Header() {
   return (
     <div
       className={clsx(
-        "align-row py-4 px-24 bg-dark justify-between items-center",
-        ""
+        "sticky top-0 align-row py-4 px-24 bg-dark justify-between items-center",
+        "border-b light-border"
       )}
+      style={{ zIndex: 99999 }}
     >
       <Link href="/">
         <AppLogo />

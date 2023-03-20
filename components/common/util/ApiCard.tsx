@@ -4,6 +4,7 @@ import FeaturedTag from "./FeaturedTag";
 
 import FlutterwaveBg from "../../../assets/images/pictures/flutterwave.png";
 import BookmarkBtn from "./BookmarkButton";
+import { toggleModal } from "@/store/modal";
 
 type CardProp = {
   isHovered: boolean;
@@ -32,7 +33,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
 
           {isHovered && <h1>Sendwave</h1>}
         </div>
-        <div className="align-row justify-between items-center mt-5">
+        <div className="items-center justify-between mt-5 align-row">
           <h3 className="text-xl">Sendwave</h3>
           <FeaturedTag />
         </div>
@@ -46,7 +47,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
         </p>
       </div>
 
-      <div className="supported-langs p-3 align-row items-center border-b border-gray-400 border-opacity-20 text-light">
+      <div className="items-center p-3 border-b border-gray-400 supported-langs align-row border-opacity-20 text-light">
         {["Javascript", "PHP", "Python"].map((lang) => (
           <div
             key={lang}
@@ -67,6 +68,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
             "border-2 light-border leading-relaxed p-2 px-5 mr-2",
             "hover:border-primary hover:bg-dark"
           )}
+          onClick={() => toggleModal("apiBriefModal", true)}
         >
           <AppIcon icon="BriefWhite" name="brief" styles="mr-2" />
 

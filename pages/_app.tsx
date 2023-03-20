@@ -9,26 +9,24 @@ import LoginUI from "@/components/auth/LoginUI";
 
 import { modals, toggleModal } from "@/store/modal";
 
-import { useRouter } from "next/router";
-
 import AuthProvider from "@/store/context/AuthProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { loginModal } = modals.use();
-
-  const router = useRouter();
+  const { loginModal, apiBriefModal } = modals.use();
 
   return (
     <AuthProvider>
       <Component {...pageProps} />
 
-      {/* <BaseModal
-        styles="border-2 border-grey border-opacity-50"
-        isOpen={false}
-        onClose={() => toggleModal(false)}
-      >
-        <ApiDetails />
-      </BaseModal> */}
+      {apiBriefModal && (
+        <BaseModal
+          styles="border-2 border-grey border-opacity-50"
+          isOpen={apiBriefModal}
+          onClose={() => toggleModal("apiBriefModal", false)}
+        >
+          <ApiDetails />
+        </BaseModal>
+      )}
 
       {loginModal && (
         <BaseModal

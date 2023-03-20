@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-screen align-col relative">
+      <main className="relative w-screen align-col">
         <div className="w-full align-col scroll">
           <Hero />
           <Explore />

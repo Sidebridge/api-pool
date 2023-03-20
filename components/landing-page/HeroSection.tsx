@@ -5,8 +5,11 @@ import { Button } from "antd";
 
 import heroImage from "../../assets/images/illustrations/hero-image.png";
 import AppIcon from "../common/icons";
+import { useRouter } from "next/router";
 
 const Hero = () => {
+  const router = useRouter();
+
   return (
     <section
       id="hero-section"
@@ -16,17 +19,17 @@ const Hero = () => {
     >
       <div className={clsx("align-col w-6/12 ")}>
         <h1
-          className="w-10/12 font-bold mb-8 text-white text-6xl"
+          className="w-10/12 mb-8 text-6xl font-bold text-white"
           style={{ lineHeight: "67px" }}
         >
           Find the right API to bring your next idea to life
         </h1>
-        <p className="w-11/12 text-grey text-2xl">
+        <p className="w-11/12 text-2xl text-grey">
           Access a wide range of APIs & third-party services for every use case
           in one convenient place. Easy comparison, quick decisions.
         </p>
 
-        <div className="align-row items-center mt-12">
+        <div className="items-center mt-12 align-row">
           <Button
             className={clsx(
               "bg-primary text-dark border-none h-12 w-44 text-lg press",
@@ -35,6 +38,7 @@ const Hero = () => {
             shape="round"
             type="ghost"
             icon=""
+            onClick={() => router.push("/explore")}
           >
             Explore APIs
           </Button>
