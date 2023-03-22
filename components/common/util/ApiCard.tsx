@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
 import AppIcon from "../icons";
 import FeaturedTag from "./FeaturedTag";
@@ -6,15 +7,18 @@ import FlutterwaveBg from "../../../assets/images/pictures/flutterwave.png";
 import BookmarkBtn from "./BookmarkButton";
 import { toggleModal } from "@/store/modal";
 
+import type { ApiService } from "@/types/api-service.interface";
+
 type CardProp = {
   isHovered: boolean;
+  service: ApiService;
 };
 
-const ApiCard = ({ isHovered }: CardProp) => {
+const ApiCard = ({ isHovered, service }: CardProp) => {
   return (
     <div
       className={clsx(
-        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-light",
+        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-light overflow-x-hidden",
         "hover:border-primary hover:border-opacity-70"
       )}
     >
@@ -24,31 +28,35 @@ const ApiCard = ({ isHovered }: CardProp) => {
             "snapshot w-full text-2xl relative text-black rounded-md h-36 align-col justify-center items-center bg-white"
           )}
           style={{
-            backgroundImage: !isHovered ? `url(${FlutterwaveBg.src})` : "",
+            backgroundImage: !isHovered
+              ? `url(${service?.snapshot_image})`
+              : "",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
         >
           <BookmarkBtn styles="absolute top-2 right-2" />
 
-          {isHovered && <h1>Sendwave</h1>}
+          {isHovered && (
+            <img
+              className="w-7/12"
+              src={service?.logo}
+              alt={`${service?.service_name} Logo`}
+            />
+          )}
         </div>
         <div className="items-center justify-between mt-5 align-row">
-          <h3 className="text-xl">Sendwave</h3>
-          <FeaturedTag />
+          <h3 className="text-xl">{service?.service_name}</h3>
+          {service?.is_featured && <FeaturedTag />}
         </div>
       </div>
 
       <div className="card-description px-3.5 py-4 border-y border-gray-400 border-opacity-20 text-base font-light ">
-        <p className="opacity-75">
-          Lorem ipsum dolor sit amet consectetur. Velit ullamcorper at sagittis
-          dui sit pretium sem odio. Egestas a ut vestibulum at nunc odio id id.
-          Odio auctor eget vestibulum aliquam odio ipsum etiam dolor.
-        </p>
+        <p className="opacity-75">{service?.service_description}</p>
       </div>
 
       <div className="items-center p-3 border-b border-gray-400 supported-langs align-row border-opacity-20 text-light">
-        {["Javascript", "PHP", "Python"].map((lang) => (
+        {service?.supported_languages?.slice(0, 3).map((lang: string) => (
           <div
             key={lang}
             className="rounded-full border text-grey light-border leading-relaxed p-0.5 px-3 mr-2"
@@ -56,9 +64,11 @@ const ApiCard = ({ isHovered }: CardProp) => {
             {lang}
           </div>
         ))}
-        <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
-          <span>+3</span>
-        </div>
+        {service?.supported_languages.length > 3 && (
+          <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
+            <span>+{service?.supported_languages.length - 3}</span>
+          </div>
+        )}
       </div>
 
       <div className="card-actions align-row px-3.5 py-6">
@@ -72,7 +82,7 @@ const ApiCard = ({ isHovered }: CardProp) => {
         >
           <AppIcon icon="BriefWhite" name="brief" styles="mr-2" />
 
-          <span>View Brief</span>
+          <span>See More Info</span>
         </div>
 
         <div

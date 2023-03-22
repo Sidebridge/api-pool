@@ -5,6 +5,7 @@ import AppIcon from "../icons";
 
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
@@ -18,8 +19,10 @@ const ProfilePreview = () => {
 
   const [isShowProfileOptions, setProfileOptionsState] = useState(false);
 
+  const router = useRouter();
+
   const handleLogout = () => {
-    console.log("Heyyyyyy");
+    router.push("/explore");
 
     signOut();
   };

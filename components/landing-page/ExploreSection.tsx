@@ -6,6 +6,8 @@ import AppIcon from "../common/icons";
 import SearchInput from "../common/util/SearchInput";
 import ApiCard from "../common/util/ApiCard";
 
+import type { ApiService } from "@/types/api-service.interface";
+
 const domains = [
   { id: 1, name: "e-commerce", icon: "Ecommerce" },
   { id: 2, name: "sport", icon: "Sport" },
@@ -14,16 +16,16 @@ const domains = [
   { id: 5, name: "finance", icon: "Ecommerce" },
 ];
 
-const Explore = () => {
+const Explore = ({ services }: { services: null | ApiService[] }) => {
   const [selectedDomain, setSelectedDomain] = useState<number | null>(null);
 
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   function domainSelectHandler(id: number | null) {
     setSelectedDomain(id);
   }
 
-  function cardHoverHandler(card: number | null) {
+  function cardHoverHandler(card: string | null) {
     setHoveredCard(card);
   }
 
@@ -34,26 +36,26 @@ const Explore = () => {
         "align-col w-full justify-between items-center pt-28 px-24 pb-10"
       )}
     >
-      <div className="w-full align-row items-center justify-between">
-        <div className="align-col w-6/12">
+      <div className="items-center justify-between w-full align-row">
+        <div className="w-6/12 align-col">
           <h2
-            className="w-10/12 font-bold mb-6 text-white text-5xl"
+            className="w-10/12 mb-6 text-5xl font-bold text-white"
             style={{ lineHeight: "67px" }}
           >
             Explore APIs
           </h2>
 
-          <p className="w-11/12 text-grey font-light text-xl">
+          <p className="w-11/12 text-xl font-light text-grey">
             Quickly find the right API. Filter by category, company, function.
             Detailed info, code, reviews. Latest offerings from top companies.
             Search now!
           </p>
         </div>
 
-        <div className="align-col w-4/12">
+        <div className="w-4/12 align-col">
           <SearchInput />
 
-          <div className="w-full align-row flex-wrap gap-x-4 justify-between content-start items-center mt-5">
+          <div className="flex-wrap items-center content-start justify-between w-full mt-5 align-row gap-x-4">
             {domains.map((domain) => (
               <div
                 key={domain.id}
@@ -74,16 +76,19 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className="featured-list w-full align-row flex-wrap justify-between gap-x-1 content-start mt-12">
-        {[1, 2, 3, 4, 5, 6].map((card) => (
+      <div className="flex-wrap content-start justify-between w-full mt-12 featured-list align-row gap-x-1">
+        {services?.map((service) => (
           <div
-            className="h-fit mb-12 press"
-            style={{ width: "31%" }}
-            key={card}
-            onMouseEnter={() => cardHoverHandler(card)}
+            className="mb-12 h-fit press"
+            style={{ flexBasis: "400px" }}
+            key={service?.service_id}
+            onMouseEnter={() => cardHoverHandler(service?.service_id)}
             onMouseLeave={() => cardHoverHandler(null)}
           >
-            <ApiCard isHovered={hoveredCard === card} />
+            <ApiCard
+              isHovered={hoveredCard === service?.service_id}
+              service={service}
+            />
           </div>
         ))}
       </div>

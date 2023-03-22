@@ -6,8 +6,36 @@ import Hero from "@/components/landing-page/HeroSection";
 import Explore from "@/components/landing-page/ExploreSection";
 import Footer from "@/components/common/layout/Footer";
 import MainLayout from "@/components/layout/MainLayout";
+import { useEffect, useState } from "react";
+
+import { supabaseClient } from "@/utils/services/supabase/client";
+import type { ApiService } from "@/types/api-service.interface";
 
 const Home: NextPage = () => {
+  const [featuredAPIs, setFeaturedAPIs] = useState<ApiService[] | null>(null);
+
+  useEffect(() => {
+    const getFeaturedAPIs = async () => {
+      //
+      const { data, error } = await supabaseClient
+        .from("api_services")
+        .select("*")
+        .eq("is_featured", true);
+
+      if (error) {
+        console.log("There was an error: ", error);
+        setFeaturedAPIs([]);
+      }
+
+      if (data) {
+        console.log("Returned data: ", data);
+        setFeaturedAPIs(data as ApiService[]);
+      }
+    };
+
+    getFeaturedAPIs();
+  }, []);
+
   return (
     <MainLayout>
       <Head>
@@ -25,7 +53,7 @@ const Home: NextPage = () => {
       <main className="relative w-screen align-col">
         <div className="w-full align-col scroll">
           <Hero />
-          <Explore />
+          <Explore services={featuredAPIs} />
         </div>
       </main>
     </MainLayout>

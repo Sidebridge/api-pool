@@ -34,7 +34,7 @@ export const login = (provider: Provider) =>
 const signOut = () => supabaseClient.auth.signOut();
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState(null as User | null);
+  const [user, setUser] = useState<User | null>(null);
   const [auth, setAuth] = useState(false);
 
   const router = useRouter();
