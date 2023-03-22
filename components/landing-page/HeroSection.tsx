@@ -6,6 +6,7 @@ import { Button } from "antd";
 import heroImage from "../../assets/images/illustrations/hero-image.png";
 import AppIcon from "../common/icons";
 import { useRouter } from "next/router";
+import { toggleModal } from "@/store/modal";
 
 const Hero = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const Hero = () => {
             )}
             type="ghost"
             shape="round"
+            onClick={() => toggleModal("apiListingModal", true)}
           >
             <span>List API</span>
             <AppIcon icon="ArrowRightWhite" name="arrow" styles="ml-2.5" />

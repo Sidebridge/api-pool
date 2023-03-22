@@ -17,9 +17,12 @@ const BaseModal = ({
   return (
     <>
       {isOpen && (
-        <div className="w-screen h-screen fixed top-0 left-0 modal  z-50">
+        <div
+          className="fixed top-0 left-0 w-screen h-screen modal"
+          style={{ zIndex: 99999999 }}
+        >
           <div
-            className="backdrop w-full h-full absolute bg-dark bg-opacity-80 backdrop-blur z-20"
+            className="absolute z-20 w-full h-full backdrop bg-dark bg-opacity-80 backdrop-blur"
             onClick={onClose}
           ></div>
 

@@ -10,9 +10,10 @@ import LoginUI from "@/components/auth/LoginUI";
 import { modals, toggleModal } from "@/store/modal";
 
 import AuthProvider from "@/store/context/AuthProvider";
+import ApiRequestForm from "@/components/modals/ApiRequestForm";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { loginModal, apiBriefModal } = modals.use();
+  const { loginModal, apiBriefModal, apiListingModal } = modals.use();
 
   return (
     <AuthProvider>
@@ -35,6 +36,16 @@ export default function App({ Component, pageProps }: AppProps) {
           onClose={() => toggleModal("loginModal", false)}
         >
           <LoginUI />
+        </BaseModal>
+      )}
+
+      {apiListingModal && (
+        <BaseModal
+          styles="border-t-2 border-primary"
+          isOpen={apiListingModal}
+          onClose={() => toggleModal("apiListingModal", false)}
+        >
+          <ApiRequestForm />
         </BaseModal>
       )}
     </AuthProvider>
