@@ -93,6 +93,19 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
         ))}
       </div>
 
+      {(!services || services.length === 0) && (
+        <div className="items-center mt-12 mb-20 align-col">
+          <AppIcon
+            name="error-illustration"
+            icon="ErrorBroken"
+            styles="w-72 mb-10"
+          />
+          <span className="text-xl text-grey">
+            No data available for display
+          </span>
+        </div>
+      )}
+
       <Button
         className={clsx(
           "text-dark align-row items-center bg-primary ml-6 h-12 p-4 px-12 text-xl press mt-6",
