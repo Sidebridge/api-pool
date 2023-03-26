@@ -21,14 +21,11 @@ const BaseModal = ({
           className="fixed top-0 left-0 w-screen h-screen modal"
           style={{ zIndex: 99999999 }}
         >
-          <div
-            className="absolute z-20 w-full h-full backdrop bg-dark bg-opacity-80 backdrop-blur"
-            onClick={onClose}
-          ></div>
+          <div className="absolute z-20 w-full h-full backdrop bg-dark bg-opacity-80 backdrop-blur"></div>
 
           <div
             className={clsx(
-              "inner-modal z-30 absolute top-10 h-fit left-0 right-0 mx-auto w-5/12"
+              "inner-modal z-30 absolute top-10 left-0 right-0 mx-auto w-5/12"
             )}
             style={{ maxHeight: "90%" }}
           >
@@ -41,10 +38,10 @@ const BaseModal = ({
 
             <div
               className={clsx(
-                "mt-4 w-full rounded-3xl h-fit bg-dark-matte  overflow-y-scroll",
+                "mt-4 w-full rounded-3xl  bg-dark-matte  overflow-y-scroll",
                 styles
               )}
-              style={{ maxHeight: "95%" }}
+              style={{ maxHeight: "85vh" }}
             >
               {children}
             </div>

@@ -30,7 +30,8 @@ module.exports = {
           DEFAULT: "#F2B925",
         },
         grey: {
-          DEFAULT: "#6A6A6A",
+          DEFAULT: "#CECECE",
+          legacy: "#6A6A6A",
           light: "#222222",
           faint: "#2C2C2C",
         },

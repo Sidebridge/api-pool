@@ -3,10 +3,12 @@ import Image from "next/image";
 
 import { Button } from "antd";
 
-import heroImage from "../../assets/images/illustrations/hero-image.png";
+import heroImage from "../../assets/images/illustrations/dashboard.png";
 import AppIcon from "../common/icons";
 import { useRouter } from "next/router";
 import { toggleModal } from "@/store/modal";
+
+import classes from "@/styles/landing-page.module.css";
 
 const Hero = () => {
   const router = useRouter();
@@ -15,17 +17,18 @@ const Hero = () => {
     <section
       id="hero-section"
       className={clsx(
-        "align-row w-full justify-between items-center py-20 px-24"
+        "align-col w-full justify-between items-center py-20 px-24",
+        classes["hero-bg"]
       )}
     >
-      <div className={clsx("align-col w-6/12 ")}>
+      <div className={clsx("align-col items-center w-10/12 text-center")}>
         <h1
           className="w-10/12 mb-8 text-6xl font-bold text-white"
           style={{ lineHeight: "67px" }}
         >
           Find the right API to bring your next idea to life
         </h1>
-        <p className="w-11/12 text-2xl text-grey">
+        <p className="w-11/12 text-2xl font-light text-grey">
           Access a wide range of APIs & third-party services for every use case
           in one convenient place. Easy comparison, quick decisions.
         </p>
@@ -51,7 +54,7 @@ const Hero = () => {
             )}
             type="ghost"
             shape="round"
-            onClick={() => toggleModal("apiListingModal", true)}
+            onClick={() => toggleModal("apiRecommendationModal", true)}
           >
             <span>List API</span>
             <AppIcon icon="ArrowRightWhite" name="arrow" styles="ml-2.5" />
@@ -60,9 +63,8 @@ const Hero = () => {
       </div>
 
       <Image
-        className={clsx()}
+        className={clsx("mt-20 w-10/12")}
         src={heroImage}
-        width="650"
         height="480"
         alt="APIPool Logo"
         priority

@@ -13,7 +13,7 @@ import AuthProvider from "@/store/context/AuthProvider";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { loginModal, apiBriefModal, apiListingModal } = modals.use();
+  const { loginModal, apiBriefModal, apiRecommendationModal } = modals.use();
 
   return (
     <AuthProvider>
@@ -39,13 +39,15 @@ export default function App({ Component, pageProps }: AppProps) {
         </BaseModal>
       )}
 
-      {apiListingModal && (
+      {apiRecommendationModal && (
         <BaseModal
           styles="border-t-2 border-primary"
-          isOpen={apiListingModal}
-          onClose={() => toggleModal("apiListingModal", false)}
+          isOpen={apiRecommendationModal}
+          onClose={() => toggleModal("apiRecommendationModal", false)}
         >
-          <ApiRequestForm />
+          <ApiRequestForm
+            onSubmitted={() => toggleModal("apiRecommendationModal", false)}
+          />
         </BaseModal>
       )}
     </AuthProvider>

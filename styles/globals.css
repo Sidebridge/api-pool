@@ -45,7 +45,6 @@
 }
 
 .patternBg {
-  background-image: url("../assets/images/illustrations/background-pattern.png");
   background-size: cover;
   background-repeat: repeat-y;
 }
@@ -60,7 +59,7 @@
 }
 
 .light-border {
-  @apply border-grey border-opacity-30;
+  @apply border-grey-legacy border-opacity-30;
 }
 
 .align-row {
@@ -95,5 +94,18 @@
   opacity: 60%;
   touch-action: none;
   pointer-events: none;
-  cursor: default;
+  cursor: not-allowed;
+}
+
+select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid greenyellow;
+  transform: translateY(-50%) rotate(45deg);
 }

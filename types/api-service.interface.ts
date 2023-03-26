@@ -14,3 +14,12 @@ export interface ApiService {
   source_url: string;
   supported_languages: string[];
 }
+
+export interface ApiServiceDomain {
+  id: string;
+  created_at: string;
+  name: string;
+  code: string | null;
+  related_domains: string[];
+  icon: string | null;
+}
