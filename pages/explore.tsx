@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ExploreFilters from "@/public/constants/filters";
 
@@ -11,16 +11,26 @@ import SearchInput from "@/components/common/util/SearchInput";
 import ApiCard from "@/components/common/util/ApiCard";
 import type { ApiService } from "@/types/api-service.interface";
 
+import { featuredApiServices, getFeaturedAPIs } from "@/store/api-services";
+
 const Explore: NextPage = () => {
   const hey = (val: unknown) => {
     console.log(val);
   };
 
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  function cardHoverHandler(card: number | null) {
+  const featuredApis = featuredApiServices.use();
+
+  function cardHoverHandler(card: string | null) {
     setHoveredCard(card);
   }
+
+  useEffect(() => {
+    if (!featuredApis || featuredApis.length === 0) {
+      getFeaturedAPIs();
+    }
+  }, [featuredApis]);
 
   return (
     <MainLayout>
@@ -143,17 +153,17 @@ const Explore: NextPage = () => {
             </div>
 
             <div className="flex-wrap content-start justify-between w-full px-10 mt-5 featured-list align-row gap-x-1">
-              {[1, 2, 3, 4, 5, 6].map((card) => (
+              {featuredApis.map((service) => (
                 <div
                   className="mb-12 h-fit press"
                   style={{ width: "49%" }}
-                  key={card}
-                  onMouseEnter={() => cardHoverHandler(card)}
+                  key={service?.service_id}
+                  onMouseEnter={() => cardHoverHandler(service.service_id)}
                   onMouseLeave={() => cardHoverHandler(null)}
                 >
                   <ApiCard
-                    service={{} as ApiService}
-                    isHovered={hoveredCard === card}
+                    service={service}
+                    isHovered={hoveredCard === service?.service_id}
                   />
                 </div>
               ))}

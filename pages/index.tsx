@@ -11,27 +11,35 @@ import { useEffect, useState } from "react";
 import { supabaseClient } from "@/utils/services/supabase/client";
 import type { ApiService } from "@/types/api-service.interface";
 
+import { getFeaturedAPIs } from "@/store/api-services";
+
+import {
+  featuredApiServices,
+  setFeaturedApiServices,
+} from "@/store/api-services";
+
 const Home: NextPage = () => {
-  const [featuredAPIs, setFeaturedAPIs] = useState<ApiService[] | null>(null);
+  const featuredAPIs = featuredApiServices.use();
 
   useEffect(() => {
-    const getFeaturedAPIs = async () => {
-      //
-      const { data, error } = await supabaseClient
-        .from("api_services")
-        .select("*")
-        .eq("is_featured", true);
+    // const getFeaturedAPIs = async () => {
+    //   //
+    //   const { data, error } = await supabaseClient
+    //     .from("api_services")
+    //     .select("*")
+    //     .eq("is_featured", true);
 
-      if (error) {
-        console.log("There was an error: ", error);
-        setFeaturedAPIs([]);
-      }
+    //   if (error) {
+    //     console.log("There was an error: ", error);
+    //     setFeaturedApiServices([]);
+    //   }
 
-      if (data) {
-        console.log("Returned data: ", data);
-        setFeaturedAPIs(data as ApiService[]);
-      }
-    };
+    //   if (data) {
+    //     console.log("Returned data: ", data);
+    //     // setFeaturedAPIs(data as ApiService[]);
+    //     setFeaturedApiServices(data as ApiService[]);
+    //   }
+    // };
 
     getFeaturedAPIs();
   }, []);
