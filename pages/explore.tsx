@@ -11,7 +11,12 @@ import SearchInput from "@/components/common/util/SearchInput";
 import ApiCard from "@/components/common/util/ApiCard";
 import type { ApiService } from "@/types/api-service.interface";
 
-import { featuredApiServices, getFeaturedAPIs } from "@/store/api-services";
+import {
+  featuredApiServices,
+  commonApiServices,
+  getFeaturedAPIs,
+  getCommonAPIServices,
+} from "@/store/api-services";
 
 const Explore: NextPage = () => {
   const hey = (val: unknown) => {
@@ -21,16 +26,25 @@ const Explore: NextPage = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const featuredApis = featuredApiServices.use();
+  const commonApis = commonApiServices.use();
+
+  const [allApiServices, setAllApiServices] = useState<ApiService[]>([]);
 
   function cardHoverHandler(card: string | null) {
     setHoveredCard(card);
   }
 
   useEffect(() => {
-    if (!featuredApis || featuredApis.length === 0) {
-      getFeaturedAPIs();
-    }
-  }, [featuredApis]);
+    getFeaturedAPIs();
+
+    getCommonAPIServices();
+  }, []);
+
+  useEffect(() => {
+    const allApis = [...featuredApis, ...commonApis];
+
+    setAllApiServices(allApis);
+  }, [featuredApis, commonApis]);
 
   return (
     <MainLayout>
@@ -153,7 +167,7 @@ const Explore: NextPage = () => {
             </div>
 
             <div className="flex-wrap content-start justify-between w-full px-10 mt-5 featured-list align-row gap-x-1">
-              {featuredApis.map((service) => (
+              {allApiServices.map((service) => (
                 <div
                   className="mb-12 h-fit press"
                   style={{ width: "49%" }}

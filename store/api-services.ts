@@ -15,8 +15,16 @@ export const featuredApiServices: Entity<ApiService[]> = entity(
   [] as ApiService[]
 );
 
-export const setFeaturedApiServices = (value: ApiService[]) => {
-  featuredApiServices.set(value);
+export const commonApiServices: Entity<ApiService[]> = entity(
+  [] as ApiService[]
+);
+
+export const setApiServices = (type: string, value: ApiService[]) => {
+  if (type === "featured") {
+    featuredApiServices.set(value);
+  } else if (type === "common") {
+    commonApiServices.set(value);
+  }
 };
 
 export const getFeaturedAPIs = async () => {
@@ -28,12 +36,30 @@ export const getFeaturedAPIs = async () => {
 
   if (error) {
     console.log("There was an error: ", error);
-    setFeaturedApiServices([]);
+    setApiServices("featured", []);
   }
 
   if (data) {
-    console.log("Returned data: ", data);
-    // setFeaturedAPIs(data as ApiService[]);
-    setFeaturedApiServices(data as ApiService[]);
+    console.log("Returned featured api data: ", data);
+    // setAPIs(data as ApiService[]);
+    setApiServices("featured", data as ApiService[]);
+  }
+};
+
+export const getCommonAPIServices = async () => {
+  const { data, error } = await supabaseClient
+    .from("api_services")
+    .select("*")
+    .eq("is_featured", false);
+
+  if (error) {
+    console.log("There was an error: ", error);
+    setApiServices("common", []);
+  }
+
+  if (data) {
+    console.log("Returned common api data: ", data);
+    // setAPIs(data as ApiService[]);
+    setApiServices("common", data as ApiService[]);
   }
 };

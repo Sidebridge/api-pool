@@ -6,9 +6,10 @@ import AppIcon from "../icons";
 
 type SearchInputProps = {
   style?: string;
+  onClick: () => void;
 };
 
-const SearchInput = ({ style }: SearchInputProps) => {
+const SearchInput = ({ style, onClick }: SearchInputProps) => {
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -22,7 +23,7 @@ const SearchInput = ({ style }: SearchInputProps) => {
         style
       )}
     >
-      <div className="align-row items-center p-1 pl-3 w-full">
+      <div className="items-center w-full p-1 pl-3 align-row">
         <AppIcon icon="Search" name="search" />
         <Input
           className={clsx(
@@ -44,6 +45,7 @@ const SearchInput = ({ style }: SearchInputProps) => {
           shape="round"
           icon=""
           size="large"
+          onClick={onClick}
         >
           Search
         </Button>
