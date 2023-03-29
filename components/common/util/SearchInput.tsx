@@ -1,19 +1,37 @@
 import Image from "next/image";
 import { Button, Input } from "antd";
 import clsx from "clsx";
+import { useState } from "react";
 
 import AppIcon from "../icons";
 
 type SearchInputProps = {
   style?: string;
-  onClick: () => void;
+  placeholder: string;
+  processing: boolean;
+  onClick: (value: string) => void;
+  onSearch: (searchTerm: string) => void;
 };
 
-const SearchInput = ({ style, onClick }: SearchInputProps) => {
+const SearchInput = ({
+  style,
+  placeholder,
+  processing,
+  onClick,
+  onSearch,
+}: SearchInputProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    console.log(e);
+    setSearchTerm(e.target.value);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onSearch(searchTerm);
+    }
   };
 
   return (
@@ -30,22 +48,25 @@ const SearchInput = ({ style, onClick }: SearchInputProps) => {
             "bg-transparent outline-none border-none text-white placeholder-grey text-base flex flex-grow",
             "focus:border-none focus:outline-none"
           )}
-          placeholder="Search API by name, or use case"
+          placeholder={placeholder}
           type="text"
           bordered={false}
           onChange={onChange}
+          onKeyDown={handleKeyPress}
         />
 
         <Button
           className={clsx(
             "bg-primary text-dark text-center font-medium text-lg leading-relaxed",
-            ""
+            processing && "disabled"
           )}
           type="ghost"
           shape="round"
           icon=""
           size="large"
-          onClick={onClick}
+          loading={processing}
+          disabled={processing}
+          onClick={() => onClick(searchTerm)}
         >
           Search
         </Button>

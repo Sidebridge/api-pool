@@ -7,6 +7,7 @@ import SearchInput from "../common/util/SearchInput";
 import ApiCard from "../common/util/ApiCard";
 
 import type { ApiService } from "@/types/api-service.interface";
+import { useRouter } from "next/router";
 
 const domains = [
   { id: 1, name: "e-commerce", icon: "Ecommerce" },
@@ -17,6 +18,8 @@ const domains = [
 ];
 
 const Explore = ({ services }: { services: null | ApiService[] }) => {
+  const router = useRouter();
+
   const [selectedDomain, setSelectedDomain] = useState<number | null>(null);
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -53,7 +56,12 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
         </div>
 
         <div className="w-4/12 align-col">
-          <SearchInput />
+          <SearchInput
+            placeholder=""
+            processing={false}
+            onSearch={() => {}}
+            onClick={() => {}}
+          />
 
           <div className="flex-wrap items-center content-start justify-between w-full mt-5 align-row gap-x-4">
             {domains.map((domain) => (
@@ -113,6 +121,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
         )}
         type="ghost"
         shape="round"
+        onClick={() => router.push("/explore")}
       >
         <span className="mr-2 text-lg">See More APIs</span>
 

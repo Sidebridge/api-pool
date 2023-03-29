@@ -66,7 +66,7 @@ const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
 
       if (data) {
         console.log(data);
-        setApiServiceDomains(data);
+        setApiServiceDomains(data as []);
       }
     }
 

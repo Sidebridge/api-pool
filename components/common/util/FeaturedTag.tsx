@@ -1,8 +1,8 @@
 const FeaturedTag = () => {
   return (
-    <div className="align-row items-center rounded-full p-1 px-3 bg-accent">
+    <div className="items-center p-1 px-3 rounded-full align-row bg-accent">
       <span className="mr-1 mb-0.5">🔥 </span>
-      <span className="text-dark font-normal text-sm">Featured</span>
+      <span className="text-sm font-normal text-dark">Featured</span>
     </div>
   );
 };

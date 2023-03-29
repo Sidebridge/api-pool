@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 
-import BaseModal from "@/components/common/base/BaseModal";
+import { Toaster } from "react-hot-toast";
+
 import "@/styles/globals.css";
 
 import ApiDetails from "@/components/modals/api-details";
 import LoginUI from "@/components/auth/LoginUI";
+import ApiRequestForm from "@/components/modals/ApiRequestForm";
+import BaseModal from "@/components/common/base/BaseModal";
 
 import { modals, toggleModal } from "@/store/modal";
 
 import AuthProvider from "@/store/context/AuthProvider";
-import ApiRequestForm from "@/components/modals/ApiRequestForm";
 
 export default function App({ Component, pageProps }: AppProps) {
   const { loginModal, apiBriefModal, apiRecommendationModal } = modals.use();
@@ -18,6 +20,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       <Component {...pageProps} />
+
+      <Toaster />
 
       {apiBriefModal && (
         <BaseModal

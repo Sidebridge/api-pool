@@ -35,31 +35,28 @@ export const getFeaturedAPIs = async () => {
     .eq("is_featured", true);
 
   if (error) {
-    console.log("There was an error: ", error);
     setApiServices("featured", []);
   }
 
   if (data) {
-    console.log("Returned featured api data: ", data);
-    // setAPIs(data as ApiService[]);
     setApiServices("featured", data as ApiService[]);
   }
 };
 
-export const getCommonAPIServices = async () => {
+export const getCommonAPIServices = async (searchTerm: string) => {
   const { data, error } = await supabaseClient
     .from("api_services")
     .select("*")
-    .eq("is_featured", false);
+    .eq("is_featured", false)
+    .or(
+      `service_name.ilike.%${searchTerm}%,service_description.ilike.%${searchTerm}%`
+    );
 
   if (error) {
-    console.log("There was an error: ", error);
     setApiServices("common", []);
   }
 
   if (data) {
-    console.log("Returned common api data: ", data);
-    // setAPIs(data as ApiService[]);
     setApiServices("common", data as ApiService[]);
   }
 };

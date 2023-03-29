@@ -6,6 +6,7 @@ import AppIcon from "../icons";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
@@ -25,6 +26,8 @@ const ProfilePreview = () => {
     router.push("/explore");
 
     signOut();
+
+    toast.success("Logout successful! Authenticate to access special features");
   };
 
   const handleProfileOptionsToggle = (state: boolean) => {
