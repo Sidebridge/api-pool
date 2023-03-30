@@ -2,3 +2,8 @@
   background-image: url("../assets/images/pictures/hero-bg.png");
   background-size: cover;
 }
+
+.spotlight-bg {
+  background-image: url("../assets/images/pictures/spotlight-bg.png");
+  background-size: cover;
+}

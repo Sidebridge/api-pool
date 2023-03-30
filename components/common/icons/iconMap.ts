@@ -26,6 +26,8 @@ import DropArrowGreen from "../../../assets/images/svg/drop_arrow_green.svg";
 import BookmarksGreen from "../../../assets/images/svg/bookmarks.svg";
 import LogoutGreen from "../../../assets/images/svg/logout.svg";
 import ReviewStarGreen from "../../../assets/images/svg/star_half.svg";
+import MailWhite from "../../../assets/images/svg/mail_white.svg";
+
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
@@ -58,6 +60,7 @@ const Icons = {
   BookmarksGreen,
   LogoutGreen,
   ReviewStarGreen,
+  MailWhite,
   ErrorBroken,
   LoaderGif,
 };

@@ -18,7 +18,7 @@ function Header() {
         "sticky top-0 align-row py-4 px-24 bg-dark-matte justify-between items-center",
         "border-b light-border"
       )}
-      style={{ zIndex: 99999 }}
+      style={{ zIndex: 90 }}
     >
       <Link href="/">
         <AppLogo />

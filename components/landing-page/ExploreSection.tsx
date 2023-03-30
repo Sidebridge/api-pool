@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import { Button } from "antd";
 import AppIcon from "../common/icons";
-import SearchInput from "../common/util/SearchInput";
+import CustomInput from "../common/util/CustomButtonedInput";
 import ApiCard from "../common/util/ApiCard";
 
 import type { ApiService } from "@/types/api-service.interface";
@@ -56,10 +56,12 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
         </div>
 
         <div className="w-4/12 align-col">
-          <SearchInput
-            placeholder=""
+          <CustomInput
+            placeholder="Search for API services conveniently"
+            btnText="Search"
             processing={false}
-            onSearch={() => {}}
+            icon="Search"
+            onEnter={() => {}}
             onClick={() => {}}
           />
 
@@ -68,7 +70,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
               <div
                 key={domain.id}
                 className={clsx(
-                  "p-3 px-4 mb-4 text-base press capitalize border border-grey rounded-full",
+                  "p-3 px-4 mb-4 text-base press capitalize border border-grey-legacy rounded-full",
                   "flex-grow align-row center",
                   selectedDomain !== domain.id &&
                     "hover:border-primary hover:border-opacity-60",

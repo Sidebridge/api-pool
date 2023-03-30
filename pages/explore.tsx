@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 import MainLayout from "@/components/layout/MainLayout";
-import SearchInput from "@/components/common/util/SearchInput";
+import CustomInput from "@/components/common/util/CustomButtonedInput";
 import ApiCard from "@/components/common/util/ApiCard";
 import FilterList from "@/components/explore/FilterList";
 
@@ -69,14 +69,16 @@ const Explore: NextPage = () => {
 
           <div className="w-9/12 h-full border-l-2 align-col border-grey-faint">
             <div className="items-center w-full h-20 px-10 font-light border-b row-btwn text-light border-grey border-opacity-10">
-              <SearchInput
+              <CustomInput
                 style="h-12 border-opacity-30 w-8/12"
                 placeholder="Search API services by name or description"
+                btnText="Search"
                 processing={isSearchingApis}
-                onClick={(value) => {
-                  searchApiService(value);
+                icon="Search"
+                onClick={(searchTerm) => {
+                  searchApiService(searchTerm);
                 }}
-                onSearch={(searchTerm) => searchApiService(searchTerm)}
+                onEnter={(searchTerm) => searchApiService(searchTerm)}
               />
 
               <span className="text-grey">All API: 345</span>

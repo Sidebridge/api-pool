@@ -12,6 +12,7 @@ import { supabaseClient } from "@/utils/services/supabase/client";
 import type { ApiService } from "@/types/api-service.interface";
 
 import { getFeaturedAPIs, featuredApiServices } from "@/store/api-services";
+import NewsletterSub from "@/components/landing-page/NewsletterSub";
 
 const Home: NextPage = () => {
   const featuredAPIs = featuredApiServices.use();
@@ -38,6 +39,7 @@ const Home: NextPage = () => {
         <div className="w-full align-col scroll">
           <Hero />
           <Explore services={featuredAPIs} />
+          <NewsletterSub />
         </div>
       </main>
     </MainLayout>

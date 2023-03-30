@@ -92,9 +92,9 @@
 
 .disabled {
   opacity: 60%;
+  cursor: not-allowed;
   touch-action: none;
   pointer-events: none;
-  cursor: not-allowed;
 }
 
 select::after {
