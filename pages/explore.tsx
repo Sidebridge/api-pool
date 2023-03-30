@@ -76,8 +76,9 @@ const Explore: NextPage = () => {
                 processing={isSearchingApis}
                 icon="Search"
                 onClick={(searchTerm) => {
-                  searchApiService(searchTerm);
+                  searchApiService(searchTerm as string);
                 }}
+                onChange={() => {}}
                 onEnter={(searchTerm) => searchApiService(searchTerm)}
               />
 

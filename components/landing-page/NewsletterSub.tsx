@@ -17,7 +17,7 @@ const NewsletterSub = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   async function subscriptionHandler(email: string) {
-    const isEmailValid = validateEmail(email);
+    const isEmailValid = validateEmail(email as string);
 
     if (!isEmailValid) {
       return toast.error("Please enter a valid email to proceed!");
@@ -88,9 +88,9 @@ const NewsletterSub = () => {
           processing={isSubbingUser}
           disabled={!isEmailValid}
           icon="MailWhite"
-          onClick={(email) => subscriptionHandler(email)}
+          onClick={(email) => subscriptionHandler(email as string)}
           onEnter={(email) => subscriptionHandler(email)}
-          onChange={(email) => changeHandler(email)}
+          onChange={(email) => changeHandler(email as string)}
         />
       </div>
     </div>

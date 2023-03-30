@@ -63,6 +63,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
             icon="Search"
             onEnter={() => {}}
             onClick={() => {}}
+            onChange={() => {}}
           />
 
           <div className="flex-wrap items-center content-start justify-between w-full mt-5 align-row gap-x-4">

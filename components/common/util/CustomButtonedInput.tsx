@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { useState, InputHTMLAttributes, forwardRef } from "react";
 
 import AppIcon from "../icons";
-import { icons } from "antd/es/image/PreviewGroup";
 
 type CustomInputProps = {
   style?: string;
