@@ -8,6 +8,7 @@ import CustomInput from "../common/util/CustomButtonedInput";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
 import { validateEmail } from "@/utils/helper/validator";
+import { plunk } from "@/utils/services/plunk";
 
 const NewsletterSub = () => {
   const [isSubbingUser, setIsSubbingUser] = useState<boolean>(false);
@@ -47,6 +48,13 @@ const NewsletterSub = () => {
     toast.success("You're awesome! We've added you to our email list", {
       duration: 4000,
     });
+
+    // Send welcome email to subscribers via "useplunk"
+    await plunk.events.track({
+      email,
+      event: "welcome-new-subscribers",
+    });
+
     setIsSubbingUser(false);
     if (inputRef && inputRef.current) {
       inputRef.current.value = "";
