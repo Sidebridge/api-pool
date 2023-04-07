@@ -32,6 +32,7 @@ const Home: NextPage = () => {
           content="A pool of API and third-party services from around the world and of diverse use cases."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
