@@ -1,15 +1,11 @@
+import useSWR from "swr";
+
 import { entity, type Entity } from "simpler-state";
 import produce from "immer";
 
 import type { ApiService } from "@/types/api-service.interface";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
-
-interface Modal {
-  loginModal: boolean;
-  apiBriefModal: boolean;
-  apiRecommendationModal: boolean;
-}
 
 export const featuredApiServices: Entity<ApiService[]> = entity(
   [] as ApiService[]
@@ -43,14 +39,43 @@ export const getFeaturedAPIs = async () => {
   }
 };
 
-export const getCommonAPIServices = async (searchTerm: string) => {
-  const { data, error } = await supabaseClient
+export const getCommonAPIServices = async (
+  searchTerm: string,
+  filterObject?: { [key: string]: any }
+) => {
+  let query = supabaseClient
     .from("api_services")
     .select("*")
     .eq("is_featured", false)
     .or(
       `service_name.ilike.%${searchTerm}%,service_description.ilike.%${searchTerm}%`
     );
+
+  if (filterObject) {
+    if (filterObject.countries && filterObject.countries.length) {
+      query = query.overlaps("service_countries", filterObject.countries);
+    }
+
+    if (filterObject.sectors && filterObject.sectors.length) {
+      query = query.in("business_sector_id", filterObject.sectors);
+    }
+
+    if (filterObject.pricings && filterObject.pricings.length) {
+      query = query.overlaps("pricing", filterObject.pricings);
+    }
+
+    if (
+      filterObject.supportedLanguages &&
+      filterObject.supportedLanguages.length
+    ) {
+      query = query.overlaps(
+        "supported_languages",
+        filterObject.supportedLanguages
+      );
+    }
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     setApiServices("common", []);

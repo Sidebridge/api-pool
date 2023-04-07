@@ -9,10 +9,6 @@ import classes from "@/styles/compare.module.css";
 import AppIcon from "@/components/common/icons";
 
 const Compare: NextPage = () => {
-  const hey = (val: unknown) => {
-    console.log(val);
-  };
-
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   function cardHoverHandler(card: number | null) {

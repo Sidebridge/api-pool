@@ -1,95 +1,75 @@
-type ApiFilter = {
-  name: string;
-  icon: string;
-  resultCount: number;
+export type ApiFilters = {
+  countries: string[];
+  sectors: string[];
+  supportedLanguages: string[];
+  pricings: string[];
 };
 
-type ApiFilters = {
-  country: Array<ApiFilter>;
-  sector: Array<ApiFilter>;
-  langSupport: Array<ApiFilter>;
-  pricing: Array<ApiFilter>;
-};
+export const supportedLanguages: string[] = [
+  "JavaScript",
+  "Python",
+  "Java",
+  "C++",
+  "C#",
+  "PHP",
+  "TypeScript",
+  "Swift",
+  "Objective-C",
+  "Ruby",
+  "Kotlin",
+  "R",
+  "Go",
+  "Scala",
+  "Shell",
+  "Lua",
+  "Perl",
+  "Haskell",
+  "Groovy",
+  "Dart",
+  "Rust",
+  "PowerShell",
+  "Assembly",
+  "F#",
+  "Clojure",
+  "Julia",
+  "Elixir",
+  "VBA",
+  "SQL",
+  "Visual Basic .NET",
+  "MATLAB",
+  "Objective-C++",
+  "Groovy",
+  "Scheme",
+  "Ada",
+  "COBOL",
+  "Lisp",
+  "ActionScript",
+  "Prolog",
+  "ABAP",
+  "Transact-SQL",
+  "Smalltalk",
+  "Scratch",
+  "Logo",
+  "LabVIEW",
+  "Fortran",
+  "Delphi",
+  "Perl 6",
+  "Alice",
+  "Swift",
+  "Erlang",
+  "AutoHotkey",
+  "Crystal",
+  "Golang",
+  "Hack",
+  "Julia",
+  "Nim",
+  "Pascal",
+  "Pure Data",
+  "Racket",
+  "Red",
+  "Standard ML",
+  "Turing",
+  "VBScript",
+];
 
-const ExploreFilters: ApiFilters = {
-  country: [
-    {
-      name: "Nigeria",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Ghana",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "South Africa",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "United Kingdom",
-      icon: "",
-      resultCount: 20,
-    },
-  ],
-  sector: [
-    {
-      name: "Ecommerce",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Fintech",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Logistics",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Movies",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Sports",
-      icon: "",
-      resultCount: 20,
-    },
-  ],
-  langSupport: [
-    {
-      name: "Javascript",
-      icon: "",
-      resultCount: 37,
-    },
-    {
-      name: "PHP",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Python",
-      icon: "",
-      resultCount: 4,
-    },
-  ],
-  pricing: [
-    {
-      name: "Free",
-      icon: "",
-      resultCount: 20,
-    },
-    {
-      name: "Paid",
-      icon: "",
-      resultCount: 20,
-    },
-  ],
-};
-
-export default ExploreFilters;
+export const pricings: string[] = ["Free", "Paid"];

@@ -109,3 +109,16 @@ select::after {
   border-top: 5px solid greenyellow;
   transform: translateY(-50%) rotate(45deg);
 }
+
+.rotate {
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

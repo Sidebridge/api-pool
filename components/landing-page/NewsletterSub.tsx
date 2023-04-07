@@ -53,6 +53,9 @@ const NewsletterSub = () => {
     await plunk.events.track({
       email,
       event: "welcome-new-subscribers",
+      data: {
+        company: "APIPool",
+      },
     });
 
     setIsSubbingUser(false);
@@ -84,7 +87,7 @@ const NewsletterSub = () => {
         surprises, drop your email below.
       </p>
 
-      <div className="w-6/12 h-32 pt-24 pb-32 border border-b-0 rounded-t-xl border-primary border-opacity-10 mt-14 bg-dark-matte centered-col">
+      <div className="w-6/12 h-32 pt-24 border border-b-0 pb-28 rounded-t-xl border-primary border-opacity-10 mt-14 bg-dark-matte centered-col">
         <span className="mb-6 font-light underline underline-offset-8 text-light decoration-primary">
           Email Address
         </span>
