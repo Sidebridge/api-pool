@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import { MouseEventHandler } from "react";
 import AppIcon from "../icons";
+import Icons from "../icons/iconMap";
 
 type BasePillProps = {
   name?: string;
-  preIcon?: string;
-  postIcon?: string;
+  preIcon?: keyof typeof Icons;
+  postIcon?: keyof typeof Icons;
   text: string;
   styles?: string;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
