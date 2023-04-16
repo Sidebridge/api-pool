@@ -1,8 +1,10 @@
+import AppIcon from "../icons";
+
 const FeaturedTag = () => {
   return (
-    <div className="items-center p-1 px-3 rounded-full align-row bg-accent">
-      <span className="mr-1 mb-0.5">🔥 </span>
-      <span className="text-sm font-normal text-dark">Featured</span>
+    <div className="items-center align-row">
+      <AppIcon icon="FeaturedBadge" name="Featured" styles="mr-2" />
+      <span className="text-sm font-normal text-light">Featured</span>
     </div>
   );
 };

@@ -1,15 +1,10 @@
 import Head from "next/head";
-
 import type { NextPage } from "next";
+import { useEffect } from "react";
 
 import Hero from "@/components/landing-page/HeroSection";
 import Explore from "@/components/landing-page/ExploreSection";
-import Footer from "@/components/common/layout/Footer";
 import MainLayout from "@/components/layout/MainLayout";
-import { useEffect, useState } from "react";
-
-import { supabaseClient } from "@/utils/services/supabase/client";
-import type { ApiService } from "@/types/api-service.interface";
 
 import { getFeaturedAPIs, featuredApiServices } from "@/store/api-services";
 import NewsletterSub from "@/components/landing-page/NewsletterSub";
@@ -39,7 +34,14 @@ const Home: NextPage = () => {
       <main className="relative w-screen align-col">
         <div className="w-full align-col scroll">
           <Hero />
-          <Explore services={featuredAPIs} />
+          <Explore
+            tag="Featured Lists 🔥"
+            title="Featured APIs"
+            subtitle="Simplify Your Development Workflow with these featured API’s - The
+          Game-Changing Solution for All Your Integration Needs"
+            cardSize="26.4rem"
+            services={featuredAPIs}
+          />
           <NewsletterSub />
         </div>
       </main>

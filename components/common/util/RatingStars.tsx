@@ -3,6 +3,7 @@ import clsx from "clsx";
 type RatingStarsProps = {
   rate: number;
   type?: string;
+  styles?: string;
   action?: string;
   onClick: (star: number) => void;
 };
@@ -10,6 +11,7 @@ type RatingStarsProps = {
 const RatingStars = ({
   rate,
   type = "outline",
+  styles,
   action = "view",
   onClick,
 }: RatingStarsProps) => {
@@ -24,7 +26,7 @@ const RatingStars = ({
         <>
           {type === "outline" && (
             <span
-              className={clsx(starClasses(star))}
+              className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >
               &#9734;
@@ -32,7 +34,7 @@ const RatingStars = ({
           )}
           {type !== "outline" && (
             <span
-              className={clsx(starClasses(star))}
+              className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >
               &#9733;

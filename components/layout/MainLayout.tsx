@@ -9,10 +9,16 @@ function MainLayout({ children }: MainLayoutProps) {
   return (
     <div>
       <Header />
-      <main className="">{children}</main>
+      <main
+        style={{
+          minHeight: "calc(100vh - 12rem)",
+        }}
+      >
+        {children}
+      </main>
       <section
         id="footer"
-        className="w-full p-20 py-6 border-t border-grey-light bg-dark-matte"
+        className="w-full p-20 py-6 border-t border-opacity-75 border-grey-light bg-body"
       >
         <Footer />
       </section>

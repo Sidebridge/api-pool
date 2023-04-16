@@ -3,7 +3,9 @@ import type { AppProps } from "next/app";
 
 import { Toaster } from "react-hot-toast";
 
-import "@/styles/globals.css";
+import "@/styles/global.css";
+import "@/styles/animation.css";
+import "@/styles/loader.css";
 
 import ApiDetails from "@/components/modals/api-details";
 import LoginUI from "@/components/auth/LoginUI";

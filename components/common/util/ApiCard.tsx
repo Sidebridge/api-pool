@@ -1,112 +1,111 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import AppIcon from "../icons";
-import FeaturedTag from "./FeaturedTag";
+import { Tooltip } from "antd";
+import { useRouter } from "next/router";
 
-import FlutterwaveBg from "../../../assets/images/pictures/flutterwave.png";
-import BookmarkBtn from "./BookmarkButton";
-import { toggleModal } from "@/store/modal";
+import AppIcon from "../icons";
+
+import classes from "@/styles/api-card.module.css";
+
+import FeaturedTag from "./FeaturedTag";
+import BaseButton from "../base/BaseButton";
 
 import type { ApiService } from "@/types/api-service.interface";
+import SupportedSDKs from "./SupportedSDKLangs";
 
 type CardProp = {
   isHovered?: boolean;
   service: ApiService;
   type?: "small" | "medium" | "large";
+  styles?: string;
 };
 
-const ApiCard = ({ isHovered = false, service, type = "large" }: CardProp) => {
+const ApiCard = ({
+  isHovered = false,
+  service,
+  type = "large",
+  styles,
+}: CardProp) => {
+  const router = useRouter();
+
   return (
     <div
       className={clsx(
-        "w-full align-col bg-dark-matte cursor-default border border-grey border-opacity-50 rounded-2xl h-full text-light overflow-x-hidden",
-        "hover:border-primary hover:border-opacity-70"
+        "w-full cursor-default overflow-y-hidden rounded-2xl box-border h-full text-light",
+        isHovered ? classes["card-border__hovered"] : classes["card-border__bg"]
       )}
     >
       <div
         className={clsx(
-          "card-title p-3.5 pb-5",
-          type === "small" && "cursor-pointer"
+          "w-full card-inner__bg overflow-y-hidden relative h-full align-col rounded-2xl overflow-x-hidden",
+          styles
         )}
-        onClick={() => {
-          type === "small" ? toggleModal("apiBriefModal", true) : () => {};
-        }}
       >
         <div
-          className={clsx(
-            "snapshot w-full text-2xl relative text-black rounded-md align-col justify-center items-center bg-white",
-            type === "small" ? "h-28" : "h-36"
-          )}
-          style={{
-            backgroundImage: !isHovered ? `url(${service.snapshot_image})` : "",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <BookmarkBtn styles="absolute top-2 right-2" />
+          className={clsx("w-full h-16 bg-cover", classes["header__bg"])}
+        ></div>
+        <div className="w-full px-6">
+          <div className="w-full mx-auto -mt-10 row-btwn">
+            <div className="p-3 border rounded-lg service-logo bg-body border-dark centered_col">
+              <img
+                className={clsx("w-8 h-8")}
+                src={service.logo}
+                alt={`${service.service_name} Logo`}
+              />
+            </div>
 
-          <img
-            className={clsx("w-7/12", !isHovered && "hidden")}
-            src={service.logo}
-            alt={`${service.service_name} Logo`}
+            <FeaturedTag />
+          </div>
+
+          <div className="mt-6 align-col">
+            <h1 className="text-lg font-bold text-grey-lighter">
+              {service.service_name}
+            </h1>
+            <span className="text-xs text-accent">
+              → {service.business_sector_name || "Unknown Sector"}
+            </span>
+          </div>
+
+          <p className="my-4 text-sm font-light text-grey-lighter">
+            {service.service_description.substring(0, 120)}
+            {service.service_description.length > 120 && (
+              <>
+                {"... "}
+                <span className="text-accent press">Read More</span>
+              </>
+            )}
+          </p>
+
+          <SupportedSDKs
+            langs={service.supported_languages}
+            styles="mb-4 text-sm"
           />
         </div>
-        <div className="items-center justify-between mt-5 align-row">
-          <h3 className="text-xl">{service?.service_name}</h3>
-          {service?.is_featured && <FeaturedTag />}
+
+        <div
+          className={clsx(
+            "absolute px-6 bottom-0  left-0 w-full transition-height duration-300 ease-in-out",
+            isHovered && classes["card__overlay"],
+            isHovered ? "h-52" : "h-0"
+          )}
+        >
+          <div className="items-center justify-center w-full mx-auto mt-28 align-row">
+            <BaseButton
+              text="See Details"
+              type="default"
+              icon="BriefWhite"
+              styles="h-12 mr-2 text-light px-8 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
+              onClick={() => router.push(`/api-service/${service.service_id}`)}
+            />
+
+            <Tooltip title="Compare API" placement="topRight">
+              <div className="bg-primary press rounded-full p-2.5 px-3">
+                <AppIcon icon="CompareDark" name="compare" />
+              </div>
+            </Tooltip>
+          </div>
         </div>
       </div>
-
-      {type !== "small" && (
-        <>
-          <div className="card-description px-3.5 py-4 border-y border-gray-400 border-opacity-20 text-base font-light ">
-            <p className="opacity-75">{service?.service_description}</p>
-          </div>
-
-          <div className="items-center p-3 border-b border-gray-400 supported-langs align-row border-opacity-20 text-light">
-            {service?.supported_languages?.slice(0, 3).map((lang: string) => (
-              <div
-                key={lang}
-                className="rounded-full border text-grey light-border leading-relaxed p-0.5 px-3 mr-2"
-              >
-                {lang}
-              </div>
-            ))}
-            {service?.supported_languages.length > 3 && (
-              <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
-                <span>+{service?.supported_languages.length - 3}</span>
-              </div>
-            )}
-          </div>
-
-          <div className="card-actions align-row px-3.5 py-6">
-            <div
-              className={clsx(
-                "view-brief press align-row items-center rounded-full text-light",
-                "border-2 light-border leading-relaxed p-2 px-5 mr-2",
-                "hover:border-primary hover:bg-dark"
-              )}
-              onClick={() => toggleModal("apiBriefModal", true)}
-            >
-              <AppIcon icon="BriefWhite" name="brief" styles="mr-2" />
-
-              <span>Expand Brief</span>
-            </div>
-
-            <div
-              className={clsx(
-                "view-brief press align-row items-center rounded-full text-light",
-                "border-2 border-grey bg-grey-light border-opacity-30 leading-relaxed p-2 px-5 mr-2",
-                "hover:border-primary hover:bg-primary hover:bg-opacity-20"
-              )}
-            >
-              <AppIcon icon="CompareWhite" name="compare" styles="mr-2" />
-
-              <span>Compare</span>
-            </div>
-          </div>
-        </>
-      )}
     </div>
   );
 };

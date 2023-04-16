@@ -181,7 +181,7 @@ const Explore: NextPage = () => {
                         icon="ErrorBroken"
                         styles="w-64 mb-10"
                       />
-                      <span className="text-lg text-grey">
+                      <span className="text-lg font-light text-grey">
                         Your search did not match any available data.
                       </span>
 
@@ -193,19 +193,20 @@ const Explore: NextPage = () => {
 
                 <div
                   className={clsx(
-                    "flex-wrap content-start justify-between w-full mt-5 align-row gap-x-1"
+                    "flex-wrap content-start justify-between w-full mt-5 align-row gap-x-3"
                   )}
                 >
                   {commonApis.map((service, serviceIndex) => (
                     <div
-                      className={clsx("mb-8 h-fit press")}
-                      style={{ width: "49%" }}
+                      className={clsx("mb-8 h-fit press w-72")}
+                      style={{ minWidth: "22rem" }}
                       key={serviceIndex}
                       onMouseEnter={() => cardHoverHandler(service.service_id)}
                       onMouseLeave={() => cardHoverHandler(null)}
                     >
                       <ApiCard
                         service={service}
+                        type="small"
                         isHovered={hoveredCard === service.service_id}
                       />
                     </div>

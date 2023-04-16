@@ -1,15 +1,15 @@
 export interface ApiService {
-  business_sector: string;
+  business_sector_id: string;
+  business_sector_name: string;
   created_at: string;
   is_featured: boolean;
   logo: string;
   pricing: string[];
-  reviews: unknown[];
   service_countries: string[];
   service_description: string;
   service_id: string;
   service_name: string;
-  service_regions: string[];
+  service_regions: string[] | null;
   snapshot_image: string;
   source_url: string;
   supported_languages: string[];

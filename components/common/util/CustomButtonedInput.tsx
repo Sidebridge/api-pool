@@ -4,13 +4,17 @@ import clsx from "clsx";
 import { useState, InputHTMLAttributes, forwardRef } from "react";
 
 import AppIcon from "../icons";
+import BaseButton from "../base/BaseButton";
+import PulseLoader from "./PulseLoader";
+
+import Icons from "../icons/iconMap";
 
 type CustomInputProps = {
   style?: string;
-  btnText: String;
+  btnText: string;
   placeholder: string;
   processing: boolean;
-  icon: string;
+  icon: keyof typeof Icons;
   disabled?: boolean;
   onClick: (value: string) => void;
   onEnter: (inputText: string) => void;
@@ -54,8 +58,8 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
     return (
       <div
         className={clsx(
-          "align-row w-full rounded-full border border-grey",
-          "focus:border-light hover:border-light",
+          "align-row w-full rounded-full border",
+          "focus:border-grey-lighter hover:border-grey-lighter",
           style
         )}
       >
@@ -74,21 +78,15 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
             onBlur={onBlur}
           />
 
-          <Button
-            className={clsx(
-              "bg-primary text-dark text-center font-medium text-lg leading-relaxed",
-              (processing || disabled) && "disabled"
-            )}
-            type="ghost"
-            shape="round"
-            icon=""
-            size="large"
+          <BaseButton
+            text={btnText}
+            type="primary"
+            styles="px-4 bg-primary text-lg h-full"
             loading={processing}
+            loaderStyle="mr-2.5 w-4 h-4"
             disabled={processing || disabled}
             onClick={() => onClick(inputText)}
-          >
-            {btnText}
-          </Button>
+          />
         </div>
       </div>
     );

@@ -5,9 +5,12 @@ import Movie from "../../../assets/images/svg/movie.svg";
 import Logistic from "../../../assets/images/svg/shipping.svg";
 import BriefWhite from "../../../assets/images/svg/brief.svg";
 import CompareWhite from "../../../assets/images/svg/compare.svg";
+import CompareGreen from "../../../assets/images/svg/compare_green.svg";
+import CompareDark from "../../../assets/images/svg/compare_dark.svg";
 import ArrowRightBlack from "../../../assets/images/svg/arrow_right_black.svg";
 import ArrowRightWhite from "../../../assets/images/svg/arrow_right_white.svg";
 import DonateWhite from "../../../assets/images/svg/donate_white.svg";
+import DonateAccent from "../../../assets/images/svg/donate_accent.svg";
 import BookmarkWhite from "../../../assets/images/svg/bookmark_white.svg";
 import RoundCloseWhite from "../../../assets/images/svg/round_close_white.svg";
 import ArrowLeftGreen from "../../../assets/images/svg/arrow_left_green.svg";
@@ -27,6 +30,12 @@ import BookmarksGreen from "../../../assets/images/svg/bookmarks.svg";
 import LogoutGreen from "../../../assets/images/svg/logout.svg";
 import ReviewStarGreen from "../../../assets/images/svg/star_half.svg";
 import MailWhite from "../../../assets/images/svg/mail_white.svg";
+import ExploreGreen from "../../../assets/images/svg/explore_green.svg";
+import IntegrateGreen from "../../../assets/images/svg/integrate_green.svg";
+import NewsletterAccent from "../../../assets/images/svg/mail_envelope_accent.svg";
+import FeaturedBadge from "../../../assets/images/svg/featured_badge_green.svg";
+import WebGlobe from "../../../assets/images/svg/web_globe.svg";
+import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 
@@ -40,9 +49,12 @@ const Icons = {
   Logistic,
   BriefWhite,
   CompareWhite,
+  CompareGreen,
+  CompareDark,
   ArrowRightBlack,
   ArrowRightWhite,
   DonateWhite,
+  DonateAccent,
   BookmarkWhite,
   RoundCloseWhite,
   ArrowLeftGreen,
@@ -61,8 +73,15 @@ const Icons = {
   LogoutGreen,
   ReviewStarGreen,
   MailWhite,
+  ExploreGreen,
+  IntegrateGreen,
+  NewsletterAccent,
+  FeaturedBadge,
+  WebGlobe,
+  SignatureOrange,
+
   ErrorBroken,
   LoaderGif,
-};
+} as const;
 
 export default Icons;

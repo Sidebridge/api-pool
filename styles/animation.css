@@ -1,0 +1,71 @@
+.rotate {
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hover-animate-pulse-rotate {
+  @apply transition duration-500 ease-in-out transform cursor-default hover:-translate-y-1 hover:scale-110 hover:-rotate-2;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-20px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-3s {
+  animation: bounce 9s 3s infinite;
+}
+.animate-bounce-6s {
+  animation: bounce 7s 6s infinite;
+}
+.animate-bounce-9s {
+  animation: bounce 5s 9s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(350px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-move {
+  animation: move 10s ease-in-out infinite;
+}
+
+.animate-move-2s {
+  animation: move 10s 2s ease-in-out infinite;
+}
+
+.animate-move-3s {
+  animation: move 10s 2s ease-in-out infinite;
+}
+
+button:hover span:first-child {
+  animation-name: fill;
+  @apply bg-accent;
+}
+
+.secondary:hover p:first-child {
+  @apply text-dark;
+}

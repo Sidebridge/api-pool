@@ -8,7 +8,10 @@ type BaseInputProps = {
   required?: boolean;
   type?: string;
   maxLength?: number;
+  row?: number;
   value?: string;
+  labelStyle?: string;
+  inputStyle?: string;
   onChange: (value: string) => void;
 };
 
@@ -19,26 +22,32 @@ const BaseInput = ({
   required = true,
   type = "text",
   maxLength,
+  row,
   value,
+  labelStyle,
+  inputStyle,
   onChange,
 }: BaseInputProps) => {
   return (
     <div className="mb-5 input-group align-col">
       {label && (
-        <label htmlFor={id} className="mb-1.5 text-sm font-light">
+        <label htmlFor={id} className={clsx("mb-1.5", labelStyle)}>
           {label}
-          {!required && <span className="ml-2 text-grey">(Optional)</span>}
+          {!required && <span className="ml-2">(Optional)</span>}
         </label>
       )}
       {!(type === "textarea") ? (
         <input
           id={id}
           className={clsx(
-            "w-full h-12 box-border border light-border bg-dark-matte outline-none rounded-full px-4 py-2 text-light text-base",
-            "focus:border-grey hover:border-grey focus:bg-dark placeholder:text-grey placeholder:font-light placeholder:text-sm"
+            "w-full h-12 box-border border border-dark outline-none px-4 py-2 text-light text-base",
+            "focus:border-grey-lighter focus:border-opacity-40  focus:bg-dark placeholder:opacity-40 hover:placeholder:opacity-100  placeholder:text-grey-lighter placeholder:font-light placeholder:text-sm",
+            inputStyle
           )}
-          placeholder={placeholder || "Enter value here"}
+          style={{ backgroundColor: "#0D0D0D" }}
+          placeholder={placeholder}
           type={type}
+          value={value}
           onChange={(e) => onChange(e.target.value)}
         />
       ) : (
@@ -46,17 +55,23 @@ const BaseInput = ({
           <textarea
             id={id}
             className={clsx(
-              "bg-dark-matte border light-border mt-2 rounded-3xl p-4 py-3 text-light text-base z-10",
-              "placeholder:text-grey placeholder:font-light focus:bg-dark focus:outline-none focus:border-grey hover:border-grey placeholder:text-sm"
+              "bg-dark border border-dark mt-2 rounded-3xl p-4 py-3 text-light text-base z-10",
+              "placeholder:text-grey-lighter placeholder:opacity-40 hover:placeholder:opacity-100 placeholder:font-light focus:bg-dark-matte focus:outline-none focus:border-grey-lighter focus:border-opacity-40  placeholder:text-sm",
+              inputStyle
             )}
-            placeholder="Write a short description on what this API service does"
+            style={{ backgroundColor: "#0D0D0D" }}
+            placeholder={placeholder}
             maxLength={maxLength}
-            rows={3}
+            rows={row}
+            value={value}
             onChange={(e) => onChange(e.target.value)}
           />
-          <p className="w-full p-1.5 text-right text-grey font-light text-xs -mt-8 -ml-3 z-20">
+          <label
+            htmlFor={id}
+            className="w-fit p-1.5 text-right text-grey font-light text-xs -mt-8 ml-auto mr-3 z-20"
+          >
             {`${value?.length}/${maxLength} characters`}
-          </p>
+          </label>
         </div>
       )}
     </div>

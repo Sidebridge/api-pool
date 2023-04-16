@@ -1,9 +1,37 @@
-.hero-bg {
-  background-image: url("../assets/images/pictures/hero-bg.png");
+.hero__bg {
+  background-image: url("../assets/images/illustrations/pattern-bg.png");
   background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.pattern-star__bg {
+  background-image: url("../assets/images/illustrations/pattern_star_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .spotlight-bg {
   background-image: url("../assets/images/pictures/spotlight-bg.png");
   background-size: cover;
+}
+
+.header-text__bg {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 118.97%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.fade-grey__bg-t2b {
+  background: linear-gradient(
+    180deg,
+    rgba(46, 46, 46, 0.12) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(5px);
 }

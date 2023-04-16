@@ -8,6 +8,7 @@ import ProfilePreview from "../util/ProfilePreview";
 
 import { toggleModal } from "@/store/modal";
 import { useAuth } from "@/store/context/AuthProvider";
+import BaseButton from "../base/BaseButton";
 
 function Header() {
   const { auth } = useAuth();
@@ -15,8 +16,8 @@ function Header() {
   return (
     <div
       className={clsx(
-        "sticky top-0 align-row py-4 px-24 bg-dark-matte justify-between items-center",
-        "border-b light-border"
+        "sticky top-0 align-row py-4 px-24 bg-body  justify-between items-center",
+        "border-b border-grey-legacy border-opacity-10"
       )}
       style={{ zIndex: 90 }}
     >
@@ -28,16 +29,12 @@ function Header() {
         {auth && <ProfilePreview />}
 
         {!auth && (
-          <Button
-            className={clsx("bg-primary text-dark text-lg leading-relaxed", "")}
-            type="ghost"
-            shape="round"
-            icon=""
-            size="large"
+          <BaseButton
+            text="Login"
+            type="primary"
+            styles="h-12 px-8"
             onClick={() => toggleModal("loginModal", true)}
-          >
-            Login
-          </Button>
+          />
         )}
       </div>
     </div>

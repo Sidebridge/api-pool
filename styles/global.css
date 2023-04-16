@@ -91,7 +91,7 @@
 }
 
 .disabled {
-  opacity: 60%;
+  opacity: 55%;
   cursor: not-allowed;
   touch-action: none;
   pointer-events: none;
@@ -110,15 +110,21 @@ select::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
-.rotate {
-  animation: rotate 2s infinite linear;
+.card-inner__bg {
+  background: linear-gradient(
+      180deg,
+      rgba(46, 46, 46, 0.092) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    #0b0b0b;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

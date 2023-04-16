@@ -9,6 +9,7 @@ import CustomInput from "../common/util/CustomButtonedInput";
 import { supabaseClient } from "@/utils/services/supabase/client";
 import { validateEmail } from "@/utils/helper/validator";
 import { plunk } from "@/utils/services/plunk";
+import AppIcon from "../common/icons";
 
 const NewsletterSub = () => {
   const [isSubbingUser, setIsSubbingUser] = useState<boolean>(false);
@@ -49,6 +50,9 @@ const NewsletterSub = () => {
       duration: 4000,
     });
 
+    setIsSubbingUser(false);
+    setIsEmailValid(false);
+
     // Send welcome email to subscribers via "useplunk"
     await plunk.events.track({
       email,
@@ -58,7 +62,6 @@ const NewsletterSub = () => {
       },
     });
 
-    setIsSubbingUser(false);
     if (inputRef && inputRef.current) {
       inputRef.current.value = "";
     }
@@ -75,34 +78,61 @@ const NewsletterSub = () => {
   return (
     <div
       className={clsx(
-        "w-full border-t text-center light-border font-light mt-20 align-col items-center pt-14",
-        classes["spotlight-bg"]
+        "w-full bg-contain text-center light-border font-light mt-16 align-col items-center py-14 pb-6 mb-5",
+        classes["pattern-star__bg"]
       )}
     >
-      <h1 className="w-5/12 text-4xl text-light">
-        Be the first to learn about new updates.
-      </h1>
-      <p className="w-4/12 mt-5 text-lg text-grey">
-        For exclusive updates, feature previews, announcements, and fun
-        surprises, drop your email below.
-      </p>
+      <div
+        className={clsx(
+          "w-7/12 pt-12 pb-16 text-center rounded-t-xl overflow-hidden mt-14 bg-dark-matte centered-col",
+          classes["fade-grey__bg-t2b"]
+        )}
+      >
+        <AppIcon name="Newsletter" icon="NewsletterAccent" />
 
-      <div className="w-6/12 h-32 pt-24 border border-b-0 pb-28 rounded-t-xl border-primary border-opacity-10 mt-14 bg-dark-matte centered-col">
-        <span className="mb-6 font-light underline underline-offset-8 text-light decoration-primary">
-          Email Address
-        </span>
-        <CustomInput
-          ref={inputRef}
-          style="h-14 border-opacity-30 w-9/12"
-          placeholder="example@email.com"
-          btnText="Subscribe"
-          processing={isSubbingUser}
-          disabled={!isEmailValid}
-          icon="MailWhite"
-          onClick={(email) => subscriptionHandler(email as string)}
-          onEnter={(email) => subscriptionHandler(email)}
-          onChange={(email) => changeHandler(email as string)}
-        />
+        <h3
+          className={clsx(
+            "text-3xl font-normal mt-6",
+            classes["header-text__bg"]
+          )}
+        >
+          Be the first to learn about New Updates!
+        </h3>
+        <p className="mt-4 text-lg text-grey-lighter">
+          For exclusive updates, feature previews, announcements,
+          <br /> and fun surprises ✨, drop your email below.
+        </p>
+
+        <div
+          className={clsx(
+            "items-center align-col w-9/12 mt-10 rounded-t-lg py-8 pb-12",
+            classes["fade-grey__bg-t2b"]
+          )}
+        >
+          <CustomInput
+            ref={inputRef}
+            style="h-14 border-grey-border hover:border-opacity-75 w-9/12"
+            placeholder="example@email.com"
+            btnText={isSubbingUser ? "Pooling... 😉" : "Subscribe Now"}
+            processing={isSubbingUser}
+            disabled={!isEmailValid}
+            icon="MailWhite"
+            onClick={(email) => subscriptionHandler(email as string)}
+            onEnter={(email) => subscriptionHandler(email)}
+            onChange={(email) => changeHandler(email as string)}
+          />
+          <p className="mt-10 text-lg text-grey-lighter">
+            Need Help? Send us a mail at{" "}
+            <a
+              href={`mailto:yo@useapipool.io?subject=Yo! APIPool Is Awesome And...`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-primary"
+            >
+              yo@useapipool.io
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

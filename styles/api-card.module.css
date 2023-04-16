@@ -1,0 +1,38 @@
+.header__bg {
+  background-image: url("../assets/images/svg/card_header_pattern.svg");
+}
+
+.card-border__bg {
+  padding: 2px;
+  background: linear-gradient(
+      to bottom,
+      #151515 0%,
+      #151515 30%,
+      rgb(12, 12, 12) 100%
+    ),
+    #151515;
+}
+
+.card-border__hovered {
+  padding: 1px;
+  @apply bg-opacity-25 bg-primary;
+}
+
+.card__overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(11, 11, 11, 0) 28.99%,
+    #0b0b0b 72.08%
+  );
+
+  backdrop-filter: blur(3px);
+}
+
+.detail-header__bg {
+  background: linear-gradient(
+      180deg,
+      rgba(46, 46, 46, 0.092) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    #0b0b0b;
+}

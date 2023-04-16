@@ -18,19 +18,18 @@ const LoginOptions = () => {
   const { login } = useAuth();
 
   const handleLogin = async (provider: Provider) => {
-    try {
-      setLoading(true);
-
-      const { data, error } = await login(provider);
-      if (error) {
-        console.log("Login error: ", error);
-        throw new Error("Login failed");
-      }
-      if (data) router.push("/");
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
+    // try {
+    //   setLoading(true);
+    //   const { data, error } = await login(provider);
+    //   if (error) {
+    //     console.log("Login error: ", error);
+    //     throw new Error("Login failed");
+    //   }
+    //   if (data) router.push("/");
+    // } catch (error) {
+    //   console.log(error);
+    //   setLoading(false);
+    // }
   };
 
   return (
