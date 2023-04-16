@@ -16,11 +16,11 @@ const BookmarkBtn = ({ styles, active = false }: BookmarkBtnProp) => {
           styles
         )}
       >
-        <AppIcon
+        {/* <AppIcon
           icon={!active ? "BookmarkWhite" : "BookmarkedWhite"}
           name="bookmark"
           styles="w-4 h-4"
-        />
+        /> */}
       </div>
     </Tooltip>
   );
