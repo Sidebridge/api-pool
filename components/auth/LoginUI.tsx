@@ -10,7 +10,7 @@ import BasePill from "../common/base/BasePill";
 import AppIcon from "../common/icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Icons from "../common/icons/iconMap";
+import type { IconType } from "../common/icons/iconMap";
 
 const LoginOptions = () => {
   // const { login, isLoggingIn } = useAuth();
@@ -61,7 +61,7 @@ const LoginOptions = () => {
             <BasePill
               key={integration.name}
               text={`Login with ${integration.name}`}
-              preIcon={integration.icon as keyof typeof Icons}
+              preIcon={integration.icon as IconType}
               styles="flex-grow mb-4 press border-2"
               onClick={() =>
                 handleLogin(integration.name.toLowerCase() as Provider)

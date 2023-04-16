@@ -7,7 +7,7 @@ import AppLogo from "../assets/images/logo/favicon.png";
 import BasePill from "@/components/common/base/BasePill";
 
 import AuthIntegrations from "@/public/constants/integrations";
-import Icons from "@/components/common/icons/iconMap";
+import type { IconType } from "@/components/common/icons/iconMap";
 
 const Register: NextPage = () => {
   return (
@@ -33,7 +33,7 @@ const Register: NextPage = () => {
               <BasePill
                 key={integration.name}
                 text={`Sign up with ${integration.name}`}
-                preIcon={integration.icon as keyof typeof Icons}
+                preIcon={integration.icon as IconType}
                 styles="w-full mb-4 press border-2"
               />
             ))}

@@ -6,7 +6,7 @@ import AppIcon from "../common/icons";
 import CustomInput from "../common/util/CustomButtonedInput";
 import ApiCard from "../common/util/ApiCardLegacy";
 
-import Icons from "@/components/common/icons/iconMap";
+import type { IconType } from "@/components/common/icons/iconMap";
 
 import type { ApiService } from "@/types/api-service.interface";
 import { useRouter } from "next/router";
@@ -83,7 +83,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
               >
                 <AppIcon
                   styles="mr-3"
-                  icon={domain.icon as keyof typeof Icons}
+                  icon={domain.icon as IconType}
                   name={domain.name}
                 />
                 <span className="text-grey">{domain.name}</span>

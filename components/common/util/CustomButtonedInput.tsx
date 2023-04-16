@@ -7,14 +7,14 @@ import AppIcon from "../icons";
 import BaseButton from "../base/BaseButton";
 import PulseLoader from "./PulseLoader";
 
-import Icons from "../icons/iconMap";
+import type { IconType } from "../icons/iconMap";
 
 type CustomInputProps = {
   style?: string;
   btnText: string;
   placeholder: string;
   processing: boolean;
-  icon: keyof typeof Icons;
+  icon: IconType;
   disabled?: boolean;
   onClick: (value: string) => void;
   onEnter: (inputText: string) => void;

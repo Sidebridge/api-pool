@@ -1,7 +1,8 @@
-import Icons from "@/components/common/icons/iconMap";
-import { icons } from "antd/es/image/PreviewGroup";
 import clsx from "clsx";
+
 import AppIcon from "../../common/icons";
+
+import type { IconType } from "@/components/common/icons/iconMap";
 
 type FilterItemProps = {
   label: string;
@@ -52,7 +53,7 @@ const FilterItem = ({
           {iconName && (
             <AppIcon
               name={iconName}
-              icon={iconName as keyof typeof Icons}
+              icon={iconName as IconType}
               styles="w-3 h-3"
             />
           )}

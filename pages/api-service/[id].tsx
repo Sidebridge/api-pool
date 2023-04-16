@@ -220,7 +220,7 @@ const ApiDetails = () => {
           </section>
         </section>
 
-        <section className="w-full mt-16 more-related">
+        <section className="w-full mt-20 more-related">
           <Explore
             title="More Related APIs"
             subtitle="Simplify Your Development Workflow with these featured API’s - The Game-Changing Solution for All Your Integration Needs"

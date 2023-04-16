@@ -2,13 +2,13 @@ import { Tooltip } from "antd";
 import clsx from "clsx";
 
 import AppIcon from "../icons";
-import Icons from "../icons/iconMap";
+import type { IconType } from "../icons/iconMap";
 import PulseLoader from "../util/PulseLoader";
 
 type BaseButtonProps = {
   id?: string;
   styles?: string;
-  icon?: keyof typeof Icons;
+  icon?: IconType;
   iconStyles?: string;
   text?: string;
   type?: "primary" | "secondary" | "default";
