@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { IconMap } from "antd/es/result";
+import Icons from "../icons/iconMap";
 
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
@@ -83,7 +85,7 @@ const ProfilePreview = () => {
               <AppIcon
                 styles="mr-3 mt-1"
                 name={option.title}
-                icon={option.icon}
+                icon={option.icon as keyof typeof Icons}
               />
               <span className="font-light text-light">{option.title}</span>
             </div>

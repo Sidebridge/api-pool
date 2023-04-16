@@ -6,6 +6,8 @@ import AppIcon from "../common/icons";
 import CustomInput from "../common/util/CustomButtonedInput";
 import ApiCard from "../common/util/ApiCardLegacy";
 
+import Icons from "@/components/common/icons/iconMap";
+
 import type { ApiService } from "@/types/api-service.interface";
 import { useRouter } from "next/router";
 
@@ -79,7 +81,11 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
                 )}
                 onClick={() => domainSelectHandler(domain.id)}
               >
-                <AppIcon styles="mr-3" icon={domain.icon} name={domain.name} />
+                <AppIcon
+                  styles="mr-3"
+                  icon={domain.icon as keyof typeof Icons}
+                  name={domain.name}
+                />
                 <span className="text-grey">{domain.name}</span>
               </div>
             ))}
