@@ -29,7 +29,7 @@ export const getApiReviews = async (apiServiceId: string) => {
     setApiReviews(data as { [key: string]: string }[]);
   }
 
-  fetchAverageReviewStars(data, apiServiceId);
+  fetchAverageReviewStars(data as { [key: string]: string }[], apiServiceId);
 };
 
 export const fetchAverageReviewStars = async (
