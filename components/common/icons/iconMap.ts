@@ -36,6 +36,7 @@ import NewsletterAccent from "../../../assets/images/svg/mail_envelope_accent.sv
 import FeaturedBadge from "../../../assets/images/svg/featured_badge_green.svg";
 import WebGlobe from "../../../assets/images/svg/web_globe.svg";
 import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
+import RatingStarOrange from "../../../assets/images/svg/rating_star_orange.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 
@@ -81,6 +82,7 @@ const Icons = {
   FeaturedBadge,
   WebGlobe,
   SignatureOrange,
+  RatingStarOrange,
 
   ErrorBroken,
   LoaderGif,

@@ -110,6 +110,12 @@ select::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
+::selection {
+  background: #d1f225;
+  color: #0b0b0b;
+  text-decoration: underline;
+}
+
 .card-inner__bg {
   background: linear-gradient(
       180deg,

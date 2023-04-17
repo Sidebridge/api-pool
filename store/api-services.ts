@@ -15,16 +15,27 @@ export const commonApiServices: Entity<ApiService[]> = entity(
   [] as ApiService[]
 );
 
+export const relatedApiServices: Entity<ApiService[]> = entity(
+  [] as ApiService[]
+);
+
+export const currentAPI: Entity<ApiService> = entity({} as ApiService);
+
 export const setApiServices = (type: string, value: ApiService[]) => {
   if (type === "featured") {
     featuredApiServices.set(value);
   } else if (type === "common") {
     commonApiServices.set(value);
+  } else if (type === "related") {
+    relatedApiServices.set(value);
   }
 };
 
+export const setCurrentApi = (value: ApiService) => {
+  currentAPI.set(value);
+};
+
 export const getFeaturedAPIs = async () => {
-  //
   const { data, error } = await supabaseClient
     .from("api_services")
     .select("*")
@@ -83,5 +94,28 @@ export const getCommonAPIServices = async (
 
   if (data) {
     setApiServices("common", data as ApiService[]);
+  }
+};
+
+export const getRelatedAPIServicesBySector = async (
+  currentApiId: string,
+  sectorId: string
+  // relatedSectors: string[]
+) => {
+  let query = supabaseClient
+    .from("api_services")
+    .select("*")
+    .eq("business_sector_id", sectorId)
+    .neq("service_id", currentApiId)
+    .limit(9);
+
+  const { data, error } = await query;
+
+  if (error) {
+    setApiServices("related", []);
+  }
+
+  if (data) {
+    setApiServices("related", data as ApiService[]);
   }
 };

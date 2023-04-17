@@ -1,20 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import toast from "react-hot-toast";
 
 import cardClasses from "@/styles/api-card.module.css";
 
 import BaseButton from "@/components/common/base/BaseButton";
-
-import { APIService as service } from "@/public/constants/data-mock";
 import RatingStars from "@/components/common/util/RatingStars";
 import FeaturedTag from "@/components/common/util/FeaturedTag";
 import SupportedSDKs from "@/components/common/util/SupportedSDKLangs";
 import BaseInput from "@/components/common/base/BaseInput";
-import toast from "react-hot-toast";
+
 import { supabaseClient } from "@/utils/services/supabase/client";
 
-const ApiReviewForm = ({ onClose }: { onClose: () => void }) => {
+import { getApiReviews } from "@/store/api-reviews";
+import type { ApiService } from "@/types/api-service.interface";
+
+const ApiReviewForm = ({
+  service,
+  onClose,
+}: {
+  service: ApiService;
+  onClose: () => void;
+}) => {
   const [rating, setApiRating] = useState<number>(0);
 
   const [reviewFormValues, setReviewFormValue] = useState({
@@ -60,6 +68,8 @@ const ApiReviewForm = ({ onClose }: { onClose: () => void }) => {
         duration: 4000,
       }
     );
+
+    await getApiReviews(service.service_id);
 
     setIsSavingReview(false);
     onClose();

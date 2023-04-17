@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import cardClasses from "@/styles/api-card.module.css";
 import classes from "@/styles/api-detail.module.css";
@@ -11,10 +11,6 @@ import clsx from "clsx";
 import FeaturedTag from "@/components/common/util/FeaturedTag";
 import BaseButton from "@/components/common/base/BaseButton";
 
-import {
-  APIService as service,
-  APIServices as services,
-} from "@/public/constants/data-mock";
 import ReviewCard from "@/components/common/util/ReviewCard";
 import RatingStars from "@/components/common/util/RatingStars";
 import Explore from "@/components/landing-page/ExploreSection";
@@ -23,6 +19,20 @@ import BaseModal from "@/components/common/base/BaseModal";
 import ApiBlogPosts from "@/components/modals/api-details/ApiBlogPosts";
 import ApiReviewForm from "@/components/modals/api-details/ApiReviewForm";
 import SupportedSDKs from "@/components/common/util/SupportedSDKLangs";
+
+import {
+  apiReviews,
+  avgReviewRating,
+  getApiReviews,
+} from "@/store/api-reviews";
+import {
+  currentAPI,
+  relatedApiServices,
+  getRelatedAPIServicesBySector,
+} from "@/store/api-services";
+
+import { APIServices as services } from "@/public/constants/data-mock";
+import type { ApiService } from "@/types/api-service.interface";
 
 const ApiDetails = () => {
   const router = useRouter();
@@ -37,6 +47,30 @@ const ApiDetails = () => {
     useState<boolean>(false);
 
   const [isShowingReviewForm, setReviewFormState] = useState<boolean>(false);
+
+  const [isFetchingReviews, setIsFetchingReviews] = useState<boolean>();
+
+  const allApiReviews = apiReviews.use();
+  const relatedApis = relatedApiServices.use();
+  const totalRating = avgReviewRating.use();
+  const currentApiDetail = currentAPI.use() as ApiService;
+
+  async function fetchReviews() {
+    setIsFetchingReviews(true);
+
+    await getApiReviews(currentApiDetail.service_id);
+
+    setIsFetchingReviews(false);
+  }
+
+  useEffect(() => {
+    fetchReviews();
+
+    getRelatedAPIServicesBySector(
+      currentApiDetail.service_id,
+      currentApiDetail.business_sector_id
+    );
+  }, [router]);
 
   return (
     <MainLayout>
@@ -59,51 +93,55 @@ const ApiDetails = () => {
             <div className="absolute p-5 border -top-10 rounded-2xl w-fit service-logo bg-body border-dark centered_col">
               <img
                 className={clsx("w-12 h-12")}
-                src={service.logo}
-                alt={`${service.service_name} Logo`}
+                src={currentApiDetail.logo}
+                alt={`${currentApiDetail.service_name} Logo`}
               />
             </div>
 
             <div className="items-center mt-10 align-row">
               <h1 className="mr-3 text-2xl font-bold text-light">
-                {service.service_name}
+                {currentApiDetail.service_name}
               </h1>
-              {service.is_featured && <FeaturedTag />}
+              {currentApiDetail.is_featured && <FeaturedTag />}
             </div>
 
             <div className="w-full mt-4 row-btwn">
               <div className="items-center text-sm align-row">
                 <div className="p-1 px-3 mr-2 capitalize rounded-full bg-accent">
-                  #{service.business_sector_name}
+                  #{currentApiDetail.business_sector_name}
                 </div>
 
-                <SupportedSDKs langs={service.supported_languages} limit={5} />
+                <SupportedSDKs
+                  langs={currentApiDetail.supported_languages}
+                  limit={5}
+                />
               </div>
 
               <div className="items-center align-row">
-                <BaseButton
-                  icon="WebGlobe"
-                  type="primary"
-                  styles="mr-2.5 py-2.5 px-3"
-                  iconStyles="w-5 h-5"
-                  tooltip="See documentation"
-                  onClick={() => {}}
-                />
+                <a href={currentApiDetail.source_url} target="_blank">
+                  <BaseButton
+                    icon="WebGlobe"
+                    type="primary"
+                    styles="mr-2.5 py-2.5 px-3"
+                    iconStyles="w-5 h-5"
+                    tooltip="See documentation"
+                  />
+                </a>
+
                 <BaseButton
                   icon="BookmarkWhite"
                   type="secondary"
                   styles="py-2.5 px-3"
                   iconStyles="w-5 h-5"
                   tooltip="Bookmark API"
-                  onClick={() => {}}
                 />
+
                 <BaseButton
                   text="Compare"
                   type="default"
                   icon="CompareWhite"
                   iconStyles="w-5 h-5"
                   styles="ml-2.5 text-light px-8 py-2 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
-                  onClick={() => {}}
                 />
               </div>
             </div>
@@ -125,7 +163,7 @@ const ApiDetails = () => {
                       "h-52"
                     )}
                     style={{
-                      backgroundImage: `url(${service.snapshot_image})`,
+                      backgroundImage: `url(${currentApiDetail.snapshot_image})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       // backgroundAttachment: "fixed",
@@ -133,10 +171,11 @@ const ApiDetails = () => {
                   ></div>
 
                   <p className="mt-5 text-base font-light service-description text-grey-lighter">
-                    {service.service_description} {service.service_description}
+                    {currentApiDetail.service_description}{" "}
+                    {currentApiDetail.service_description}
                   </p>
 
-                  <span className="items-center mt-3 font-light align-row press">
+                  <span className="items-center mt-3 mb-2 font-light align-row press w-fit">
                     <span className=" text-primary">Visit Website</span>
                     <AppIcon
                       icon="ArrowLeftGreen"
@@ -144,14 +183,16 @@ const ApiDetails = () => {
                     />
                   </span>
 
-                  <p
-                    className={clsx(
-                      "mt-12 -ml-6 -mb-5",
-                      classes["section-header-title"]
-                    )}
-                  >
-                    Recent reviews
-                  </p>
+                  {!isFetchingReviews && (
+                    <p
+                      className={clsx(
+                        "mt-10 -ml-6 -mb-5",
+                        classes["section-header-title"]
+                      )}
+                    >
+                      Recent Reviews
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -165,17 +206,20 @@ const ApiDetails = () => {
                 </div>
 
                 <div className="px-5 py-6 mt-3 centered-col text-light">
-                  <span className="text-6xl font-normal">4.0</span>
+                  <span className="text-6xl font-normal">
+                    {totalRating.toFixed(1)}
+                  </span>
                   <div className="mt-3">
                     <RatingStars
                       type="fill"
                       styles="text-lg"
-                      rate={3.5}
+                      rate={totalRating}
                       onClick={() => {}}
                     />
                   </div>
                   <span className="mt-4 font-light text-grey-lighter">
-                    Ratings & Reviews (40 Reviews)
+                    Ratings & Reviews ({allApiReviews.length} Review
+                    {allApiReviews.length === 1 ? "" : "s"})
                   </span>
 
                   <div className="items-center mt-8 align-col actions">
@@ -202,21 +246,43 @@ const ApiDetails = () => {
               </div>
             </div>
 
-            <div className="w-full overflow-y-scroll h-96">
-              <div className="box-border grid grid-flow-row grid-cols-3 px-6 my-6 w-fit featured-list gap-x-6 gap-y-6">
-                {services?.map((service, key) => (
-                  <div
-                    className="h-fit press"
-                    // style={{ width: "25rem" }}
-                    key={key}
-                    onMouseEnter={() => cardHoverHandler(service?.service_id)}
-                    onMouseLeave={() => cardHoverHandler(null)}
-                  >
-                    <ReviewCard />
+            {!isFetchingReviews && (
+              <div className="w-full overflow-y-scroll h-96 ">
+                {allApiReviews && allApiReviews.length ? (
+                  <div className="box-border grid w-full grid-flow-row grid-cols-3 px-6 my-6 featured-list gap-x-6 gap-y-6">
+                    {allApiReviews?.map((review) => (
+                      <div
+                        className="h-fit press"
+                        // style={{ width: "25rem" }}
+                        key={review.id}
+                        onMouseEnter={() =>
+                          cardHoverHandler(currentApiDetail.service_id)
+                        }
+                        onMouseLeave={() => cardHoverHandler(null)}
+                      >
+                        <ReviewCard review={review} />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                ) : (
+                  <div className="mt-20 centered-col">
+                    <AppIcon
+                      icon="RatingStarOrange"
+                      styles="animate-spin3d delay-1000"
+                    />
+                    <span className="mt-5 font-light text-grey-lighter">
+                      No Reviews Yet.{" "}
+                      <span
+                        className="text-primary press"
+                        onClick={() => setReviewFormState(true)}
+                      >
+                        Add New Review
+                      </span>
+                    </span>
+                  </div>
+                )}
               </div>
-            </div>
+            )}
           </section>
         </section>
 
@@ -225,7 +291,7 @@ const ApiDetails = () => {
             title="More Related APIs"
             subtitle="Simplify Your Development Workflow with these featured API’s - The Game-Changing Solution for All Your Integration Needs"
             cardSize="25rem"
-            services={services}
+            services={relatedApis}
           />
         </section>
 
@@ -256,7 +322,10 @@ const ApiDetails = () => {
             setReviewFormState(false);
           }}
         >
-          <ApiReviewForm onClose={() => setReviewFormState(false)} />
+          <ApiReviewForm
+            service={currentApiDetail}
+            onClose={() => setReviewFormState(false)}
+          />
         </BaseModal>
       )}
     </MainLayout>

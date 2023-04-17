@@ -17,7 +17,7 @@ type BaseButtonProps = {
   loaderStyle?: string;
   disabled?: boolean;
   children?: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const BaseButton = ({
@@ -32,7 +32,7 @@ const BaseButton = ({
   loaderStyle = "",
   disabled = false,
   children,
-  onClick,
+  onClick = () => {},
 }: BaseButtonProps) => {
   const typeStyles: { [key: string]: string } = {
     primary: "bg-primary",

@@ -5,7 +5,7 @@ type RatingStarsProps = {
   type?: string;
   styles?: string;
   action?: string;
-  onClick: (star: number) => void;
+  onClick?: (star: number) => void;
 };
 
 const RatingStars = ({
@@ -13,7 +13,7 @@ const RatingStars = ({
   type = "outline",
   styles,
   action = "view",
-  onClick,
+  onClick = () => {},
 }: RatingStarsProps) => {
   const starClasses = (star: number): string =>
     `mr-1 ${star <= rate ? "text-primary" : "text-white"} ${

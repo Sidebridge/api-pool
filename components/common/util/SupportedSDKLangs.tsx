@@ -24,9 +24,9 @@ const SupportedSDKs = ({
           {lang}
         </div>
       ))}
-      {langs.length > limit && (
+      {langs?.length > limit && (
         <div className="p-1 px-2.5 rounded-full border border-dark text-center">
-          <span>+{langs.length - limit}</span>
+          <span>+{langs?.length - limit}</span>
         </div>
       )}
     </div>

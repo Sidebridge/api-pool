@@ -50,11 +50,23 @@ module.exports = {
           "0%": { width: "100%" },
           "100%": { width: "0%" },
         },
+        spin3d: {
+          "0%": {
+            transform: "rotateY(0deg)",
+          },
+          "50%": {
+            transform: "rotateY(180deg)",
+          },
+          "100%": {
+            transform: "rotateY(360deg)",
+          },
+        },
       },
       animation: {
         "ping-slow": "ping 6s cubic-bezier(0, 0, 0.2, 1) alternate",
         fill: "fill 0.3s ease-in-out",
         unfill: "unfill 0.3s ease-in-out",
+        spin3d: "spin3d 2s linear infinite",
       },
       transitionProperty: {
         height: "height",

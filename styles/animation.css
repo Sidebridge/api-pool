@@ -69,3 +69,15 @@ button:hover span:first-child {
 .secondary:hover p:first-child {
   @apply text-dark;
 }
+
+/* @keyframes spin3d {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+} */

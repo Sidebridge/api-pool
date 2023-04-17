@@ -3,15 +3,16 @@ import clsx from "clsx";
 import { Tooltip } from "antd";
 import { useRouter } from "next/router";
 
-import AppIcon from "../icons";
-
 import classes from "@/styles/api-card.module.css";
 
 import FeaturedTag from "./FeaturedTag";
 import BaseButton from "../base/BaseButton";
+import SupportedSDKs from "./SupportedSDKLangs";
+import AppIcon from "../icons";
+
+import { setCurrentApi } from "@/store/api-services";
 
 import type { ApiService } from "@/types/api-service.interface";
-import SupportedSDKs from "./SupportedSDKLangs";
 
 type CardProp = {
   isHovered?: boolean;
@@ -95,7 +96,10 @@ const ApiCard = ({
               type="default"
               icon="BriefWhite"
               styles="h-12 mr-2 text-light px-8 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
-              onClick={() => router.push(`/api-service/${service.service_id}`)}
+              onClick={() => {
+                setCurrentApi(service);
+                router.push(`/api-service/${service.service_id}`);
+              }}
             />
 
             <Tooltip title="Compare API" placement="topRight">
