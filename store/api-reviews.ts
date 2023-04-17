@@ -50,11 +50,11 @@ export const fetchAverageReviewStars = async (
 
   let avgRating: number = 0;
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < data?.length; i++) {
     avgRating += data[i].review_stars;
   }
 
-  avgRating = avgRating / data.length;
+  avgRating = avgRating / data?.length;
 
   avgReviewRating.set(avgRating);
 };
