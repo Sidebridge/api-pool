@@ -33,6 +33,7 @@ import {
 
 import { APIServices as services } from "@/public/constants/data-mock";
 import type { ApiService } from "@/types/api-service.interface";
+import Link from "next/link";
 
 const ApiDetails = () => {
   const router = useRouter();
@@ -175,13 +176,18 @@ const ApiDetails = () => {
                     {currentApiDetail.service_description}
                   </p>
 
-                  <span className="items-center mt-3 mb-2 font-light align-row press w-fit">
-                    <span className=" text-primary">Visit Website</span>
-                    <AppIcon
-                      icon="ArrowLeftGreen"
-                      styles="ml-1.5 mt-0.5 rotate-180"
-                    />
-                  </span>
+                  <Link
+                    href={currentApiDetail.source_url || ""}
+                    target="_blank"
+                  >
+                    <span className="items-center mt-3 mb-2 font-light align-row press w-fit">
+                      <span className=" text-primary">Visit Website</span>
+                      <AppIcon
+                        icon="ArrowLeftGreen"
+                        styles="ml-1.5 mt-0.5 rotate-180"
+                      />
+                    </span>
+                  </Link>
 
                   {!isFetchingReviews && (
                     <p
@@ -250,7 +256,7 @@ const ApiDetails = () => {
               <div className="w-full overflow-y-scroll h-96 ">
                 {allApiReviews && allApiReviews.length ? (
                   <div className="box-border grid w-full grid-flow-row grid-cols-3 px-6 my-6 featured-list gap-x-6 gap-y-6">
-                    {allApiReviews?.map((review) => (
+                    {allApiReviews.map((review) => (
                       <div
                         className="h-fit press"
                         // style={{ width: "25rem" }}

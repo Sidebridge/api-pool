@@ -2,6 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 
 import AppIcon from "../icons";
+import Link from "next/link";
 
 const Footer = () => {
   const [isDonateHovered] = useState(false);
@@ -21,8 +22,20 @@ const Footer = () => {
       </div>
 
       <span className="text-white">
-        Made with ❤️ by <span className="text-accent press">@GeekyAdams</span> &{" "}
-        <span className="text-accent press">Emmanuel A.</span>
+        Made with 💚 by{" "}
+        <span className="font-light text-accent">
+          <Link href="https://twitter.com/GeekyAdams" target="_blank">
+            @GeekyAdams
+          </Link>{" "}
+          <span className="font-normal text-light">&</span>{" "}
+          <Link href="https://twitter.com/emmah_ux" target="_blank">
+            Emmanuel A.
+          </Link>
+        </span>
+        {" of "}
+        <b className="text-primary">
+          <i>SideBridge</i>
+        </b>
       </span>
     </div>
   );

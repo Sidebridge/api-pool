@@ -4,6 +4,9 @@ require("dotenv").config();
 
 const nextConfig = {
   reactStrictMode: true,
+  // Enable the React DevTools profiler
+  profiler: true,
+
   images: {
     remotePatterns: [
       {

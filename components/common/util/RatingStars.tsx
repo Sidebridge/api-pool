@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 type RatingStarsProps = {
+  id?: string;
   rate: number;
   type?: string;
   styles?: string;
@@ -9,6 +10,7 @@ type RatingStarsProps = {
 };
 
 const RatingStars = ({
+  id = "",
   rate,
   type = "outline",
   styles,
@@ -22,10 +24,11 @@ const RatingStars = ({
 
   return (
     <>
-      {[1, 2, 3, 4, 5].map((star) => (
+      {[1, 2, 3, 4, 5].map((star, index) => (
         <>
           {type === "outline" && (
             <span
+              key={`${id}-${index}`}
               className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >
@@ -34,6 +37,7 @@ const RatingStars = ({
           )}
           {type !== "outline" && (
             <span
+              key={`${id}-${index}`}
               className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >

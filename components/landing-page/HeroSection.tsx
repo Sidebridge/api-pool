@@ -37,7 +37,7 @@ const Hero = () => {
       <div className={clsx("align-col items-center w-10/12 text-center")}>
         <h1
           className={clsx(
-            "w-10/12 mb-8 text-5xl font-medium text-white",
+            "w-10/12 mb-8 text-5xl font-medium text-white break-keep",
             classes["header-text__bg"]
           )}
           style={{ lineHeight: "58px" }}

@@ -15,6 +15,10 @@ export const setApiReviews = (value: { [key: string]: string }[]) => {
   apiReviews.set(value);
 };
 
+export const setApiAverageRating = (value: number) => {
+  avgReviewRating.set(value);
+};
+
 export const getApiReviews = async (apiServiceId: string) => {
   const { data, error } = await supabaseClient
     .from("api_reviews")
@@ -29,7 +33,10 @@ export const getApiReviews = async (apiServiceId: string) => {
     setApiReviews(data as { [key: string]: string }[]);
   }
 
-  fetchAverageReviewStars(data as { [key: string]: string }[], apiServiceId);
+  await fetchAverageReviewStars(
+    data as { [key: string]: string }[],
+    apiServiceId
+  );
 };
 
 export const fetchAverageReviewStars = async (
@@ -48,13 +55,19 @@ export const fetchAverageReviewStars = async (
 
   // console.log("Average rating data: ", data);
 
-  let avgRating: number = 0;
+  if (data) {
+    if (!data.length) return avgReviewRating.set(0);
 
-  for (let i = 0; i < data?.length; i++) {
-    avgRating += data[i].review_stars;
+    let totalReviewRatings = 0;
+
+    for (let review of data) {
+      if (review.review_stars) {
+        totalReviewRatings = totalReviewRatings + review.review_stars;
+      }
+    }
+
+    const avgRating: number = totalReviewRatings / data.length;
+
+    avgReviewRating.set(avgRating);
   }
-
-  avgRating = avgRating / data?.length;
-
-  avgReviewRating.set(avgRating);
 };
