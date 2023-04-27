@@ -7,6 +7,9 @@ import "@/styles/global.css";
 import "@/styles/animation.css";
 import "@/styles/loader.css";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import ApiDetails from "@/components/modals/api-details";
 import LoginUI from "@/components/auth/LoginUI";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";

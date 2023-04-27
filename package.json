@@ -27,12 +27,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-slick": "^0.29.0",
     "react-timeago": "^7.1.0",
     "simpler-state": "^1.2.0",
+    "slick-carousel": "^1.8.1",
     "swr": "^2.1.1",
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@types/react-slick": "^0.23.10",
     "@types/react-timeago": "^4.1.3",
     "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",

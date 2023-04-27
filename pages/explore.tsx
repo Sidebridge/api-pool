@@ -2,6 +2,8 @@ import clsx from "clsx";
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 
+import Slider from "react-slick";
+
 import classes from "@/styles/landing-page.module.css";
 
 import MainLayout from "@/components/layout/MainLayout";
@@ -23,6 +25,21 @@ import {
 import { ApiFilters } from "@/public/constants/filters";
 
 const Explore: NextPage = () => {
+  const sliderConfig = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 500,
+    slidesToShow: 2.6,
+    slidesToScroll: 3,
+    arrows: false,
+    swipeToSlide: true,
+    centerMode: true,
+    centerPadding: "65px",
+    pauseOnHover: true,
+  };
+
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
@@ -89,31 +106,6 @@ const Explore: NextPage = () => {
         </div>
 
         <section className="w-full mb-32 align-col">
-          {/* <div className="items-center w-full h-20 px-8 font-light border-b row-btwn text-light border-grey border-opacity-10">
-              <div className="items-center w-9/12 align-row">
-                <CustomInput
-                  ref={searchInputRef}
-                  style="h-12 border-opacity-30 w-8/12 flex flex-grow"
-                  placeholder="Search API services by name or description"
-                  btnText="Search"
-                  processing={isSearchingApis}
-                  icon="Search"
-                  onClick={(searchTerm) => {
-                    searchApiService(searchTerm as string);
-                  }}
-                  onChange={() => {}}
-                  onEnter={(searchTerm) => searchApiService(searchTerm)}
-                />
-
-                <Tooltip title="Coming Soon ✨" placement="topLeft">
-                  <p className="ml-3 text-sm cursor-pointer text-primary hover:opacity-40">
-                    Advance AI search
-                  </p>
-                </Tooltip>
-              </div>
-
-              <span className="text-grey">All API: 34,557</span>
-            </div> */}
           <FilterUtil
             isSearching={isSearchingApis}
             onFiltered={(searchString, filterSelections) =>
@@ -133,61 +125,28 @@ const Explore: NextPage = () => {
                   </div>
                   <div
                     className={clsx(
-                      "align-row",
-                      "content-start justify-between w-full px-8 box-border overflow-x-scroll mt-5 gap-x-3"
+                      "w-full box-border overflow-x-hidden mt-8 px-8"
                     )}
                   >
-                    {featuredApis.map((service, serviceIndex) => (
-                      <div
-                        className={clsx("mb-8 h-fit press w-96")}
-                        style={{ minWidth: "22rem" }}
-                        key={serviceIndex}
-                        onMouseEnter={() =>
-                          cardHoverHandler(service.service_id)
-                        }
-                        onMouseLeave={() => cardHoverHandler(null)}
-                      >
-                        <ApiCard
-                          service={service}
-                          type="small"
-                          isHovered={hoveredCard === service.service_id}
-                        />
-                      </div>
-                    ))}
-                    {featuredApis.map((service, serviceIndex) => (
-                      <div
-                        className={clsx("mb-8 h-fit press w-96")}
-                        style={{ minWidth: "22rem" }}
-                        key={serviceIndex}
-                        onMouseEnter={() =>
-                          cardHoverHandler(service.service_id)
-                        }
-                        onMouseLeave={() => cardHoverHandler(null)}
-                      >
-                        <ApiCard
-                          service={service}
-                          type="small"
-                          isHovered={hoveredCard === service.service_id}
-                        />
-                      </div>
-                    ))}
-                    {featuredApis.map((service, serviceIndex) => (
-                      <div
-                        className={clsx("mb-8 h-fit press w-96")}
-                        style={{ minWidth: "22rem" }}
-                        key={serviceIndex}
-                        onMouseEnter={() =>
-                          cardHoverHandler(service.service_id)
-                        }
-                        onMouseLeave={() => cardHoverHandler(null)}
-                      >
-                        <ApiCard
-                          service={service}
-                          type="small"
-                          isHovered={hoveredCard === service.service_id}
-                        />
-                      </div>
-                    ))}
+                    <Slider {...sliderConfig} className={clsx("")}>
+                      {featuredApis.map((service, serviceIndex) => (
+                        <div
+                          className={clsx("mb-8 h-fit px-2.5 press")}
+                          style={{ minWidth: "22rem" }}
+                          key={serviceIndex}
+                        >
+                          <ApiCard
+                            service={service}
+                            type="small"
+                            isHovered={hoveredCard === service.service_id}
+                            onMouseEnter={() =>
+                              cardHoverHandler(service.service_id)
+                            }
+                            onMouseLeave={() => cardHoverHandler(null)}
+                          />
+                        </div>
+                      ))}
+                    </Slider>
                   </div>
                 </div>
               )}

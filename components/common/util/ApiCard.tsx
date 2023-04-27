@@ -13,13 +13,15 @@ import AppIcon from "../icons";
 import { setCurrentApi } from "@/store/api-services";
 
 import type { ApiService } from "@/types/api-service.interface";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 type CardProp = {
   isHovered?: boolean;
   service: ApiService;
   type?: "small" | "medium" | "large";
   styles?: string;
+  onMouseEnter?: MouseEventHandler<HTMLDivElement>;
+  onMouseLeave?: MouseEventHandler<HTMLDivElement>;
 };
 
 const ApiCard = ({
@@ -27,6 +29,8 @@ const ApiCard = ({
   service,
   type = "large",
   styles,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
 }: CardProp) => {
   const router = useRouter();
 
@@ -35,19 +39,15 @@ const ApiCard = ({
   return (
     <div
       className={clsx(
-        "w-full cursor-default overflow-y-hidden rounded-2xl box-border h-full text-light",
+        "w-full cursor-default overflow-hidden rounded-2xl box-border h-full text-light",
         isHovered
           ? classes["card-border__hovered"]
           : classes["card-border__bg"],
         loadApiDetail && "opacity-25"
       )}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      {/* {loadApiDetail && (
-        <div className="fixed centered-col top-0 left-0 w-screen h-screen z-[1000] bg-dark bg-opacity-30">
-          <AppIcon icon={"LoaderGif"} styles="w-12 h-12 opacity-10" />
-        </div>
-      )} */}
-
       <div
         className={clsx(
           "w-full card-inner__bg overflow-y-hidden relative h-full align-col rounded-2xl overflow-x-hidden",
@@ -97,7 +97,7 @@ const ApiCard = ({
 
         <div
           className={clsx(
-            "absolute px-6 bottom-0  left-0 w-full transition-height duration-300 ease-in-out",
+            "absolute px-6 bottom-0  left-0 w-full rounded-b-2xl transition-height duration-300 ease-in-out",
             isHovered && classes["card__overlay"],
             isHovered ? "h-52" : "h-0"
           )}
