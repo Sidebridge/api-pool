@@ -81,7 +81,7 @@ const ApiReviewForm = ({
 
       const { data, error } = await supabaseClient
         .from("api_reviews")
-        .select("*")
+        .select()
         .eq("reviewer_id", "895ccb66-5bd3-41cf-912f-ead1490ca4d1")
         .eq("api_service_id", service.service_id)
         .single();
@@ -142,7 +142,7 @@ const ApiReviewForm = ({
               />
             </span>
             <span className="mt-1 ml-auto text-xs font-light text-right text-grey-lighter">
-              rating your Experience
+              Rate Your Experience
             </span>
           </div>
         </div>

@@ -7,11 +7,13 @@ import BaseSelect from "../common/base/BaseSelect";
 
 import type { ApiServiceDomain } from "@/types/api-service.interface";
 import { useRouter } from "next/router";
+import BaseButton from "../common/base/BaseButton";
+import toast from "react-hot-toast";
 
 const recommenderRelations = [
-  { title: "Contributor", value: "contributor" },
   { title: "API Owner/Maintainer", value: "owner" },
   { title: "API User", value: "user" },
+  { title: "APIPool Contributor", value: "contributor" },
 ];
 
 const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
@@ -38,6 +40,8 @@ const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
     setFormState(formData);
   }
 
+  const [isFormValid, setFormValidity] = useState<boolean>(false);
+
   async function sendApiRecommendation() {
     setIsProcessing(true);
     const { data, error } = await supabaseClient
@@ -45,8 +49,20 @@ const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
       .insert(formState);
 
     if (error) {
+      if (error.code === "23505") {
+        toast.error(
+          "🙊 This API is either listed already or is on our recommended list.",
+          { duration: 4000 }
+        );
+      } else {
+        toast.error("Oops! Something went wrong. Try again...");
+      }
       console.error(error);
     } else {
+      toast.success(
+        `Thank you for the recommendation 🙏🏻. We'll let you know when this API gets listed.`,
+        { duration: 5000 }
+      );
       onSubmitted();
     }
 
@@ -73,71 +89,104 @@ const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
     getApiServiceDomains();
   }, []);
 
+  useEffect(() => {
+    const formValidity =
+      formState["service_source_url"] &&
+      formState["service_domain"] &&
+      formState["recommender_email"] &&
+      formState["recommender_relationship"];
+
+    setFormValidity(formValidity);
+  }, [formState]);
+
   return (
-    <div className="w-full pb-4 text-white align-col bg-dark-matte">
-      <div className="w-full p-6 px-8 border-b form-header light-border align-col">
-        <h1 className="text-xl font-normal text-light">
-          Recommend API service to be listed on APIPool
+    <div className="w-full pb-4 text-white border align-col bg-body border-dark">
+      <div className="w-full p-6 px-8 border-b border-dark form-header align-col">
+        <h1 className="text-xl font-normal text-light-new">
+          List API service on APIPool
         </h1>
-        <p className="text-sm text-grey-legacy mt-0.5">
-          Help millions of developers discover the right APIs to build the
-          next-gen products.
+        <p className="text-grey-lighter text-sm font-light mt-0.5">
+          Help millions of developers discover the right APIs to build fantastic
+          products.
         </p>
       </div>
 
       <form className="p-6 px-8 align-col">
-        <BaseInput
-          id="service-source-url"
-          label="Link to API Service"
-          placeholder="Enter the api documentation url"
-          onChange={(value) => {
-            handleFormUpdate("service_source_url", value);
-          }}
-        />
+        <div className="grid w-full grid-flow-row grid-cols-2 gap-x-4">
+          <BaseInput
+            id="service-source-url"
+            label="API Name or Docs Link"
+            labelStyle="text-grey-lighter font-light"
+            inputStyle="rounded-xl"
+            placeholder="e.g. Example API or https://docs.example.com"
+            value={formState["service_source_url"]}
+            onChange={(value) => {
+              handleFormUpdate("service_source_url", value);
+            }}
+          />
+
+          <BaseSelect
+            id="service-business-domain"
+            label="Service Business Domain"
+            labelStyle="text-grey-lighter font-light"
+            inputStyle="rounded-xl"
+            options={apiServiceDomains}
+            textProp="name"
+            valueProp="id"
+            onChange={(value) => {
+              handleFormUpdate("service_domain", value);
+            }}
+          />
+        </div>
 
         <BaseInput
           id="service-description"
-          value={formState.service_description}
-          label="Short Description"
+          label="Short API Description"
+          labelStyle="text-grey-lighter font-light"
+          inputStyle="rounded-2xl"
           type="textarea"
-          maxLength={150}
+          placeholder="What does this API service do?"
+          maxLength={250}
+          row={4}
           required={false}
+          value={formState["service_description"]}
           onChange={(value) => {
             handleFormUpdate("service_description", value);
           }}
         />
 
-        <BaseSelect
-          id="service-business-domain"
-          label="Service Business Domain"
-          options={apiServiceDomains}
-          textProp="name"
-          valueProp="id"
-          onChange={(value) => {
-            handleFormUpdate("service_domain", value);
-          }}
-        />
+        <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
+          <BaseInput
+            id="user-email"
+            label="Email Address"
+            labelStyle="text-grey-lighter font-light"
+            inputStyle="rounded-xl"
+            placeholder="e.g. amazing-person@you.com"
+            value={formState["recommender_email"]}
+            onChange={(value) => {
+              handleFormUpdate("recommender_email", value);
+            }}
+          />
 
-        <BaseInput
-          id="user-email"
-          label="Email Address"
-          onChange={(value) => {
-            handleFormUpdate("recommender_email", value);
-          }}
-        />
-
-        <BaseInput
-          id="user-company"
-          label="Company Name"
-          required={false}
-          onChange={(value) => {
-            handleFormUpdate("recommender_company", value);
-          }}
-        />
+          <BaseInput
+            id="user-company"
+            label="Company Name"
+            labelStyle="text-grey-lighter font-light"
+            inputStyle="rounded-xl"
+            required={false}
+            placeholder="What company are you representing?"
+            value={formState["recommender_company"]}
+            onChange={(value) => {
+              handleFormUpdate("recommender_company", value);
+            }}
+          />
+        </div>
 
         <BaseSelect
           id="recommender-relation"
           label="Who are you?"
+          labelStyle="text-grey-lighter font-light"
+          inputStyle="rounded-xl"
           options={recommenderRelations}
           textProp="title"
           valueProp="value"
@@ -146,21 +195,15 @@ const ApiRequestForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
           }}
         />
 
-        <Button
-          className={clsx(
-            "bg-primary text-dark border-none h-12 text-lg press mt-4 ml-auto",
-            "flex items-center",
-            isProcessing && "disabled"
-          )}
-          shape="round"
-          type="ghost"
-          icon=""
-          disabled={isProcessing}
+        <BaseButton
+          styles="text-dark px-5 h-12 text-lg mt-4 mx-auto"
+          type="primary"
+          disabled={isProcessing || !isFormValid}
           loading={isProcessing}
           onClick={sendApiRecommendation}
         >
           {isProcessing ? "Submitting..." : "List API Service"}
-        </Button>
+        </BaseButton>
       </form>
     </div>
   );

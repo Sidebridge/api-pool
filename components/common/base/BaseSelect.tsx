@@ -6,6 +6,8 @@ import AppIcon from "../icons";
 type BaseSelectProps = {
   id: string;
   label?: string;
+  labelStyle?: string;
+  inputStyle?: string;
   required?: boolean;
   value?: string;
   valueProp: string;
@@ -27,6 +29,8 @@ type SelectOption = {
 const BaseSelect = ({
   id,
   label,
+  labelStyle,
+  inputStyle,
   required = true,
   value,
   valueProp,
@@ -36,7 +40,7 @@ const BaseSelect = ({
 }: BaseSelectProps) => {
   return (
     <div className="mb-5 input-group align-col">
-      <label htmlFor={id} className="mb-1.5 text-sm font-light">
+      <label htmlFor={id} className={clsx("mb-1.5 w-fit", labelStyle)}>
         {label}
         {!required && <span className="ml-2 text-grey">(Optional)</span>}
       </label>
@@ -46,13 +50,16 @@ const BaseSelect = ({
           name=""
           id={id}
           className={clsx(
-            "w-full appearance-none h-12 box-border border light-border bg-dark-matte outline-none rounded-full px-4 py-2 text-light text-base",
-            "focus:border-grey hover:border-grey focus:bg-dark"
+            "w-full h-12 box-border border bg-transparent appearance-none border-dark outline-none px-4 py-2 text-light text-base",
+            "hover:border-grey-lighter hover:border-opacity-40 focus:border-grey-lighter focus:border-opacity-40  focus:bg-dark placeholder:opacity-40 hover:placeholder:opacity-100  placeholder:text-grey-lighter placeholder:font-light placeholder:text-sm",
+            inputStyle
           )}
           defaultValue=""
           onChange={(e) => onChange(e.target.value)}
         >
-          <option value="" selected></option>
+          <option value="" className="text-sm text-grey-lighter" selected>
+            {/* Select Option */}
+          </option>
           {options.map((option: SelectOption) => (
             <option
               value={option[valueProp]}

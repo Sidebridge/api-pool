@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       {apiRecommendationModal && (
         <BaseModal
-          styles="border-t-2 border-primary"
+          innerWidth="50%"
           isOpen={apiRecommendationModal}
           onClose={() => toggleModal("apiRecommendationModal", false)}
         >

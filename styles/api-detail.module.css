@@ -1,7 +1,0 @@
-.section-header-tab {
-  @apply w-full py-5 border-b border-dark h-14;
-}
-
-.section-header-title {
-  @apply px-6 pb-3 font-medium border-b w-fit border-primary text-light;
-}

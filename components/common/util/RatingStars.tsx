@@ -20,7 +20,7 @@ const RatingStars = ({
   const starClasses = (star: number): string =>
     `mr-1 ${star <= rate ? "text-primary" : "text-white"} ${
       action === "mark" && "cursor-pointer"
-    }`;
+    } ${action === "mark" && star !== rate && "hover:text-accent"}`;
 
   return (
     <>

@@ -31,7 +31,7 @@ const BaseInput = ({
   return (
     <div className="mb-5 input-group align-col">
       {label && (
-        <label htmlFor={id} className={clsx("mb-1.5", labelStyle)}>
+        <label htmlFor={id} className={clsx("mb-1.5 w-fit", labelStyle)}>
           {label}
           {!required && <span className="ml-2">(Optional)</span>}
         </label>
@@ -41,7 +41,7 @@ const BaseInput = ({
           id={id}
           className={clsx(
             "w-full h-12 box-border border border-dark outline-none px-4 py-2 text-light text-base",
-            "focus:border-grey-lighter focus:border-opacity-40  focus:bg-dark placeholder:opacity-40 hover:placeholder:opacity-100  placeholder:text-grey-lighter placeholder:font-light placeholder:text-sm",
+            "hover:border-grey-lighter hover:border-opacity-40 focus:border-grey-lighter focus:border-opacity-40  focus:bg-dark placeholder:opacity-40 hover:placeholder:opacity-100  placeholder:text-grey-lighter placeholder:font-light placeholder:text-sm",
             inputStyle
           )}
           style={{ backgroundColor: "#0D0D0D" }}
@@ -56,7 +56,7 @@ const BaseInput = ({
             id={id}
             className={clsx(
               "bg-dark border border-dark mt-2 rounded-3xl p-4 py-3 text-light text-base z-10",
-              "placeholder:text-grey-lighter placeholder:opacity-40 hover:placeholder:opacity-100 placeholder:font-light focus:bg-dark-matte focus:outline-none focus:border-grey-lighter focus:border-opacity-40  placeholder:text-sm",
+              "hover:border-grey-lighter hover:border-opacity-40 placeholder:text-grey-lighter placeholder:opacity-40 hover:placeholder:opacity-100 placeholder:font-light focus:bg-dark-matte focus:outline-none focus:border-grey-lighter focus:border-opacity-40  placeholder:text-sm",
               inputStyle
             )}
             style={{ backgroundColor: "#0D0D0D" }}

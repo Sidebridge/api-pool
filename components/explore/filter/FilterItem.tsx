@@ -37,11 +37,7 @@ const FilterItem = ({
           type="checkbox"
           value={value}
           checked={checked}
-          className={clsx(
-            "primary-checkbox",
-            "w-4 h-4 text-primary bg-primary rounded-sm cursor-pointer",
-            " focus:bg-primary"
-          )}
+          className={clsx("w-4 h-4 rounded-sm cursor-pointer ")}
           onChange={(e) => onCheck(e)}
         />
         <label

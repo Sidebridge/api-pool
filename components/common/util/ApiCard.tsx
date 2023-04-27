@@ -13,6 +13,7 @@ import AppIcon from "../icons";
 import { setCurrentApi } from "@/store/api-services";
 
 import type { ApiService } from "@/types/api-service.interface";
+import { useState } from "react";
 
 type CardProp = {
   isHovered?: boolean;
@@ -29,13 +30,24 @@ const ApiCard = ({
 }: CardProp) => {
   const router = useRouter();
 
+  const [loadApiDetail, setApiDetailLoad] = useState<boolean>(false);
+
   return (
     <div
       className={clsx(
         "w-full cursor-default overflow-y-hidden rounded-2xl box-border h-full text-light",
-        isHovered ? classes["card-border__hovered"] : classes["card-border__bg"]
+        isHovered
+          ? classes["card-border__hovered"]
+          : classes["card-border__bg"],
+        loadApiDetail && "opacity-25"
       )}
     >
+      {/* {loadApiDetail && (
+        <div className="fixed centered-col top-0 left-0 w-screen h-screen z-[1000] bg-dark bg-opacity-30">
+          <AppIcon icon={"LoaderGif"} styles="w-12 h-12 opacity-10" />
+        </div>
+      )} */}
+
       <div
         className={clsx(
           "w-full card-inner__bg overflow-y-hidden relative h-full align-col rounded-2xl overflow-x-hidden",
@@ -55,7 +67,7 @@ const ApiCard = ({
               />
             </div>
 
-            <FeaturedTag />
+            {service.is_featured && <FeaturedTag />}
           </div>
 
           <div className="mt-6 align-col">
@@ -97,7 +109,7 @@ const ApiCard = ({
               icon="BriefWhite"
               styles="h-12 mr-2 text-light px-8 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
               onClick={() => {
-                setCurrentApi(service);
+                setApiDetailLoad(true);
                 router.push(`/api-service/${service.service_id}`);
               }}
             />

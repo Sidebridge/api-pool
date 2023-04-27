@@ -9,6 +9,7 @@ import CompareGreen from "../../../assets/images/svg/compare_green.svg";
 import CompareDark from "../../../assets/images/svg/compare_dark.svg";
 import ArrowRightBlack from "../../../assets/images/svg/arrow_right_black.svg";
 import ArrowRightWhite from "../../../assets/images/svg/arrow_right_white.svg";
+import ArrowDownGreen from "../../../assets/images/svg/key_arrow_down_green.svg";
 import DonateWhite from "../../../assets/images/svg/donate_white.svg";
 import DonateAccent from "../../../assets/images/svg/donate_accent.svg";
 import BookmarkWhite from "../../../assets/images/svg/bookmark_white.svg";
@@ -37,8 +38,10 @@ import FeaturedBadge from "../../../assets/images/svg/featured_badge_green.svg";
 import WebGlobe from "../../../assets/images/svg/web_globe.svg";
 import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
 import RatingStarOrange from "../../../assets/images/svg/rating_star_orange.svg";
+import CloseGreen from "../../../assets/images/svg/close_green.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
+import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 
@@ -56,6 +59,7 @@ const Icons = {
   CompareDark,
   ArrowRightBlack,
   ArrowRightWhite,
+  ArrowDownGreen,
   DonateWhite,
   DonateAccent,
   BookmarkWhite,
@@ -83,8 +87,10 @@ const Icons = {
   WebGlobe,
   SignatureOrange,
   RatingStarOrange,
+  CloseGreen,
 
   ErrorBroken,
+  EmptyList,
   LoaderGif,
 } as const;
 

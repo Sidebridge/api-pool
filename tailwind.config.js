@@ -28,6 +28,7 @@ module.exports = {
         },
         light: {
           DEFAULT: "#E2E2E2",
+          new: "#EEEEEE",
         },
         accent: {
           DEFAULT: "#F2B925",
@@ -39,6 +40,7 @@ module.exports = {
           lighter: "#A1A1A1",
           faint: "#2C2C2C",
           border: "#201F1F",
+          label: "#727272",
         },
       },
       keyframes: {

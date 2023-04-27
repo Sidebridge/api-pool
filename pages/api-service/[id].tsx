@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import cardClasses from "@/styles/api-card.module.css";
-import classes from "@/styles/api-detail.module.css";
 
 import AppIcon from "@/components/common/icons";
 import MainLayout from "@/components/layout/MainLayout";
@@ -31,18 +31,12 @@ import {
   getRelatedAPIServicesBySector,
 } from "@/store/api-services";
 
-import { APIServices as services } from "@/public/constants/data-mock";
 import type { ApiService } from "@/types/api-service.interface";
 import Link from "next/link";
+import { supabaseClient } from "@/utils/services/supabase/client";
 
-const ApiDetails = () => {
+const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
-
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-  function cardHoverHandler(card: string | null) {
-    setHoveredCard(card);
-  }
 
   const [isShowingRelatedArticles, setArticlesModalState] =
     useState<boolean>(false);
@@ -54,7 +48,6 @@ const ApiDetails = () => {
   const allApiReviews = apiReviews.use();
   const relatedApis = relatedApiServices.use();
   const totalRating = avgReviewRating.use();
-  const currentApiDetail = currentAPI.use() as ApiService;
 
   async function fetchReviews() {
     setIsFetchingReviews(true);
@@ -151,8 +144,8 @@ const ApiDetails = () => {
           <section className="w-full overflow-hidden border align-col rounded-2xl more-details border-dark bg-body">
             <div className="w-full border-b align-row border-dark">
               <div className="w-8/12 border-r border-dark">
-                <div className={clsx(classes["section-header-tab"])}>
-                  <p className={clsx(classes["section-header-title"])}>
+                <div className={clsx("section-header-tab")}>
+                  <p className={clsx("section-header-title")}>
                     Service Description
                   </p>
                 </div>
@@ -179,21 +172,20 @@ const ApiDetails = () => {
                   <Link
                     href={currentApiDetail.source_url || ""}
                     target="_blank"
+                    className="items-center mt-3 mb-2 font-light align-row press w-fit"
                   >
-                    <span className="items-center mt-3 mb-2 font-light align-row press w-fit">
-                      <span className=" text-primary">Visit Website</span>
-                      <AppIcon
-                        icon="ArrowLeftGreen"
-                        styles="ml-1.5 mt-0.5 rotate-180"
-                      />
-                    </span>
+                    <span className=" text-primary">Visit Website</span>
+                    <AppIcon
+                      icon="ArrowLeftGreen"
+                      styles="ml-1.5 mt-0.5 rotate-180"
+                    />
                   </Link>
 
                   {!isFetchingReviews && (
                     <p
                       className={clsx(
                         "mt-10 -ml-6 -mb-5",
-                        classes["section-header-title"]
+                        "section-header-title"
                       )}
                     >
                       Recent Reviews
@@ -203,10 +195,8 @@ const ApiDetails = () => {
               </div>
 
               <div className="w-4/12">
-                <div className={clsx(classes["section-header-tab"])}>
-                  <p
-                    className={clsx("mx-auto", classes["section-header-title"])}
-                  >
+                <div className={clsx("section-header-tab")}>
+                  <p className={clsx("mx-auto", "section-header-title")}>
                     Reviews
                   </p>
                 </div>
@@ -261,10 +251,6 @@ const ApiDetails = () => {
                         className="h-fit press"
                         // style={{ width: "25rem" }}
                         key={review.id}
-                        onMouseEnter={() =>
-                          cardHoverHandler(currentApiDetail.service_id)
-                        }
-                        onMouseLeave={() => cardHoverHandler(null)}
                       >
                         <ReviewCard review={review} />
                       </div>
@@ -337,5 +323,31 @@ const ApiDetails = () => {
     </MainLayout>
   );
 };
+
+export async function getServerSideProps(context: { params: any }) {
+  const { params } = context;
+  const { id } = params;
+
+  const { data, error } = await supabaseClient
+    .from("api_services")
+    .select("*")
+    .eq("service_id", id)
+    .single();
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/explore",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      currentApiDetail: data,
+    },
+  };
+}
 
 export default ApiDetails;

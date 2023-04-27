@@ -2,10 +2,14 @@ import clsx from "clsx";
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 
+import classes from "@/styles/landing-page.module.css";
+
 import MainLayout from "@/components/layout/MainLayout";
 import CustomInput from "@/components/common/util/CustomButtonedInput";
 import ApiCard from "@/components/common/util/ApiCard";
-import FilterList from "@/components/explore/filter/FilterList";
+import AppIcon from "@/components/common/icons";
+import BaseButton from "@/components/common/base/BaseButton";
+import FilterUtil from "@/components/explore/filter/FilterUtil";
 
 import type { ApiService } from "@/types/api-service.interface";
 
@@ -15,8 +19,8 @@ import {
   getFeaturedAPIs,
   getCommonAPIServices,
 } from "@/store/api-services";
-import { Tooltip } from "antd";
-import AppIcon from "@/components/common/icons";
+
+import { ApiFilters } from "@/public/constants/filters";
 
 const Explore: NextPage = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -25,13 +29,14 @@ const Explore: NextPage = () => {
   const featuredApis = featuredApiServices.use();
   const commonApis = commonApiServices.use();
 
+  const [isSearchOrFilterApplied, setIsFilterApplied] = useState<boolean>();
   const [isSearchingApis, setIsSearchingApis] = useState<boolean>(false);
 
   function cardHoverHandler(card: string | null) {
     setHoveredCard(card);
   }
 
-  async function searchApiService(searchTerm?: string, filterObj?: object) {
+  async function searchApiService(searchTerm?: string, filterObj?: ApiFilters) {
     let searchText: string = "";
 
     if (searchTerm) searchText = searchTerm;
@@ -43,6 +48,17 @@ const Explore: NextPage = () => {
 
     setIsSearchingApis(true);
     await getCommonAPIServices(searchText, filterObj);
+
+    if (
+      searchTerm ||
+      (filterObj &&
+        (filterObj.countries.length ||
+          filterObj.sectors.length ||
+          filterObj.supportedLanguages.length ||
+          filterObj.pricings.length))
+    )
+      setIsFilterApplied(true);
+    else setIsFilterApplied(false);
 
     setIsSearchingApis(false);
   }
@@ -57,10 +73,12 @@ const Explore: NextPage = () => {
     <MainLayout>
       <div className="items-center w-full px-24 align-col">
         <div className="w-full py-16 text-center explore-header centered-col">
-          <h1 className="text-5xl font-bold text-light">
-            Find The Right API Services
+          <h1
+            className={clsx("text-5xl font-medium", classes["header-text__bg"])}
+          >
+            Explore Thousands of API Services
           </h1>
-          <p className="mt-6 text-xl font-light text-grey">
+          <p className="mt-4 text-lg font-normal text-grey-legacy">
             Easily find the right API for your next project. Filter by tags,
             availability, function and more. <br />
             Detailed info, helpers, & accurate reviews. Latest offerings from
@@ -70,15 +88,8 @@ const Explore: NextPage = () => {
           </p>
         </div>
 
-        <section className="w-full mb-32 border align-row border-grey-faint rounded-3xl bg-dark-matte">
-          <FilterList
-            onFiltered={(filterObject) => {
-              searchApiService("", filterObject);
-            }}
-          />
-
-          <div className="w-9/12 h-full align-col ">
-            <div className="items-center w-full h-20 px-10 font-light border-b row-btwn text-light border-grey border-opacity-10">
+        <section className="w-full mb-32 align-col">
+          {/* <div className="items-center w-full h-20 px-8 font-light border-b row-btwn text-light border-grey border-opacity-10">
               <div className="items-center w-9/12 align-row">
                 <CustomInput
                   ref={searchInputRef}
@@ -102,67 +113,91 @@ const Explore: NextPage = () => {
               </div>
 
               <span className="text-grey">All API: 34,557</span>
-            </div>
+            </div> */}
+          <FilterUtil
+            isSearching={isSearchingApis}
+            onFiltered={(searchString, filterSelections) =>
+              searchApiService(searchString, filterSelections)
+            }
+          />
 
-            <div className={clsx("w-full px-10 featured-list")}>
-              <div
-                className={clsx(
-                  "align-row",
-                  "content-start justify-between w-full overflow-x-scroll mt-5 gap-x-3"
-                )}
-              >
-                {featuredApis.map((service, serviceIndex) => (
-                  <div
-                    className={clsx("mb-8 h-fit press w-96")}
-                    style={{ minWidth: "22rem" }}
-                    key={serviceIndex}
-                    onMouseEnter={() => cardHoverHandler(service.service_id)}
-                    onMouseLeave={() => cardHoverHandler(null)}
-                  >
-                    <ApiCard
-                      service={service}
-                      type="small"
-                      isHovered={hoveredCard === service.service_id}
-                    />
+          <div className="w-full mt-4 overflow-x-hidden border rounded-t-none align-col border-dark rounded-xl">
+            {featuredApis &&
+              featuredApis.length &&
+              !isSearchOrFilterApplied && (
+                <div className="w-full mb-3 featured-list border-dark">
+                  <div className="section-header-tab">
+                    <p className={clsx("mx-auto section-header-title")}>
+                      Featured API’S 🔥
+                    </p>
                   </div>
-                ))}
-                {featuredApis.map((service, serviceIndex) => (
                   <div
-                    className={clsx("mb-8 h-fit press w-96")}
-                    style={{ minWidth: "22rem" }}
-                    key={serviceIndex}
-                    onMouseEnter={() => cardHoverHandler(service.service_id)}
-                    onMouseLeave={() => cardHoverHandler(null)}
+                    className={clsx(
+                      "align-row",
+                      "content-start justify-between w-full px-8 box-border overflow-x-scroll mt-5 gap-x-3"
+                    )}
                   >
-                    <ApiCard
-                      service={service}
-                      type="small"
-                      isHovered={hoveredCard === service.service_id}
-                    />
+                    {featuredApis.map((service, serviceIndex) => (
+                      <div
+                        className={clsx("mb-8 h-fit press w-96")}
+                        style={{ minWidth: "22rem" }}
+                        key={serviceIndex}
+                        onMouseEnter={() =>
+                          cardHoverHandler(service.service_id)
+                        }
+                        onMouseLeave={() => cardHoverHandler(null)}
+                      >
+                        <ApiCard
+                          service={service}
+                          type="small"
+                          isHovered={hoveredCard === service.service_id}
+                        />
+                      </div>
+                    ))}
+                    {featuredApis.map((service, serviceIndex) => (
+                      <div
+                        className={clsx("mb-8 h-fit press w-96")}
+                        style={{ minWidth: "22rem" }}
+                        key={serviceIndex}
+                        onMouseEnter={() =>
+                          cardHoverHandler(service.service_id)
+                        }
+                        onMouseLeave={() => cardHoverHandler(null)}
+                      >
+                        <ApiCard
+                          service={service}
+                          type="small"
+                          isHovered={hoveredCard === service.service_id}
+                        />
+                      </div>
+                    ))}
+                    {featuredApis.map((service, serviceIndex) => (
+                      <div
+                        className={clsx("mb-8 h-fit press w-96")}
+                        style={{ minWidth: "22rem" }}
+                        key={serviceIndex}
+                        onMouseEnter={() =>
+                          cardHoverHandler(service.service_id)
+                        }
+                        onMouseLeave={() => cardHoverHandler(null)}
+                      >
+                        <ApiCard
+                          service={service}
+                          type="small"
+                          isHovered={hoveredCard === service.service_id}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
-                {featuredApis.map((service, serviceIndex) => (
-                  <div
-                    className={clsx("mb-8 h-fit press w-96")}
-                    style={{ minWidth: "22rem" }}
-                    key={serviceIndex}
-                    onMouseEnter={() => cardHoverHandler(service.service_id)}
-                    onMouseLeave={() => cardHoverHandler(null)}
-                  >
-                    <ApiCard
-                      service={service}
-                      type="small"
-                      isHovered={hoveredCard === service.service_id}
-                    />
-                  </div>
-                ))}
-              </div>
+                </div>
+              )}
 
+            <div className={clsx("w-full result-list border-dark")}>
               <div className="w-full">
-                <div className="items-center align-row">
-                  <div className="flex flex-grow border border-dashed light-border"></div>
-                  <span className="mx-2 text-lg text-grey-legacy">Results</span>
-                  <div className="flex flex-grow border border-dashed light-border"></div>
+                <div className="section-header-tab">
+                  <p className={clsx("mx-auto section-header-title")}>
+                    All APIs
+                  </p>
                 </div>
 
                 <AppIcon
@@ -193,12 +228,12 @@ const Explore: NextPage = () => {
 
                 <div
                   className={clsx(
-                    "flex-wrap content-start justify-between w-full mt-5 align-row gap-x-3"
+                    "grid grid-flow-row grid-cols-3 px-8 box-border w-full mt-8 gap-x-5"
                   )}
                 >
                   {commonApis.map((service, serviceIndex) => (
                     <div
-                      className={clsx("mb-8 h-fit press w-72")}
+                      className={clsx("mb-8 h-fit press")}
                       style={{ minWidth: "22rem" }}
                       key={serviceIndex}
                       onMouseEnter={() => cardHoverHandler(service.service_id)}
@@ -212,6 +247,20 @@ const Explore: NextPage = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* <div className="items-center mx-auto my-8 w-fit pagination-btns align-row">
+                  <BaseButton
+                    styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
+                    type="default"
+                    text="⇜ Previous"
+                  />
+
+                  <BaseButton
+                    styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
+                    type="default"
+                    text="Next ⇝"
+                  />
+                </div> */}
               </div>
             </div>
           </div>
