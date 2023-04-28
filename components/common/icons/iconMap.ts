@@ -1,3 +1,4 @@
+import LogoPlaceholder from "../../../assets/images/logo/apipool-favicon_grey.svg";
 import Search from "../../../assets/images/svg/search.svg";
 import Ecommerce from "../../../assets/images/svg/ecommerce.svg";
 import Sport from "../../../assets/images/svg/sports.svg";
@@ -39,6 +40,7 @@ import WebGlobe from "../../../assets/images/svg/web_globe.svg";
 import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
 import RatingStarOrange from "../../../assets/images/svg/rating_star_orange.svg";
 import CloseGreen from "../../../assets/images/svg/close_green.svg";
+import MagicWand from "../../../assets/images/svg/magicwand_orange.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
@@ -48,6 +50,7 @@ import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 export type IconType = keyof typeof Icons;
 
 const Icons = {
+  LogoPlaceholder,
   Search,
   Ecommerce,
   Sport,
@@ -88,6 +91,7 @@ const Icons = {
   SignatureOrange,
   RatingStarOrange,
   CloseGreen,
+  MagicWand,
 
   ErrorBroken,
   EmptyList,

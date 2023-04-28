@@ -10,8 +10,6 @@ import BaseButton from "../base/BaseButton";
 import SupportedSDKs from "./SupportedSDKLangs";
 import AppIcon from "../icons";
 
-import { setCurrentApi } from "@/store/api-services";
-
 import type { ApiService } from "@/types/api-service.interface";
 import { MouseEventHandler, useState } from "react";
 
@@ -60,11 +58,15 @@ const ApiCard = ({
         <div className="w-full px-6">
           <div className="w-full mx-auto -mt-10 row-btwn">
             <div className="p-3 border rounded-lg service-logo bg-body border-dark centered_col">
-              <img
-                className={clsx("w-8 h-8")}
-                src={service.logo}
-                alt={`${service.service_name} Logo`}
-              />
+              {service.logo ? (
+                <img
+                  className={clsx("w-8 h-8")}
+                  src={service.logo}
+                  alt={`${service.service_name} Logo`}
+                />
+              ) : (
+                <AppIcon icon={"LogoPlaceholder"} name="service logo" />
+              )}
             </div>
 
             {service.is_featured && <FeaturedTag />}

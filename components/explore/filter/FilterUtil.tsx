@@ -156,17 +156,18 @@ const FilterUtil = ({
         <BaseButton
           text={isSearching ? "Pooling..." : "Search"}
           type="primary"
-          styles="px-8 w-fit"
+          styles="px-8 w-fit mr-4"
           loading={isSearching}
           loaderStyle="mr-2.5 w-4 h-4 absolute"
           onClick={() => {
             onFiltered(searchTerm, selectedFilterValues);
           }}
         />
-        <Tooltip title="AI Search (Coming Soon) ✨" placement="topLeft">
-          <p className="ml-3 text-sm font-light cursor-pointer text-primary hover:opacity-40">
-            🪄✨
-          </p>
+        <Tooltip title="Coming Soon ✨" placement="topLeft">
+          <div className="mr-2 centered-row press">
+            <AppIcon icon={"MagicWand"} styles="mr-1.5" />
+            <span className="font-light text-accent">Advance Search w/ AI</span>
+          </div>
         </Tooltip>
       </div>
 

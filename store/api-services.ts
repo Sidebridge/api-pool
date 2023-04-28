@@ -107,7 +107,7 @@ export const getRelatedAPIServicesBySector = async (
     .select("*")
     .eq("business_sector_id", sectorId)
     .neq("service_id", currentApiId)
-    .limit(9);
+    .limit(6);
 
   const { data, error } = await query;
 
