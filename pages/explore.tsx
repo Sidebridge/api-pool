@@ -23,6 +23,7 @@ import {
 } from "@/store/api-services";
 
 import { ApiFilters } from "@/public/constants/filters";
+import { Tooltip } from "antd";
 
 const Explore: NextPage = () => {
   const sliderConfig = {
@@ -179,9 +180,14 @@ const Explore: NextPage = () => {
                         Your search did not match any available data.
                       </span>
 
-                      <button className="p-3 px-5 mt-6 rounded-full bg-primary press">
-                        Use AI Search &#10024;
-                      </button>
+                      <Tooltip title="Coming Soon ✨" placement="bottom">
+                        <button className="p-3.5 px-5 mt-6 border rounded-full hover:bg-accent hover:text-body border-grey-border text-light press focus:outline-none">
+                          <div className="centered-row">
+                            <AppIcon icon="MagicWand" styles="mr-2 w-5 h-5" />
+                            <span>Use AI Search </span>{" "}
+                          </div>
+                        </button>
+                      </Tooltip>
                     </div>
                   )}
 
