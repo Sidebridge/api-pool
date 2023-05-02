@@ -6,6 +6,7 @@ import AppIcon from "../icons";
 import FilterItem from "@/components/explore/filter/FilterItem";
 
 import { ApiFilters } from "@/public/constants/filters";
+import { toCapitalizedString } from "@/utils/helper/converter";
 
 type MultichoiceSelectProps = {
   allItems: any[];
@@ -69,13 +70,20 @@ const MultichoiceSelect = ({
         styles
       )}
     >
-      {selectedValues.length && activeFilter !== selectedFilterProp ? (
+      {selectedValues.length ? (
         <div className="box-border items-center w-full h-full p-4 have-selections row-btwn">
-          <div className="items-center mr-2 align-row press" onClick={onOpen}>
+          <div
+            className="items-center mr-2 align-row press"
+            onClick={() =>
+              activeFilter === selectedFilterProp ? onClose() : onOpen()
+            }
+          >
             <span className="p-2.5 py-1.5 text-center mr-2 border rounded-full text-grey-label border-dark">
               {selectedValues.length}+
             </span>
-            <span className="capitalize text-light">{selectedFilterProp}</span>
+            <span className="capitalize text-light">
+              {toCapitalizedString(selectedFilterProp)}
+            </span>
           </div>
 
           <Tooltip title="Clear selected options 🗑️" placement="left">
