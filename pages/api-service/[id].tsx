@@ -85,11 +85,19 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             )}
           >
             <div className="absolute p-5 border -top-10 rounded-2xl w-fit service-logo bg-body border-dark centered_col">
-              <img
-                className={clsx("w-12 h-12")}
-                src={currentApiDetail.logo}
-                alt={`${currentApiDetail.service_name} Logo`}
-              />
+              {currentApiDetail.logo ? (
+                <img
+                  className={clsx("w-12 h-12")}
+                  src={currentApiDetail.logo}
+                  alt={`${currentApiDetail.service_name} Logo`}
+                />
+              ) : (
+                <AppIcon
+                  icon={"LogoPlaceholder"}
+                  styles={clsx("w-12 h-12")}
+                  name={`${currentApiDetail.service_name} Logo`}
+                />
+              )}
             </div>
 
             <div className="items-center mt-10 align-row">
@@ -154,7 +162,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                   <div
                     className={clsx(
                       "snapshot w-full relative rounded-lg bg-white",
-                      "h-52"
+                      "h-52 centered-col"
                     )}
                     style={{
                       backgroundImage: `url(${currentApiDetail.snapshot_image})`,
@@ -162,7 +170,11 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                       backgroundRepeat: "no-repeat",
                       // backgroundAttachment: "fixed",
                     }}
-                  ></div>
+                  >
+                    {!currentApiDetail.snapshot_image && (
+                      <span>Can&apos;t load snapshot</span>
+                    )}
+                  </div>
 
                   <p className="mt-5 text-base font-light service-description text-grey-lighter">
                     {currentApiDetail.service_description}{" "}

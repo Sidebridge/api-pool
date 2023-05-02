@@ -156,7 +156,7 @@ const Explore: NextPage = () => {
               <div className="w-full">
                 <div className="section-header-tab">
                   <p className={clsx("mx-auto section-header-title")}>
-                    All APIs
+                    {isSearchOrFilterApplied ? "Search Results" : "All APIs"}
                   </p>
                 </div>
 

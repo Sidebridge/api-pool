@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "antd";
 
 import heroImage from "../../assets/images/illustrations/dashboard-snapshot.svg";
+
 import shortBar from "../../assets/images/svg/blurred_bar_short.svg";
 import mediumBar from "../../assets/images/svg/blurred_bar_medium.svg";
 import longBar from "../../assets/images/svg/blurred_bar_long.svg";
@@ -111,6 +112,7 @@ const Hero = () => {
         alt="APIPool Logo"
         priority
       />
+
     </section>
   );
 };

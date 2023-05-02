@@ -33,7 +33,7 @@ function Header() {
             text="Login"
             type="primary"
             styles="h-12 px-8"
-            onClick={() => toggleModal("loginModal", true)}
+            // onClick={() => toggleModal("loginModal", true)}
           />
         )}
       </div>
