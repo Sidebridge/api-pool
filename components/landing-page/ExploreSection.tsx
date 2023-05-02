@@ -8,7 +8,7 @@ import AppIcon from "../common/icons";
 import CustomInput from "../common/util/CustomButtonedInput";
 import ApiCard from "../common/util/ApiCard";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 import { useRouter } from "next/router";
 import BaseButton from "../common/base/BaseButton";
 

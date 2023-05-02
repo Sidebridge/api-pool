@@ -14,7 +14,7 @@ import BaseInput from "@/components/common/base/BaseInput";
 import { supabaseClient } from "@/utils/services/supabase/client";
 
 import { getApiReviews } from "@/store/api-reviews";
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 
 const ApiReviewForm = ({
   service,

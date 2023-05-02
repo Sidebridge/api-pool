@@ -7,7 +7,7 @@ import FlutterwaveBg from "../../../assets/images/pictures/flutterwave.png";
 import BookmarkBtn from "./BookmarkButton";
 import { toggleModal } from "@/store/modal";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 
 type CardProp = {
   isHovered?: boolean;

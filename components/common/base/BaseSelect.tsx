@@ -1,4 +1,4 @@
-import { ApiServiceDomain } from "@/types/api-service.interface";
+import { ApiServiceDomain } from "@/types/api-service.type";
 import clsx from "clsx";
 import { useState } from "react";
 import AppIcon from "../icons";

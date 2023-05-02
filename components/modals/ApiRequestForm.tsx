@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import BaseInput from "../common/base/BaseInput";
 import BaseSelect from "../common/base/BaseSelect";
 
-import type { ApiServiceDomain } from "@/types/api-service.interface";
+import type { ApiServiceDomain } from "@/types/api-service.type";
 import { useRouter } from "next/router";
 import BaseButton from "../common/base/BaseButton";
 import toast from "react-hot-toast";

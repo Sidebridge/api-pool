@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { entity, type Entity } from "simpler-state";
 import produce from "immer";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
 
@@ -46,7 +46,7 @@ export const getFeaturedAPIs = async () => {
   }
 
   if (data) {
-    setApiServices("featured", data as ApiService[]);
+    setApiServices("featured", data);
   }
 };
 
@@ -93,13 +93,13 @@ export const getCommonAPIServices = async (
   }
 
   if (data) {
-    setApiServices("common", data as ApiService[]);
+    setApiServices("common", data);
   }
 };
 
 export const getRelatedAPIServicesBySector = async (
   currentApiId: string,
-  sectorId: string
+  sectorId: string | null
   // relatedSectors: string[]
 ) => {
   let query = supabaseClient
@@ -116,6 +116,6 @@ export const getRelatedAPIServicesBySector = async (
   }
 
   if (data) {
-    setApiServices("related", data as ApiService[]);
+    setApiServices("related", data);
   }
 };

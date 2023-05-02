@@ -10,7 +10,7 @@ import BaseButton from "../base/BaseButton";
 import SupportedSDKs from "./SupportedSDKLangs";
 import AppIcon from "../icons";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 import { MouseEventHandler, useState } from "react";
 
 type CardProp = {

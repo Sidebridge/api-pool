@@ -8,7 +8,7 @@ import ApiCard from "../common/util/ApiCardLegacy";
 
 import type { IconType } from "@/components/common/icons/iconMap";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 import { useRouter } from "next/router";
 
 const domains = [

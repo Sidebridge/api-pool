@@ -5,7 +5,7 @@ const SupportedSDKs = ({
   styles,
   limit = 3,
 }: {
-  langs: string[];
+  langs: string[] | null;
   styles?: string;
   limit?: number;
 }) => {
@@ -24,7 +24,7 @@ const SupportedSDKs = ({
           {lang}
         </div>
       ))}
-      {langs?.length > limit && (
+      {langs && langs?.length > limit && (
         <div className="p-1 px-2.5 rounded-full border border-dark text-center">
           <span>+{langs?.length - limit}</span>
         </div>

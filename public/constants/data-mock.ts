@@ -1,4 +1,4 @@
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 
 export const APIService: ApiService = {
   service_id: "0e41e912-ca17-4810-8764-20a7a3e876ac",

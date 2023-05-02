@@ -4,14 +4,13 @@ import { entity, type Entity } from "simpler-state";
 import produce from "immer";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
+import { ApiReview } from "@/types/api-service.type";
 
-export const apiReviews: Entity<{ [key: string]: string }[]> = entity(
-  [] as { [key: string]: string }[]
-);
+export const apiReviews: Entity<ApiReview[]> = entity([] as ApiReview[]);
 
 export const avgReviewRating: Entity<number> = entity(0);
 
-export const setApiReviews = (value: { [key: string]: string }[]) => {
+export const setApiReviews = (value: ApiReview[]) => {
   apiReviews.set(value);
 };
 
@@ -30,17 +29,14 @@ export const getApiReviews = async (apiServiceId: string) => {
   }
 
   if (data) {
-    setApiReviews(data as { [key: string]: string }[]);
+    setApiReviews(data);
   }
 
-  await fetchAverageReviewStars(
-    data as { [key: string]: string }[],
-    apiServiceId
-  );
+  await fetchAverageReviewStars(data, apiServiceId);
 };
 
 export const fetchAverageReviewStars = async (
-  data: { [key: string]: any }[],
+  data: ApiReview[] | null,
   apiServiceId: string
 ) => {
   // const { data, error } = await supabaseClient

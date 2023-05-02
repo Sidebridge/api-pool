@@ -13,7 +13,7 @@ import AppIcon from "@/components/common/icons";
 import BaseButton from "@/components/common/base/BaseButton";
 import FilterUtil from "@/components/explore/filter/FilterUtil";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 
 import {
   featuredApiServices,

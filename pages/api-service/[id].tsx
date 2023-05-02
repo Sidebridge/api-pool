@@ -31,7 +31,7 @@ import {
   getRelatedAPIServicesBySector,
 } from "@/store/api-services";
 
-import type { ApiService } from "@/types/api-service.interface";
+import type { ApiService } from "@/types/api-service.type";
 import Link from "next/link";
 import { supabaseClient } from "@/utils/services/supabase/client";
 
@@ -120,7 +120,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
               </div>
 
               <div className="items-center align-row">
-                <a href={currentApiDetail.source_url} target="_blank">
+                <a href={currentApiDetail.source_url || ""} target="_blank">
                   <BaseButton
                     icon="WebGlobe"
                     type="primary"
