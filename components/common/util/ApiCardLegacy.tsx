@@ -47,7 +47,7 @@ const ApiCard = ({ isHovered = false, service, type = "large" }: CardProp) => {
 
           <img
             className={clsx("w-7/12", !isHovered && "hidden")}
-            src={service.logo}
+            src={service.logo || ""}
             alt={`${service.service_name} Logo`}
           />
         </div>
@@ -72,11 +72,12 @@ const ApiCard = ({ isHovered = false, service, type = "large" }: CardProp) => {
                 {lang}
               </div>
             ))}
-            {service?.supported_languages.length > 3 && (
-              <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
-                <span>+{service?.supported_languages.length - 3}</span>
-              </div>
-            )}
+            {service.supported_languages &&
+              service.supported_languages.length > 3 && (
+                <div className="p-0.5 px-2 rounded-full border text-grey border-grey text-center border-opacity-30">
+                  <span>+{service?.supported_languages.length - 3}</span>
+                </div>
+              )}
           </div>
 
           <div className="card-actions align-row px-3.5 py-6">

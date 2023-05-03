@@ -82,13 +82,14 @@ const ApiCard = ({
           </div>
 
           <p className="my-4 text-sm font-light text-grey-lighter">
-            {service.service_description.substring(0, 120)}
-            {service.service_description.length > 120 && (
-              <>
-                {"... "}
-                <span className="text-accent press">Read More</span>
-              </>
-            )}
+            {service.service_description?.substring(0, 120)}
+            {service.service_description &&
+              service.service_description.length > 120 && (
+                <>
+                  {"... "}
+                  <span className="text-accent press">Read More</span>
+                </>
+              )}
           </p>
 
           <SupportedSDKs

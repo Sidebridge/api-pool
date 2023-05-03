@@ -96,12 +96,12 @@ const ApiReviewForm = ({
       if (data) {
         console.log("This is data: ", data);
         setReviewFormValue({
-          reviewer_name: data.reviewer_name,
-          reviewer_company: data.reviewer_company,
-          review_message: data.review_message,
+          reviewer_name: data.reviewer_name || "",
+          reviewer_company: data.reviewer_company || "",
+          review_message: data.review_message || "",
         });
 
-        setApiRating(data.review_stars);
+        setApiRating(data.review_stars || 0);
         setHasExistingReview(true);
         setExistingReviewId(data.id);
       }
@@ -127,7 +127,7 @@ const ApiReviewForm = ({
           <div className="p-4 border rounded-2xl w-fit service-logo bg-body border-dark centered_col">
             <img
               className={clsx("w-10 h-10")}
-              src={service.logo}
+              src={service.logo || ""}
               alt={`${service.service_name} Logo`}
             />
           </div>
