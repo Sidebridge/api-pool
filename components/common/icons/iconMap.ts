@@ -42,6 +42,7 @@ import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
 import RatingStarOrange from "../../../assets/images/svg/rating_star_orange.svg";
 import CloseGreen from "../../../assets/images/svg/close_green.svg";
 import MagicWand from "../../../assets/images/svg/magicwand_orange.svg";
+import ExpandRoundWhite from "../../../assets/images/svg/expand_round_white.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
@@ -95,6 +96,7 @@ const Icons = {
   RatingStarOrange,
   CloseGreen,
   MagicWand,
+  ExpandRoundWhite,
 
   PromoLogo,
   ErrorBroken,

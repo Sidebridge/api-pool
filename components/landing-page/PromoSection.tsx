@@ -20,17 +20,17 @@ const PromoSection = () => {
           Helping developers easily discover and integrate the right API
         </p>
 
-        <div className="mt-10 promotion-benefits align-col">
+        <div className="mt-10 promotion-benefits align-col text-grey">
           {promotionBenefits.map((benefit, benefitIndex) => (
             <div
               key={`benefit-${benefitIndex}`}
               className="items-start mb-3 align-row"
             >
               <AppIcon icon={"FeaturedBadgeAccent"} styles="mr-3 mt-1.5" />
-              <span className="text-light">{benefit}</span>
+              <span className="">{benefit}</span>
             </div>
           ))}
-          <p className="ml-6 text-light">
+          <p className="ml-6 ">
             and more to help you get to your target users and drive sales...
           </p>
         </div>
@@ -55,7 +55,7 @@ const PromoSection = () => {
         </p>
       </div>
 
-      <AppIcon icon={"PromoLogo"} styles="opacity-75" />
+      <AppIcon icon={"PromoLogo"} styles="opacity-50" />
     </section>
   );
 };

@@ -2,15 +2,15 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import clsx from "clsx";
 
 import cardClasses from "@/styles/api-card.module.css";
 
 import AppIcon from "@/components/common/icons";
 import MainLayout from "@/components/layout/MainLayout";
-import clsx from "clsx";
 import FeaturedTag from "@/components/common/util/FeaturedTag";
 import BaseButton from "@/components/common/base/BaseButton";
-
 import ReviewCard from "@/components/common/util/ReviewCard";
 import RatingStars from "@/components/common/util/RatingStars";
 import Explore from "@/components/landing-page/ExploreSection";
@@ -32,8 +32,11 @@ import {
 } from "@/store/api-services";
 
 import type { ApiService } from "@/types/api-service.type";
-import Link from "next/link";
+
 import { supabaseClient } from "@/utils/services/supabase/client";
+import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
+
+import api from "@/utils/services/axios";
 
 const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
@@ -43,7 +46,9 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
 
   const [isShowingReviewForm, setReviewFormState] = useState<boolean>(false);
 
-  const [isFetchingReviews, setIsFetchingReviews] = useState<boolean>();
+  const [isFetchingReviews, setIsFetchingReviews] = useState<boolean>(false);
+
+  const [isShowingDocPreview, setDocPreviewState] = useState<boolean>(false);
 
   const allApiReviews = apiReviews.use();
   const relatedApis = relatedApiServices.use();
@@ -72,7 +77,12 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         <section className="w-full px-24 align-col">
           <div
             className="items-center align-row press"
-            onClick={() => router.back()}
+            onClick={() =>
+              router.push("/explore", undefined, {
+                shallow: true,
+                scroll: false,
+              })
+            }
           >
             <AppIcon icon={"ArrowLeftGreen"} styles="mr-2" />
             <span className="font-light text-light">Go Back</span>
@@ -120,15 +130,14 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
               </div>
 
               <div className="items-center align-row">
-                <a href={currentApiDetail.source_url || ""} target="_blank">
-                  <BaseButton
-                    icon="WebGlobe"
-                    type="primary"
-                    styles="mr-2.5 py-2.5 px-3"
-                    iconStyles="w-5 h-5"
-                    tooltip="See documentation"
-                  />
-                </a>
+                <BaseButton
+                  icon="WebGlobe"
+                  type="primary"
+                  styles="mr-2.5 py-2.5 px-3"
+                  iconStyles="w-5 h-5"
+                  tooltip="See documentation"
+                  onClick={() => setDocPreviewState(true)}
+                />
 
                 <BaseButton
                   icon="BookmarkWhite"
@@ -331,6 +340,20 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             onClose={() => setReviewFormState(false)}
           />
         </BaseModal>
+      )}
+
+      {isShowingDocPreview && (
+        <LinkPreviewFrame
+          srcLink={currentApiDetail.source_url || ""}
+          isOpen={isShowingDocPreview}
+          onClose={() => setDocPreviewState(false)}
+        >
+          <iframe
+            src={currentApiDetail.source_url || ""}
+            frameBorder="0"
+            className="w-full h-full"
+          ></iframe>
+        </LinkPreviewFrame>
       )}
     </MainLayout>
   );

@@ -129,7 +129,7 @@ const NewsletterSub = () => {
 
           <CustomInput
             ref={inputRef}
-            style="h-16 border-grey-border bg-[#0D0D0D] hover:border-opacity-75 w-9/12"
+            style="h-16 -mt-2 border-grey-border bg-[#0D0D0D] hover:border-opacity-75 w-9/12"
             placeholder="example@email.com"
             btnText={isSubbingUser ? "Subbing... 🚀" : "Subscribe Now"}
             processing={isSubbingUser}
@@ -142,15 +142,15 @@ const NewsletterSub = () => {
             onEnter={subscriptionHandler}
             onChange={(email) => changeHandler(email as string, "email")}
           />
-          <p className="mt-10 text-lg text-grey-lighter">
+          <p className="mt-10 text-grey-lighter">
             Need Help? Send us a mail at{" "}
             <a
-              href={`mailto:yo@useapipool.io?subject=Yo! APIPool Is Awesome And...`}
+              href={`mailto:yo@useapipool.com?subject=Yo! APIPool Is Awesome And...`}
               target="_blank"
               rel="noreferrer"
               className="text-primary"
             >
-              yo@useapipool.io
+              yo@useapipool.com
             </a>
           </p>
         </div>

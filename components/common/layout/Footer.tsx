@@ -33,8 +33,12 @@ const Footer = () => {
           </Link>
         </span>
         {" of "}
-        <b className="text-primary">
-          <i>SideBridge</i>
+        <b className="text-primary press">
+          <i>
+            <Link href="https://sidebridge.io" target={"_blank"}>
+              SideBridge
+            </Link>
+          </i>
         </b>
       </span>
     </div>

@@ -39,32 +39,32 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabaseClient.auth.getUser();
-      const { user: currentUser } = data;
-      setUser(currentUser ?? null);
-    };
-    getUser();
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const { data } = await supabaseClient.auth.getUser();
+  //     const { user: currentUser } = data;
+  //     setUser(currentUser ?? null);
+  //   };
+  //   getUser();
 
-    // Auth state change logic
-    const { data } = supabaseClient.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        setUser(session?.user as User | null);
-        setAuth(true);
+  //   // Auth state change logic
+  //   const { data } = supabaseClient.auth.onAuthStateChange((event, session) => {
+  //     if (event === "SIGNED_IN") {
+  //       setUser(session?.user as User | null);
+  //       setAuth(true);
 
-        // console.log("user: ", session?.user);
-      } else if (event === "SIGNED_OUT") {
-        setUser(null);
-        setAuth(false);
-        router.push("/explore");
-      }
-    });
+  //       // console.log("user: ", session?.user);
+  //     } else if (event === "SIGNED_OUT") {
+  //       setUser(null);
+  //       setAuth(false);
+  //       router.push("/explore");
+  //     }
+  //   });
 
-    return () => {
-      data.subscription.unsubscribe();
-    };
-  }, [router]);
+  //   return () => {
+  //     data.subscription.unsubscribe();
+  //   };
+  // }, [router]);
 
   return (
     <AuthContext.Provider value={{ auth, user, login, signOut }}>

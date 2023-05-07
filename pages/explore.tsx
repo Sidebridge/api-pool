@@ -33,7 +33,7 @@ const Explore: NextPage = () => {
     autoplaySpeed: 4000,
     speed: 500,
     slidesToShow: 2.6,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     arrows: false,
     swipeToSlide: true,
     centerMode: true,
