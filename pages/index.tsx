@@ -8,6 +8,7 @@ import MainLayout from "@/components/layout/MainLayout";
 
 import { getFeaturedAPIs, featuredApiServices } from "@/store/api-services";
 import NewsletterSub from "@/components/landing-page/NewsletterSub";
+import PromoSection from "@/components/landing-page/PromoSection";
 
 const Home: NextPage = () => {
   const featuredAPIs = featuredApiServices.use();
@@ -42,6 +43,7 @@ const Home: NextPage = () => {
             cardSize="26.4rem"
             services={featuredAPIs}
           />
+          <PromoSection />
           <NewsletterSub />
         </div>
       </main>

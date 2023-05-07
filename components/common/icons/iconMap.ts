@@ -36,6 +36,7 @@ import ExploreGreen from "../../../assets/images/svg/explore_green.svg";
 import IntegrateGreen from "../../../assets/images/svg/integrate_green.svg";
 import NewsletterAccent from "../../../assets/images/svg/mail_envelope_accent.svg";
 import FeaturedBadge from "../../../assets/images/svg/featured_badge_green.svg";
+import FeaturedBadgeAccent from "../../../assets/images/svg/featured_badge_orange.svg";
 import WebGlobe from "../../../assets/images/svg/web_globe.svg";
 import SignatureOrange from "../../../assets/images/svg/signature_orange.svg";
 import RatingStarOrange from "../../../assets/images/svg/rating_star_orange.svg";
@@ -44,6 +45,7 @@ import MagicWand from "../../../assets/images/svg/magicwand_orange.svg";
 
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
+import PromoLogo from "../../../assets/images/svg/promo_logo.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 
@@ -87,12 +89,14 @@ const Icons = {
   IntegrateGreen,
   NewsletterAccent,
   FeaturedBadge,
+  FeaturedBadgeAccent,
   WebGlobe,
   SignatureOrange,
   RatingStarOrange,
   CloseGreen,
   MagicWand,
 
+  PromoLogo,
   ErrorBroken,
   EmptyList,
   LoaderGif,

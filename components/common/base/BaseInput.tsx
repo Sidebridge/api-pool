@@ -12,6 +12,7 @@ type BaseInputProps = {
   value?: string;
   labelStyle?: string;
   inputStyle?: string;
+  styles?: string;
   onChange: (value: string) => void;
 };
 
@@ -26,10 +27,11 @@ const BaseInput = ({
   value,
   labelStyle,
   inputStyle,
+  styles,
   onChange,
 }: BaseInputProps) => {
   return (
-    <div className="mb-5 input-group align-col">
+    <div className={clsx("mb-5 input-group align-col", styles)}>
       {label && (
         <label htmlFor={id} className={clsx("mb-1.5 w-fit", labelStyle)}>
           {label}
@@ -40,11 +42,10 @@ const BaseInput = ({
         <input
           id={id}
           className={clsx(
-            "w-full h-12 box-border border border-dark outline-none px-4 py-2 text-light text-base",
+            "w-full h-12 bg-[#0D0D0D] box-border border border-dark outline-none px-4 py-2 text-light text-base",
             "hover:border-grey-lighter hover:border-opacity-40 focus:border-grey-lighter focus:border-opacity-40  focus:bg-dark placeholder:opacity-40 hover:placeholder:opacity-100  placeholder:text-grey-lighter placeholder:font-light placeholder:text-sm",
             inputStyle
           )}
-          style={{ backgroundColor: "#0D0D0D" }}
           placeholder={placeholder}
           type={type}
           value={value}

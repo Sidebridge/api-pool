@@ -58,7 +58,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
         </div>
 
         <div className="w-4/12 align-col">
-          <CustomInput
+          {/* <CustomInput
             placeholder="Search for API services conveniently"
             btnText="Search"
             processing={false}
@@ -66,7 +66,7 @@ const Explore = ({ services }: { services: null | ApiService[] }) => {
             onEnter={() => {}}
             onClick={() => {}}
             onChange={() => {}}
-          />
+          /> */}
 
           <div className="flex-wrap items-center content-start justify-between w-full mt-5 align-row gap-x-4">
             {domains.map((domain) => (

@@ -14,28 +14,34 @@ function Header() {
   const { auth } = useAuth();
 
   return (
-    <div
-      className={clsx(
-        "sticky top-0 align-row py-4 px-24 bg-body  justify-between items-center",
-        "border-b border-grey-legacy border-opacity-10"
-      )}
-      style={{ zIndex: 90 }}
-    >
-      <Link href="/">
-        <AppLogo />
-      </Link>
+    <div className="">
+      <div className="z-[200] sticky top-0 w-full p-4 notice-banner bg-accent centered-col">
+        <p>This platform is still a work in progress ⚙️</p>
+      </div>
 
-      <div className="items-center align-row">
-        {auth && <ProfilePreview />}
-
-        {!auth && (
-          <BaseButton
-            text="Login"
-            type="primary"
-            styles="h-12 px-8"
-            // onClick={() => toggleModal("loginModal", true)}
-          />
+      <div
+        className={clsx(
+          " align-row py-4 px-24 bg-body  justify-between items-center",
+          "border-b border-grey-legacy border-opacity-10"
         )}
+        style={{ zIndex: 90 }}
+      >
+        <Link href="/">
+          <AppLogo />
+        </Link>
+
+        <div className="items-center align-row">
+          {auth && <ProfilePreview />}
+
+          {!auth && (
+            <BaseButton
+              text="Login"
+              type="primary"
+              styles="h-12 px-8"
+              // onClick={() => toggleModal("loginModal", true)}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -10,26 +10,35 @@ import { supabaseClient } from "@/utils/services/supabase/client";
 import { validateEmail } from "@/utils/helper/validator";
 import { plunk } from "@/utils/services/plunk";
 import AppIcon from "../common/icons";
+import BaseInput from "../common/base/BaseInput";
+
+type SubscriptionForm = {
+  name: string;
+  email: string;
+};
 
 const NewsletterSub = () => {
   const [isSubbingUser, setIsSubbingUser] = useState<boolean>(false);
 
-  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
-
   const inputRef = useRef<HTMLInputElement>(null);
+  const [subscriptionForm, setSubForm] = useState<SubscriptionForm>({
+    name: "",
+    email: "",
+  });
 
-  async function subscriptionHandler(email: string) {
-    const isEmailValid = validateEmail(email as string);
-
-    if (!isEmailValid) {
-      return toast.error("Please enter a valid email to proceed!");
+  async function subscriptionHandler() {
+    if (
+      !validateEmail(subscriptionForm.email as string) ||
+      !subscriptionForm.name
+    ) {
+      return toast.error("Please enter a valid name & email to proceed!");
     }
 
     setIsSubbingUser(true);
 
     const { data, error } = await supabaseClient
       .from("newsletter_email_list")
-      .insert({ email });
+      .insert(subscriptionForm);
 
     if (error) {
       if (error.code === "23505") {
@@ -51,28 +60,24 @@ const NewsletterSub = () => {
     });
 
     setIsSubbingUser(false);
-    setIsEmailValid(false);
 
     // Send welcome email to subscribers via "useplunk"
     await plunk.events.track({
-      email,
+      email: subscriptionForm.email,
       event: "welcome-new-subscribers",
       data: {
         company: "APIPool",
       },
     });
 
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = "";
-    }
+    setSubForm({
+      name: "",
+      email: "",
+    });
   }
 
-  function changeHandler(email: string) {
-    if (validateEmail(email)) {
-      setIsEmailValid(true);
-    } else {
-      setIsEmailValid(false);
-    }
+  function changeHandler(value: string, field: string) {
+    setSubForm({ ...subscriptionForm, [field]: value });
   }
 
   return (
@@ -109,17 +114,33 @@ const NewsletterSub = () => {
             classes["fade-grey__bg-t2b"]
           )}
         >
+          <div className="w-9/12">
+            <BaseInput
+              id="service-source-url"
+              label="Provide Name & Email Address"
+              labelStyle="text-grey-lighter font-light"
+              inputStyle="rounded-xl w-full border border-grey-border rounded-2xl text-white"
+              placeholder="Full Name e.g. John Doe"
+              styles="w-8/12"
+              value={subscriptionForm.name}
+              onChange={(name) => changeHandler(name, "name")}
+            />
+          </div>
+
           <CustomInput
             ref={inputRef}
-            style="h-14 border-grey-border hover:border-opacity-75 w-9/12"
+            style="h-16 border-grey-border bg-[#0D0D0D] hover:border-opacity-75 w-9/12"
             placeholder="example@email.com"
-            btnText={isSubbingUser ? "Pooling... 😉" : "Subscribe Now"}
+            btnText={isSubbingUser ? "Subbing... 🚀" : "Subscribe Now"}
             processing={isSubbingUser}
-            disabled={!isEmailValid}
+            disabled={
+              !(validateEmail(subscriptionForm.email) && subscriptionForm.name)
+            }
             icon="MailWhite"
-            onClick={(email) => subscriptionHandler(email as string)}
-            onEnter={(email) => subscriptionHandler(email)}
-            onChange={(email) => changeHandler(email as string)}
+            value={subscriptionForm.email}
+            onClick={subscriptionHandler}
+            onEnter={subscriptionHandler}
+            onChange={(email) => changeHandler(email as string, "email")}
           />
           <p className="mt-10 text-lg text-grey-lighter">
             Need Help? Send us a mail at{" "}

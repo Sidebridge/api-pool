@@ -16,6 +16,7 @@ type CustomInputProps = {
   processing: boolean;
   icon: IconType;
   disabled?: boolean;
+  value: string;
   onClick: (value: string) => void;
   onEnter: (inputText: string) => void;
   onBlur?: () => void;
@@ -33,6 +34,7 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
       processing,
       disabled = false,
       icon,
+      value,
       onClick,
       onEnter,
       onBlur,
@@ -66,13 +68,13 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
         <div className="items-center w-full p-1 pl-3 align-row">
           <AppIcon icon={icon} name={icon.toLowerCase()} />
           <input
-            ref={ref}
             className={clsx(
-              "bg-transparent outline-none border-none text-white placeholder-grey text-base ml-2 flex flex-grow",
+              "bg-transparent outline-none border-none text-white placeholder-grey-label text-base ml-2 flex flex-grow",
               "focus:border-none focus:outline-none"
             )}
             placeholder={placeholder}
             type="text"
+            value={value}
             onChange={onInputChange}
             onKeyDown={handleKeyPress}
             onBlur={onBlur}
