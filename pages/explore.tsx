@@ -181,7 +181,7 @@ const Explore: NextPage = () => {
                       </span>
 
                       <Tooltip title="Coming Soon ✨" placement="bottom">
-                        <button className="p-3.5 px-5 mt-6 border rounded-full hover:bg-accent hover:text-body border-grey-border text-light press focus:outline-none">
+                        <button className="p-3.5 px-5 mt-6 border rounded-full hover:border-accent hover:text-accent border-grey-border text-light press focus:outline-none">
                           <div className="centered-row">
                             <AppIcon icon="MagicWand" styles="mr-2 w-5 h-5" />
                             <span>Use AI Search </span>{" "}

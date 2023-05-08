@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
 
 import cardClasses from "@/styles/api-card.module.css";
 
@@ -37,9 +37,22 @@ import { supabaseClient } from "@/utils/services/supabase/client";
 import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
 
 import api from "@/utils/services/axios";
+import toast from "react-hot-toast";
+import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
+
+  const allUserBookmarks = userApiBookmarks.use();
+
+  const existsInBookmarks = !!allUserBookmarks.find(
+    (bookmark) =>
+      bookmark?.api_services.service_id === currentApiDetail.service_id
+  );
+
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(
+    false && existsInBookmarks
+  );
 
   const [isShowingRelatedArticles, setArticlesModalState] =
     useState<boolean>(false);
@@ -60,6 +73,55 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
     await getApiReviews(currentApiDetail.service_id);
 
     setIsFetchingReviews(false);
+  }
+
+  async function updateBookmarkState(action: string) {
+    if (action === "add") {
+      setIsBookmarked(true);
+      const { error } = await supabaseClient
+        .from("user_api_bookmarks")
+        .insert({ user_id: "", api_service_id: "" });
+
+      if (error) {
+        toast.error("Something went wrong. Retry bookmark action.", {
+          duration: 4000,
+        });
+
+        setIsBookmarked(false);
+      } else {
+        toast.success(
+          `${currentApiDetail.service_name} API has been added to your Bookmarks`,
+          {
+            duration: 4000,
+          }
+        );
+        getUserApiBookmarks("");
+      }
+    }
+
+    if (action === "remove") {
+      setIsBookmarked(false);
+      const { error } = await supabaseClient
+        .from("user_api_bookmarks")
+        .delete()
+        .match({ api_service_id: currentApiDetail.service_id, user_id: "" });
+
+      if (error) {
+        toast.error("Something went wrong. Retry bookmark action.", {
+          duration: 4000,
+        });
+
+        setIsBookmarked(true);
+      } else {
+        toast.success(
+          `${currentApiDetail.service_name} API has been removed from your Bookmarks`,
+          {
+            duration: 4000,
+          }
+        );
+        getUserApiBookmarks("");
+      }
+    }
   }
 
   useEffect(() => {
@@ -141,10 +203,17 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
 
                 <BaseButton
                   icon="BookmarkWhite"
-                  type="secondary"
-                  styles="py-2.5 px-3"
+                  type="default"
+                  styles={clsx(
+                    "py-2.5 px-3 border border-grey-border",
+                    "hover:bg-accent",
+                    isBookmarked && "bg-accent"
+                  )}
                   iconStyles="w-5 h-5"
-                  tooltip="Bookmark API"
+                  tooltip={
+                    isBookmarked ? "Bookmark API" : "Remove from Bookmarks"
+                  }
+                  onClick={() => {}}
                 />
 
                 <BaseButton

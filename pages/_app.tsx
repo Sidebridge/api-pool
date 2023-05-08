@@ -16,11 +16,19 @@ import ApiRequestForm from "@/components/modals/ApiRequestForm";
 import BaseModal from "@/components/common/base/BaseModal";
 
 import { modals, toggleModal } from "@/store/modal";
+import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 import AuthProvider from "@/store/context/AuthProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   const { loginModal, apiBriefModal, apiRecommendationModal } = modals.use();
+  const allApiBookmarks = userApiBookmarks.use();
+
+  useEffect(() => {
+    if (!allApiBookmarks || allApiBookmarks.length === 0) {
+      getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
+    }
+  }, []);
 
   return (
     <AuthProvider>

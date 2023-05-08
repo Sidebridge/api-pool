@@ -157,16 +157,19 @@ export interface Database {
           created_at: string | null
           email: string
           id: string
+          name: string
         }
         Insert: {
           created_at?: string | null
           email: string
           id?: string
+          name: string
         }
         Update: {
           created_at?: string | null
           email?: string
           id?: string
+          name?: string
         }
       }
       test_db_table: {
@@ -193,6 +196,26 @@ export interface Database {
           id?: string
           relation_field?: string | null
           unique_name?: string | null
+        }
+      }
+      user_api_bookmarks: {
+        Row: {
+          api_service_id: string | null
+          created_at: string | null
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          api_service_id?: string | null
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          api_service_id?: string | null
+          created_at?: string | null
+          id?: string
+          user_id?: string | null
         }
       }
     }
