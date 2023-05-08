@@ -14,37 +14,32 @@ import type { ApiService } from "@/types/api-service.type";
 import { MouseEventHandler, useState } from "react";
 
 type CardProp = {
-  isHovered?: boolean;
   service: ApiService;
-  type?: "small" | "medium" | "large";
   styles?: string;
-  onMouseEnter?: MouseEventHandler<HTMLDivElement>;
-  onMouseLeave?: MouseEventHandler<HTMLDivElement>;
+  onAction?: () => void;
 };
 
-const ApiCard = ({
-  isHovered = false,
-  service,
-  type = "large",
-  styles,
-  onMouseEnter = () => {},
-  onMouseLeave = () => {},
-}: CardProp) => {
+const ApiCard = ({ service, styles, onAction = () => {} }: CardProp) => {
   const router = useRouter();
 
   const [loadApiDetail, setApiDetailLoad] = useState<boolean>(false);
+
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  function cardHoverHandler(card: string | null) {
+    setHoveredCard(card);
+  }
 
   return (
     <div
       className={clsx(
         "w-full cursor-default overflow-hidden rounded-2xl box-border h-full text-light",
-        isHovered
+        hoveredCard === service.service_id
           ? classes["card-border__hovered"]
           : classes["card-border__bg"],
         loadApiDetail && "opacity-25"
       )}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={() => cardHoverHandler(service.service_id)}
+      onMouseLeave={() => cardHoverHandler(null)}
     >
       <div
         className={clsx(
@@ -101,8 +96,8 @@ const ApiCard = ({
         <div
           className={clsx(
             "absolute px-6 bottom-0  left-0 w-full rounded-b-2xl transition-height duration-300 ease-in-out",
-            isHovered && classes["card__overlay"],
-            isHovered ? "h-52" : "h-0"
+            hoveredCard === service.service_id && classes["card__overlay"],
+            hoveredCard === service.service_id ? "h-52" : "h-0"
           )}
         >
           <div className="items-center justify-center w-full mx-auto mt-28 align-row">
@@ -111,14 +106,18 @@ const ApiCard = ({
               type="default"
               icon="BriefWhite"
               styles="h-12 mr-2 text-light px-8 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
-              onClick={() => {
+              onClick={async () => {
                 setApiDetailLoad(true);
-                router.push(`/api-service/${service.service_id}`);
+                await router.push(`/api-service/${service.service_id}`);
+                onAction();
               }}
             />
 
             <Tooltip title="Compare API" placement="topRight">
-              <div className="bg-primary press rounded-full p-2.5 px-3">
+              <div
+                className="bg-primary press rounded-full p-2.5 px-3"
+                onClick={() => onAction()}
+              >
                 <AppIcon icon="CompareDark" name="compare" />
               </div>
             </Tooltip>

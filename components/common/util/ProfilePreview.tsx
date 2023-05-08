@@ -1,14 +1,18 @@
 import { useAuth } from "@/store/context/AuthProvider";
-import classes from "@/styles/profile-preview.module.css";
-import clsx from "clsx";
-import AppIcon from "../icons";
 
+import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { IconMap } from "antd/es/result";
 import type { IconType } from "../icons/iconMap";
+
+import classes from "@/styles/profile-preview.module.css";
+
+import AppIcon from "../icons";
+
+import { toggleModal } from "@/store/modal";
 
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
@@ -38,11 +42,13 @@ const ProfilePreview = () => {
 
   const handleProfileActions = (action: string) => {
     if (action === "signout") handleLogout();
+
+    if (action === "showBookmarks") toggleModal("bookmarksModal", true);
   };
 
   return (
     <div
-      className="relative items-center cursor-pointer align-row"
+      className="relative items-center cursor-pointer align-row min-w-[220px]"
       onClick={() => handleProfileOptionsToggle(!isShowProfileOptions)}
     >
       <div
@@ -63,9 +69,9 @@ const ProfilePreview = () => {
         )}
       </div>
 
-      <p className="font-light text-light">{user?.user_metadata.name}</p>
+      <p className="mr-3 font-light text-light">{user?.user_metadata.name}</p>
 
-      <AppIcon name="arrow" icon="DropArrowGreen" styles="ml-3 mt-1" />
+      <AppIcon name="arrow" icon="DropArrowGreen" styles="ml-auto mt-1" />
 
       {isShowProfileOptions && (
         <div

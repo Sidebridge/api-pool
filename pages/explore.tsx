@@ -42,17 +42,12 @@ const Explore: NextPage = () => {
   };
 
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const featuredApis = featuredApiServices.use();
   const commonApis = commonApiServices.use();
 
   const [isSearchOrFilterApplied, setIsFilterApplied] = useState<boolean>();
   const [isSearchingApis, setIsSearchingApis] = useState<boolean>(false);
-
-  function cardHoverHandler(card: string | null) {
-    setHoveredCard(card);
-  }
 
   async function searchApiService(searchTerm?: string, filterObj?: ApiFilters) {
     let searchText: string = "";
@@ -136,15 +131,7 @@ const Explore: NextPage = () => {
                           style={{ minWidth: "22rem" }}
                           key={serviceIndex}
                         >
-                          <ApiCard
-                            service={service}
-                            type="small"
-                            isHovered={hoveredCard === service.service_id}
-                            onMouseEnter={() =>
-                              cardHoverHandler(service.service_id)
-                            }
-                            onMouseLeave={() => cardHoverHandler(null)}
-                          />
+                          <ApiCard service={service} />
                         </div>
                       ))}
                     </Slider>
@@ -201,14 +188,8 @@ const Explore: NextPage = () => {
                       className={clsx("mb-8 h-fit press")}
                       style={{ minWidth: "22rem" }}
                       key={serviceIndex}
-                      onMouseEnter={() => cardHoverHandler(service.service_id)}
-                      onMouseLeave={() => cardHoverHandler(null)}
                     >
-                      <ApiCard
-                        service={service}
-                        type="small"
-                        isHovered={hoveredCard === service.service_id}
-                      />
+                      <ApiCard service={service} />
                     </div>
                   ))}
                 </div>

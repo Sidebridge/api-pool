@@ -47,11 +47,11 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
 
   const existsInBookmarks = !!allUserBookmarks.find(
     (bookmark) =>
-      bookmark?.api_services.service_id === currentApiDetail.service_id
+      bookmark.api_services.service_id === currentApiDetail.service_id
   );
 
   const [isBookmarked, setIsBookmarked] = useState<boolean>(
-    false && existsInBookmarks
+    true && existsInBookmarks
   );
 
   const [isShowingRelatedArticles, setArticlesModalState] =
@@ -78,9 +78,10 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   async function updateBookmarkState(action: string) {
     if (action === "add") {
       setIsBookmarked(true);
-      const { error } = await supabaseClient
-        .from("user_api_bookmarks")
-        .insert({ user_id: "", api_service_id: "" });
+      const { error } = await supabaseClient.from("user_api_bookmarks").insert({
+        user_id: "c9219363-0883-4752-a467-5d78bf7dd513",
+        api_service_id: currentApiDetail.service_id,
+      });
 
       if (error) {
         toast.error("Something went wrong. Retry bookmark action.", {
@@ -90,12 +91,12 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         setIsBookmarked(false);
       } else {
         toast.success(
-          `${currentApiDetail.service_name} API has been added to your Bookmarks`,
+          `${currentApiDetail.service_name} has been added to your API Bookmarks`,
           {
             duration: 4000,
           }
         );
-        getUserApiBookmarks("");
+        getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
       }
     }
 
@@ -104,7 +105,10 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
       const { error } = await supabaseClient
         .from("user_api_bookmarks")
         .delete()
-        .match({ api_service_id: currentApiDetail.service_id, user_id: "" });
+        .match({
+          api_service_id: currentApiDetail.service_id,
+          user_id: "c9219363-0883-4752-a467-5d78bf7dd513",
+        });
 
       if (error) {
         toast.error("Something went wrong. Retry bookmark action.", {
@@ -114,12 +118,12 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         setIsBookmarked(true);
       } else {
         toast.success(
-          `${currentApiDetail.service_name} API has been removed from your Bookmarks`,
+          `${currentApiDetail.service_name} has been removed from your API Bookmarks`,
           {
             duration: 4000,
           }
         );
-        getUserApiBookmarks("");
+        getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
       }
     }
   }
@@ -202,18 +206,22 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                 />
 
                 <BaseButton
-                  icon="BookmarkWhite"
+                  icon={isBookmarked ? "BookmarkFillWhite" : "BookmarkWhite"}
                   type="default"
                   styles={clsx(
                     "py-2.5 px-3 border border-grey-border",
-                    "hover:bg-accent",
-                    isBookmarked && "bg-accent"
+
+                    isBookmarked
+                      ? "bg-accent hover:bg-transparent hover:border-accent"
+                      : "hover:bg-accent"
                   )}
-                  iconStyles="w-5 h-5"
+                  iconStyles={isBookmarked ? "w-4 h-4" : "w-5 h-5"}
                   tooltip={
-                    isBookmarked ? "Bookmark API" : "Remove from Bookmarks"
+                    isBookmarked ? "Remove from Bookmarks" : "Bookmark API"
                   }
-                  onClick={() => {}}
+                  onClick={() =>
+                    updateBookmarkState(isBookmarked ? "remove" : "add")
+                  }
                 />
 
                 <BaseButton

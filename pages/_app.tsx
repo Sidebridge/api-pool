@@ -19,9 +19,11 @@ import { modals, toggleModal } from "@/store/modal";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 import AuthProvider from "@/store/context/AuthProvider";
+import BookmarksList from "@/components/modals/BookmarksList";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { loginModal, apiBriefModal, apiRecommendationModal } = modals.use();
+  const { loginModal, apiBriefModal, apiRecommendationModal, bookmarksModal } =
+    modals.use();
   const allApiBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
@@ -65,6 +67,16 @@ export default function App({ Component, pageProps }: AppProps) {
           <ApiRequestForm
             onSubmitted={() => toggleModal("apiRecommendationModal", false)}
           />
+        </BaseModal>
+      )}
+
+      {bookmarksModal && (
+        <BaseModal
+          innerWidth="60%"
+          isOpen={bookmarksModal}
+          onClose={() => toggleModal("bookmarksModal", false)}
+        >
+          <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
         </BaseModal>
       )}
     </AuthProvider>

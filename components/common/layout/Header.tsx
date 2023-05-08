@@ -31,9 +31,9 @@ function Header() {
         </Link>
 
         <div className="items-center align-row">
-          {auth && <ProfilePreview />}
+          {!auth && <ProfilePreview />}
 
-          {!auth && (
+          {auth && (
             <BaseButton
               text="Login"
               type="primary"

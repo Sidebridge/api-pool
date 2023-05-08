@@ -14,6 +14,7 @@ import ArrowDownGreen from "../../../assets/images/svg/key_arrow_down_green.svg"
 import DonateWhite from "../../../assets/images/svg/donate_white.svg";
 import DonateAccent from "../../../assets/images/svg/donate_accent.svg";
 import BookmarkWhite from "../../../assets/images/svg/bookmark_white.svg";
+import BookmarkFillWhite from "../../../assets/images/svg/bookmark_fill_white.svg";
 import RoundCloseWhite from "../../../assets/images/svg/round_close_white.svg";
 import ArrowLeftGreen from "../../../assets/images/svg/arrow_left_green.svg";
 import WebBlack from "../../../assets/images/svg/web_black.svg";
@@ -69,6 +70,7 @@ const Icons = {
   DonateWhite,
   DonateAccent,
   BookmarkWhite,
+  BookmarkFillWhite,
   RoundCloseWhite,
   ArrowLeftGreen,
   WebBlack,

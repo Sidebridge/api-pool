@@ -9,12 +9,6 @@ import classes from "@/styles/compare.module.css";
 import AppIcon from "@/components/common/icons";
 
 const Compare: NextPage = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  function cardHoverHandler(card: number | null) {
-    setHoveredCard(card);
-  }
-
   return (
     <MainLayout>
       <div className="items-center w-full px-24 align-col">

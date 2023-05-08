@@ -27,12 +27,6 @@ const Explore = ({
 }) => {
   const router = useRouter();
 
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-  function cardHoverHandler(card: string | null) {
-    setHoveredCard(card);
-  }
-
   return (
     <section
       id="explore-section"
@@ -61,13 +55,8 @@ const Explore = ({
             className="h-fit press"
             // style={{ width: cardSize }}
             key={service?.service_id}
-            onMouseEnter={() => cardHoverHandler(service?.service_id)}
-            onMouseLeave={() => cardHoverHandler(null)}
           >
-            <ApiCard
-              isHovered={hoveredCard === service?.service_id}
-              service={service}
-            />
+            <ApiCard service={service} />
           </div>
         ))}
       </div>
