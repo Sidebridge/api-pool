@@ -46,12 +46,12 @@ const Hero = () => {
           Discover The Right APIs With APIPOOL -<br />
           Your Ultimate Developer Peephole ✨
         </h1>
-        <p className="text-lg font-normal capitalize text-grey-legacy">
-          Getting the perfect API integrations shouldn&apos;t cause you sweat 💧
+        <p className="w-9/12 text-lg font-normal capitalize text-grey-legacy">
+          Landing the perfect API integrations shouldn&apos;t cause you sweat 💧
           <br />
-          APIPOOL’s Advanced Features - Explore, Compare, Review and Connect to{" "}
-          <br />
-          APIs that work like a charm
+          APIPOOL Is The Ultimate Search Engine for API Products/Services With
+          Advanced Features - Explore, Compare, Review and Connect to APIs that
+          work like a charm
         </p>
 
         <div className="items-center mb-10 mt-14 align-row">
@@ -112,7 +112,6 @@ const Hero = () => {
         alt="APIPool Logo"
         priority
       />
-
     </section>
   );
 };

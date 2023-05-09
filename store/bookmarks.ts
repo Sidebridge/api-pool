@@ -15,7 +15,7 @@ export const setUserBookmarks = (value: ApiBookmark[]) => {
   userApiBookmarks.set(value);
 };
 
-export const getUserApiBookmarks = async (userId: string) => {
+export const getUserApiBookmarks = async (userEmail: string) => {
   let query = supabaseClient
     .from("user_api_bookmarks")
     .select(
@@ -26,7 +26,7 @@ export const getUserApiBookmarks = async (userId: string) => {
         )
     `
     )
-    .eq("user_id", userId);
+    .eq("user_email", userEmail);
 
   const { data, error } = await query;
 

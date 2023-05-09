@@ -16,7 +16,11 @@ import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
-  { title: "Submit API", icon: "CodeGreen", action: "suggestAPI" },
+  {
+    title: "Submit Article",
+    icon: "CodeGreen",
+    action: "suggestArticle",
+  },
   { title: "Added Reviews", icon: "ReviewStarGreen", action: "showReviews" },
   { title: "Logout", icon: "LogoutGreen", action: "signout" },
 ];
@@ -88,7 +92,7 @@ const ProfilePreview = () => {
             <div
               className={clsx(
                 "items-center p-4 px-6 align-row cursor-pointer",
-                "hover:bg-dark-matte"
+                "hover:bg-grey-light"
               )}
               key={option.action}
               onClick={() => handleProfileActions(option.action)}

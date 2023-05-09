@@ -89,6 +89,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
       setIsBookmarked(true);
       const { error } = await supabaseClient.from("user_api_bookmarks").insert({
         user_id: user?.id,
+        user_email: user?.email,
         api_service_id: currentApiDetail.service_id,
       });
 
@@ -105,7 +106,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks(user?.id || "");
+        getUserApiBookmarks(user?.email || "");
       }
     }
 
@@ -116,7 +117,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         .delete()
         .match({
           api_service_id: currentApiDetail.service_id,
-          user_id: user?.id,
+          user_email: user?.email,
         });
 
       if (error) {
@@ -132,7 +133,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks(user?.id || "");
+        getUserApiBookmarks(user?.email || "");
       }
     }
   }
