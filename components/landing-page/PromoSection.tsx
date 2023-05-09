@@ -46,7 +46,7 @@ const PromoSection = () => {
         <p className="mt-2 text-sm font-light text-grey-lighter">
           Any doubt or special requirements?{" "}
           <a
-            href="mailto:promo@useapipool.com?subject=API PRODUCT PROMOTION REQUEST"
+            href="mailto:partnerships@useapipool.com?subject=APIPOOL PARTNERSHIP REQUEST"
             target={"_blank"}
             className="text-primary"
           >

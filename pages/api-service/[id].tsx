@@ -34,6 +34,9 @@ import {
 import type { ApiService } from "@/types/api-service.type";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
+import { useUser } from "@supabase/auth-helpers-react";
+import { Database } from "@/types/supabase";
+
 import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
 
 import api from "@/utils/services/axios";
@@ -42,6 +45,7 @@ import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
+  const user = useUser();
 
   const allUserBookmarks = userApiBookmarks.use();
 
@@ -76,10 +80,15 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   }
 
   async function updateBookmarkState(action: string) {
+    if (!user)
+      return toast.error("Please login to perform bookmark action", {
+        duration: 4000,
+      });
+
     if (action === "add") {
       setIsBookmarked(true);
       const { error } = await supabaseClient.from("user_api_bookmarks").insert({
-        user_id: "c9219363-0883-4752-a467-5d78bf7dd513",
+        user_id: user?.id,
         api_service_id: currentApiDetail.service_id,
       });
 
@@ -96,7 +105,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
+        getUserApiBookmarks(user?.id || "");
       }
     }
 
@@ -107,7 +116,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         .delete()
         .match({
           api_service_id: currentApiDetail.service_id,
-          user_id: "c9219363-0883-4752-a467-5d78bf7dd513",
+          user_id: user?.id,
         });
 
       if (error) {
@@ -123,9 +132,18 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
+        getUserApiBookmarks(user?.id || "");
       }
     }
+  }
+
+  function reviewActionHandler() {
+    if (!user)
+      return toast.error("Please login to add your review", {
+        duration: 4000,
+      });
+
+    setReviewFormState(true);
   }
 
   useEffect(() => {
@@ -322,9 +340,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                       text="Write a review"
                       type="secondary"
                       styles="hover:text-body w-fit px-8"
-                      onClick={() => {
-                        setReviewFormState(true);
-                      }}
+                      onClick={reviewActionHandler}
                     />
 
                     <BaseButton
@@ -364,7 +380,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                       No Reviews Yet.{" "}
                       <span
                         className="text-primary press"
-                        onClick={() => setReviewFormState(true)}
+                        onClick={reviewActionHandler}
                       >
                         Add New Review
                       </span>

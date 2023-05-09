@@ -28,7 +28,7 @@ const RatingStars = ({
         <>
           {type === "outline" && (
             <span
-              key={`${id}-${index}`}
+              key={`outline-${id}-${index}`}
               className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >
@@ -37,7 +37,7 @@ const RatingStars = ({
           )}
           {type !== "outline" && (
             <span
-              key={`${id}-${index}`}
+              key={`fill-${id}-${index}`}
               className={clsx(styles, starClasses(star))}
               onClick={() => onClick(star)}
             >

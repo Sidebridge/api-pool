@@ -1,5 +1,3 @@
-import { useAuth } from "@/store/context/AuthProvider";
-
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
@@ -14,6 +12,8 @@ import AppIcon from "../icons";
 
 import { toggleModal } from "@/store/modal";
 
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+
 const profileOptions = [
   { title: "Bookmarks", icon: "BookmarksGreen", action: "showBookmarks" },
   { title: "Submit API", icon: "CodeGreen", action: "suggestAPI" },
@@ -22,11 +22,16 @@ const profileOptions = [
 ];
 
 const ProfilePreview = () => {
-  const { signOut, user } = useAuth();
+  // const { signOut, user } = useAuth();
 
   const [isShowProfileOptions, setProfileOptionsState] = useState(false);
 
   const router = useRouter();
+
+  const helperSupabaseClient = useSupabaseClient();
+  const user = useUser();
+
+  const signOut = () => helperSupabaseClient.auth.signOut();
 
   const handleLogout = () => {
     router.push("/explore");

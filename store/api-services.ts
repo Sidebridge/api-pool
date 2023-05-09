@@ -57,7 +57,7 @@ export const getCommonAPIServices = async (
   let query = supabaseClient
     .from("api_services")
     .select("*")
-    .eq("is_featured", false)
+    // .eq("is_featured", false)
     .or(
       `service_name.ilike.%${searchTerm}%,service_description.ilike.%${searchTerm}%`
     );

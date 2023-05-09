@@ -3,6 +3,8 @@ lockfileVersion: 5.4
 specifiers:
   '@next/font': 13.1.6
   '@plunk/node': ^1.0.0
+  '@supabase/auth-helpers-nextjs': ^0.6.1
+  '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/auth-ui-react': ^0.3.5
   '@supabase/auth-ui-shared': ^0.1.3
   '@supabase/supabase-js': ^2.11.0
@@ -36,6 +38,8 @@ specifiers:
 dependencies:
   '@next/font': 13.1.6
   '@plunk/node': 1.0.0
+  '@supabase/auth-helpers-nextjs': 0.6.1_zdwm5ziqaueysmxlvh55ant57y
+  '@supabase/auth-helpers-react': 0.3.1_zdwm5ziqaueysmxlvh55ant57y
   '@supabase/auth-ui-react': 0.3.5_zdwm5ziqaueysmxlvh55ant57y
   '@supabase/auth-ui-shared': 0.1.3_zdwm5ziqaueysmxlvh55ant57y
   '@supabase/supabase-js': 2.11.0
@@ -393,6 +397,32 @@ packages:
 
   /@stitches/core/1.2.8:
     resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
+    dev: false
+
+  /@supabase/auth-helpers-nextjs/0.6.1_zdwm5ziqaueysmxlvh55ant57y:
+    resolution: {integrity: sha512-ffDAR4pW2Cosj/CuuGRAhzOFfHtqzdgax7zqRGGyq334gxxPplsmJFGaLPRJ3Z/4mTSIJHyFd6LYdHMN0a+5Bw==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/auth-helpers-shared': 0.3.4_zdwm5ziqaueysmxlvh55ant57y
+      '@supabase/supabase-js': 2.11.0
+    dev: false
+
+  /@supabase/auth-helpers-react/0.3.1_zdwm5ziqaueysmxlvh55ant57y:
+    resolution: {integrity: sha512-g3SFv08Dz9FapNif/ZY1b7qKGlMJDyTLSayHBz3kb3FuYxg7aLWgQtydDhm5AGbc0XtvpIBuhGTIOVevwpdosA==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/supabase-js': 2.11.0
+    dev: false
+
+  /@supabase/auth-helpers-shared/0.3.4_zdwm5ziqaueysmxlvh55ant57y:
+    resolution: {integrity: sha512-8I3D0SPHHexkFTSfPg0nZgJSVazWoB3tZDpT6IjRv6w89vDMUzO99Lit4H9anVLF4teW8c/nJJxawDNbDlgbgg==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/supabase-js': 2.11.0
+      jose: 4.14.4
     dev: false
 
   /@supabase/auth-ui-react/0.3.5_zdwm5ziqaueysmxlvh55ant57y:
@@ -2124,6 +2154,10 @@ packages:
 
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+    dev: false
+
+  /jose/4.14.4:
+    resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
     dev: false
 
   /js-sdsl/4.3.0:

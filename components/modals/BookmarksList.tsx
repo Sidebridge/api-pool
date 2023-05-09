@@ -5,13 +5,15 @@ import ApiCard from "../common/util/ApiCard";
 
 import { getUserApiBookmarks, userApiBookmarks } from "@/store/bookmarks";
 
+import { useUser } from "@supabase/auth-helpers-react";
+
 const BookmarksList = ({ onClose }: { onClose: () => void }) => {
-  const [isFetchingBookmarks, setBookmarkFetchState] = useState<boolean>();
+  const user = useUser();
 
   const allBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
-    getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
+    getUserApiBookmarks(user?.id || "");
   }, []);
 
   return (

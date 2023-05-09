@@ -5,13 +5,16 @@ import Link from "next/link";
 import { Button } from "antd";
 import AppLogo from "../base/AppLogo";
 import ProfilePreview from "../util/ProfilePreview";
-
-import { toggleModal } from "@/store/modal";
-import { useAuth } from "@/store/context/AuthProvider";
 import BaseButton from "../base/BaseButton";
 
+import { toggleModal } from "@/store/modal";
+
+// import { useAuth } from "@/store/context/AuthProvider";
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+
 function Header() {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
+  const user = useUser();
 
   return (
     <div className="">
@@ -31,14 +34,14 @@ function Header() {
         </Link>
 
         <div className="items-center align-row">
-          {!auth && <ProfilePreview />}
+          {user && <ProfilePreview />}
 
-          {auth && (
+          {!user && (
             <BaseButton
               text="Login"
               type="primary"
               styles="h-12 px-8"
-              // onClick={() => toggleModal("loginModal", true)}
+              onClick={() => toggleModal("loginModal", true)}
             />
           )}
         </div>

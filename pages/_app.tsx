@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import {
+  useUser,
+  SessionContextProvider,
+  Session,
+} from "@supabase/auth-helpers-react";
 
 import { Toaster } from "react-hot-toast";
 
@@ -14,26 +20,40 @@ import ApiDetails from "@/components/modals/api-details";
 import LoginUI from "@/components/auth/LoginUI";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";
 import BaseModal from "@/components/common/base/BaseModal";
+import BookmarksList from "@/components/modals/BookmarksList";
 
 import { modals, toggleModal } from "@/store/modal";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
-import AuthProvider from "@/store/context/AuthProvider";
-import BookmarksList from "@/components/modals/BookmarksList";
+import { Database } from "@/types/supabase";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<{
+  initialSession: Session;
+}>) {
+  const [supabaseClient] = useState(() =>
+    createBrowserSupabaseClient<Database>()
+  );
+
+  const user = useUser();
+
   const { loginModal, apiBriefModal, apiRecommendationModal, bookmarksModal } =
     modals.use();
   const allApiBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
     if (!allApiBookmarks || allApiBookmarks.length === 0) {
-      getUserApiBookmarks("c9219363-0883-4752-a467-5d78bf7dd513");
+      getUserApiBookmarks(user?.id || "");
     }
   }, []);
 
   return (
-    <AuthProvider>
+    <SessionContextProvider
+      supabaseClient={supabaseClient}
+      initialSession={pageProps.initialSession}
+    >
       <Component {...pageProps} />
 
       <Toaster />
@@ -79,6 +99,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
         </BaseModal>
       )}
-    </AuthProvider>
+    </SessionContextProvider>
   );
 }

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import AuthIntegrations from "@/public/constants/integrations";
 
 // import useAuth from "@/hooks/use-auth";
-import { useAuth } from "@/store/context/AuthProvider";
+// import { useAuth } from "@/store/context/AuthProvider";
 
 import BasePill from "../common/base/BasePill";
 import AppIcon from "../common/icons";
@@ -12,21 +12,35 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import type { IconType } from "../common/icons/iconMap";
 
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+
 const LoginOptions = () => {
   // const { login, isLoggingIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { login } = useAuth();
+  // const { login } = useAuth();
+
+  const helperSupabaseClient = useSupabaseClient();
 
   const handleLogin = async (provider: Provider) => {
     try {
       setLoading(true);
-      const { data, error } = await login(provider);
+      const { data, error } = await helperSupabaseClient.auth.signInWithOAuth({
+        provider,
+        options: {
+          queryParams: {
+            // access_type: "offline",
+            prompt: "consent",
+          },
+          redirectTo: "/explore",
+        },
+      });
       if (error) {
         console.log("Login error: ", error);
         throw new Error("Login failed");
       }
-      if (data) router.push("/");
+
+      // if (data) router.push("/");
     } catch (error) {
       console.log(error);
       setLoading(false);
