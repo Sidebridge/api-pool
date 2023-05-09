@@ -7,6 +7,8 @@ import {
   Session,
 } from "@supabase/auth-helpers-react";
 
+import { Analytics } from "@vercel/analytics/react";
+
 import { Toaster } from "react-hot-toast";
 
 import "@/styles/global.css";
@@ -99,6 +101,8 @@ export default function App({
           <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
         </BaseModal>
       )}
+
+      <Analytics />
     </SessionContextProvider>
   );
 }
