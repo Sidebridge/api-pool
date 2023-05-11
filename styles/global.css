@@ -44,6 +44,10 @@
   font-style: normal;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 .patternBg {
   background-size: cover;
   background-repeat: repeat-y;

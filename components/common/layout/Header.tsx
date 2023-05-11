@@ -13,6 +13,12 @@ import { toggleModal } from "@/store/modal";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 function Header() {
+  const navItems = [
+    { title: "Explore", route: "/explore" },
+    { title: "Compare APIs", route: "/compare" },
+    { title: "Donate", route: "https://google.com", target: "_blank" },
+  ];
+
   // const { auth } = useAuth();
   const user = useUser();
 
@@ -24,7 +30,7 @@ function Header() {
 
       <div
         className={clsx(
-          " align-row py-4 px-24 bg-body  justify-between items-center",
+          "align-row py-4 px-24 bg-body items-center",
           "border-b border-grey-legacy border-opacity-10"
         )}
         style={{ zIndex: 90 }}
@@ -33,7 +39,33 @@ function Header() {
           <AppLogo />
         </Link>
 
-        <div className="items-center align-row">
+        <nav className="ml-10">
+          <ul className="items-center align-row">
+            {navItems.map((item) => (
+              <li
+                key={item.title}
+                className="ml-8 text-light hover:text-accent press"
+              >
+                <Link href={item.route} target={item.target || ""}>
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+            <Link href="/#promote-api">
+              <li className="ml-8 press centered-row">
+                <span className="text-light hover:text-accent">
+                  Promote API
+                </span>
+                <span className="ml-2 bg-accent p-1.5 px-3 rounded-full text-dark text-xs">
+                  Makers
+                </span>
+                <sup className="-mt-3 text-light">✦</sup>
+              </li>
+            </Link>
+          </ul>
+        </nav>
+
+        <div className="items-center ml-auto align-row">
           {user && <ProfilePreview />}
 
           {!user && (

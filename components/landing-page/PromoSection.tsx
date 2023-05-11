@@ -11,7 +11,10 @@ const promotionBenefits = [
 
 const PromoSection = () => {
   return (
-    <section className="w-full bg-[#333333] bg-opacity-20 mt-20 p-24 py-16 row-btwn items-center">
+    <section
+      id="promote-api"
+      className="w-full bg-[#333333] bg-opacity-20 mt-20 p-24 py-16 row-btwn items-center"
+    >
       <div className="w-5/12 align-col">
         <h1 className="text-3xl text-transparent accent-text-stroke">
           Get Your API Product Featured
