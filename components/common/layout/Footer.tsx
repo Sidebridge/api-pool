@@ -9,6 +9,10 @@ const Footer = () => {
 
   return (
     <div className="items-center justify-between w-full text-base font-normal align-row bg-body">
+      {/* <a
+        href="https://sidebridge.lemonsqueezy.com/checkout/buy/f89996c5-b28b-4577-9875-564250c11893?embed=1&logo=0&discount=0&dark=1"
+        className="lemonsqueezy-button"
+      ></a> */}
       <div
         className={clsx(
           "view-brief press align-row items-center rounded-full  text-light",
@@ -35,7 +39,7 @@ const Footer = () => {
         {" of "}
         <b className="text-primary press">
           <i>
-            <Link href="https://sidebridge.io" target={"_blank"}>
+            <Link href="https://www.sidebridge.io" target={"_blank"}>
               SideBridge
             </Link>
           </i>
