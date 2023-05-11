@@ -40,7 +40,7 @@ const Footer = () => {
         <b className="text-primary press">
           <i>
             <Link href="https://www.sidebridge.io" target={"_blank"}>
-              SideBridge
+              SideBridge.io
             </Link>
           </i>
         </b>
