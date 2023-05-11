@@ -7,7 +7,7 @@ import {
   Session,
 } from "@supabase/auth-helpers-react";
 
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 
 import { Toaster } from "react-hot-toast";
 
@@ -46,8 +46,10 @@ export default function App({
   const allApiBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
-    if (!allApiBookmarks || allApiBookmarks.length === 0) {
-      getUserApiBookmarks(user?.id || "");
+    if (user) {
+      if (!allApiBookmarks || allApiBookmarks.length === 0) {
+        getUserApiBookmarks(user?.id || "");
+      }
     }
   }, []);
 
@@ -102,7 +104,7 @@ export default function App({
         </BaseModal>
       )}
 
-      <Analytics />
+      {/* <Analytics /> */}
     </SessionContextProvider>
   );
 }

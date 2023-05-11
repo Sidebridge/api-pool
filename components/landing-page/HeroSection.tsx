@@ -38,13 +38,13 @@ const Hero = () => {
       <div className={clsx("align-col items-center w-10/12 text-center")}>
         <h1
           className={clsx(
-            "w-10/12 mb-8 text-5xl font-medium text-white break-keep",
+            "w-10/12 mb-8 text-5xl font-semibold text-white break-keep",
             classes["header-text__bg"]
           )}
           style={{ lineHeight: "58px" }}
         >
-          Discover The Right APIs With APIPOOL -<br />
-          Your Ultimate Developer Peephole ✨
+          Discover The Right APIs w/ APIPOOL <wbr />፡ Your Ultimate Developer
+          Peephole ✨
         </h1>
         <p className="w-9/12 text-lg font-normal capitalize text-grey-legacy">
           Landing the perfect API integrations shouldn&apos;t cause you sweat 💧
