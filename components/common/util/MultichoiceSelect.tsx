@@ -71,13 +71,11 @@ const MultichoiceSelect = ({
       )}
     >
       {selectedValues.length ? (
-        <div className="box-border items-center w-full h-full p-4 have-selections row-btwn">
-          <div
-            className="items-center mr-2 align-row press"
-            onClick={() =>
-              activeFilter === selectedFilterProp ? onClose() : onOpen()
-            }
-          >
+        <div
+          className="box-border items-center w-full h-full p-4 have-selections row-btwn"
+          onClick={activeFilter === selectedFilterProp ? onClose : onOpen}
+        >
+          <div className="items-center mr-2 align-row press">
             <span className="p-2.5 py-1.5 text-center mr-2 border rounded-full text-grey-label border-dark">
               {selectedValues.length}+
             </span>
@@ -87,7 +85,15 @@ const MultichoiceSelect = ({
           </div>
 
           <Tooltip title="Clear selected options 🗑️" placement="left">
-            <AppIcon icon={"CloseGreen"} styles="press" onClick={onReset} />
+            <AppIcon
+              icon={
+                activeFilter === selectedFilterProp
+                  ? "ArrowDownGreen"
+                  : "CloseGreen"
+              }
+              styles="press"
+              onClick={activeFilter === selectedFilterProp ? onClose : onReset}
+            />
           </Tooltip>
         </div>
       ) : (
