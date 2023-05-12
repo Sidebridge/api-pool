@@ -10,6 +10,7 @@ specifiers:
   '@supabase/supabase-js': ^2.11.0
   '@types/node': 18.11.19
   '@types/react': 18.0.27
+  '@types/react-detect-offline': ^2.4.1
   '@types/react-dom': 18.0.10
   '@types/react-slick': ^0.23.10
   '@types/react-timeago': ^4.1.3
@@ -25,6 +26,7 @@ specifiers:
   next: 13.3.0
   postcss: ^8.4.21
   react: 18.2.0
+  react-detect-offline: ^2.4.5
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
   react-slick: ^0.29.0
@@ -56,6 +58,7 @@ dependencies:
   immer: 9.0.19
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
+  react-detect-offline: 2.4.5
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
   react-slick: 0.29.0_biqbaboplfbrettd7655fr4n2y
@@ -66,6 +69,7 @@ dependencies:
   typescript: 4.9.5
 
 devDependencies:
+  '@types/react-detect-offline': 2.4.1
   '@types/react-slick': 0.23.10
   '@types/react-timeago': 4.1.3
   autoprefixer: 10.4.13_postcss@8.4.21
@@ -523,6 +527,12 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+
+  /@types/react-detect-offline/2.4.1:
+    resolution: {integrity: sha512-ympSl07fvDbu7+EsnhrKwDWkdOqHp22lukhJYIHxnTfSIzOh1T/K9NGmpwKUtgJaNCfllwLvMSXBlyC6nHEObw==}
+    dependencies:
+      '@types/react': 18.0.27
+    dev: true
 
   /@types/react-dom/18.0.10:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
@@ -3254,6 +3264,10 @@ packages:
       rc-util: 5.27.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-detect-offline/2.4.5:
+    resolution: {integrity: sha512-sI13NPEKl3uQp95FT5CwrYzH3DnXCwNP6TnY6NRF5gFDM4NU9KDlbtA6HG2dwhDVS0RYQGXwZW/mHbdf8fCnaw==}
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:

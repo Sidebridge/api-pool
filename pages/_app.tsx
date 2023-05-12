@@ -1,3 +1,5 @@
+import { Offline } from "react-detect-offline";
+
 import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -61,6 +63,15 @@ export default function App({
       <Component {...pageProps} />
 
       <Toaster />
+
+      <Offline>
+        <div className="z-[110] fixed top-0 w-full p-4 notice-banner bg-red-300 centered-col">
+          <p className="text-center">
+            Network lost ⁉️. Please connect back to the internet to ensure the
+            app continues to run smoothly.{" "}
+          </p>
+        </div>
+      </Offline>
 
       {apiBriefModal && (
         <BaseModal
