@@ -9,10 +9,12 @@ import RatingStars from "./RatingStars";
 const ActionableReviewCard = ({
   review,
   disabled,
+  onEdit,
   onDelete,
 }: {
   review: { [key: string]: any };
   disabled: boolean;
+  onEdit: () => void;
   onDelete: () => void;
 }) => {
   const styles = {
@@ -60,7 +62,7 @@ const ActionableReviewCard = ({
           disabled && "disabled"
         )}
       >
-        <div className={clsx(styles.actionBtn)}>
+        <div className={clsx(styles.actionBtn)} onClick={onEdit}>
           <AppIcon icon={"EditGreen"} styles="mr-2 w-5 h-5" />
           <span className="text-md text-primary">Edit Review</span>
         </div>

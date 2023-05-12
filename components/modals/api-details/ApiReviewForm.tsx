@@ -14,14 +14,18 @@ import BaseInput from "@/components/common/base/BaseInput";
 import { supabaseClient } from "@/utils/services/supabase/client";
 
 import { getApiReviews } from "@/store/api-reviews";
-import type { ApiService } from "@/types/api-service.type";
+import type { ApiReview, ApiService } from "@/types/api-service.type";
 import { useUser } from "@supabase/auth-helpers-react";
 
 const ApiReviewForm = ({
+  currentReview = null,
   service,
+  onSave = () => {},
   onClose,
 }: {
+  currentReview?: ApiReview | null;
   service: ApiService;
+  onSave?: () => void;
   onClose: () => void;
 }) => {
   const user = useUser();
@@ -69,20 +73,41 @@ const ApiReviewForm = ({
       return setIsSavingReview(false);
     }
 
+    onSave();
+
     toast.success(
-      `Awesome! Your review has been added for ${service.service_name} API 🌟`,
+      `Awesome! Your review has been ${
+        hasExistingReview ? "updated" : "added"
+      } for ${service.service_name}'s API 🌟`,
       {
         duration: 4000,
       }
     );
 
-    await getApiReviews(service.service_id);
+    // await getApiReviews(service.service_id);
 
     setIsSavingReview(false);
     onClose();
   }
 
+  function applyExistingReviewData(review: ApiReview) {
+    setReviewFormValue({
+      reviewer_name: review.reviewer_name || "",
+      reviewer_company: review.reviewer_company || "",
+      review_message: review.review_message || "",
+    });
+
+    setApiRating(review.review_stars || 0);
+    setHasExistingReview(true);
+    setExistingReviewId(review.id);
+  }
+
   useEffect(() => {
+    if (currentReview) {
+      setHasExistingReview(true);
+      return applyExistingReviewData(currentReview);
+    }
+
     async function fetchExistingReview() {
       setIsFetchingReview(true);
 
@@ -102,15 +127,7 @@ const ApiReviewForm = ({
 
       if (data) {
         console.log("This is data: ", data);
-        setReviewFormValue({
-          reviewer_name: data.reviewer_name || "",
-          reviewer_company: data.reviewer_company || "",
-          review_message: data.review_message || "",
-        });
-
-        setApiRating(data.review_stars || 0);
-        setHasExistingReview(true);
-        setExistingReviewId(data.id);
+        applyExistingReviewData(data);
       }
 
       setIsFetchingReview(false);

@@ -20,6 +20,8 @@ import { supabaseClient } from "@/utils/services/supabase/client";
 import { ApiReview } from "@/types/api-service.type";
 import toast from "react-hot-toast";
 import ActionableReviewCard from "@/components/common/util/ActionableReviewCard";
+import BaseModal from "@/components/common/base/BaseModal";
+import ApiReviewForm from "@/components/modals/api-details/ApiReviewForm";
 
 type UserReviewsPageProps = { user: User };
 
@@ -31,6 +33,12 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
   const [addedReviews, setAllAddedReviews] = useState<ApiReview[]>([]);
 
   const [isProcessingReview, setReviewProcessState] = useState<boolean>(false);
+
+  const [isShowingReviewForm, setReviewFormState] = useState<boolean>(false);
+
+  const [reviewToEdit, setReviewToEdit] = useState<{
+    [key: string]: any;
+  } | null>(null);
 
   async function deleteReview(reviewId: string) {
     const deleteConfirmed = confirm(
@@ -71,42 +79,43 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
     }
   }
 
-  useEffect(() => {
-    async function fetchUserReviews() {
-      setReviewsLoading(true);
+  async function fetchUserReviews() {
+    setReviewsLoading(true);
 
-      const { data, error } = await supabaseClient
-        .from("api_reviews")
-        .select(
-          `
+    const { data, error } = await supabaseClient
+      .from("api_reviews")
+      .select(
+        `
             *,
             api_services (
                 service_id,
                 logo,
-                service_name
+                service_name,
+                business_sector_name
             )
         `
-        )
-        .eq("reviewer_id", user.id);
+      )
+      .eq("reviewer_id", user.id);
 
-      if (error) {
-        setAllAddedReviews([]);
-
-        setReviewsLoading(false);
-
-        return toast.error(
-          `Could not fetch your written reviews. Please try refreshing page `,
-          { duration: 5000 }
-        );
-      }
-
-      if (data) {
-        setAllAddedReviews(data);
-      }
+    if (error) {
+      setAllAddedReviews([]);
 
       setReviewsLoading(false);
+
+      return toast.error(
+        `Could not fetch your written reviews. Please try refreshing page `,
+        { duration: 5000 }
+      );
     }
 
+    if (data) {
+      setAllAddedReviews(data);
+    }
+
+    setReviewsLoading(false);
+  }
+
+  useEffect(() => {
     fetchUserReviews();
   }, [user.id]);
 
@@ -146,6 +155,10 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
                       key={review.id}
                       review={review}
                       disabled={isProcessingReview}
+                      onEdit={() => {
+                        setReviewToEdit(review);
+                        setReviewFormState(true);
+                      }}
                       onDelete={() => deleteReview(review.id)}
                     />
                   ))}
@@ -169,6 +182,24 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
 
         <NewsletterSub />
       </main>
+
+      {isShowingReviewForm && (
+        <BaseModal
+          styles="border border-grey-border"
+          isOpen={isShowingReviewForm}
+          innerWidth="50%"
+          onClose={() => {
+            setReviewFormState(false);
+          }}
+        >
+          <ApiReviewForm
+            currentReview={reviewToEdit as ApiReview}
+            service={reviewToEdit?.api_services}
+            onSave={fetchUserReviews}
+            onClose={() => setReviewFormState(false)}
+          />
+        </BaseModal>
+      )}
     </MainLayout>
   );
 };

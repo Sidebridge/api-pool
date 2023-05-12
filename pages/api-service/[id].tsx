@@ -430,6 +430,9 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         >
           <ApiReviewForm
             service={currentApiDetail}
+            onSave={async () =>
+              await getApiReviews(currentApiDetail.service_id)
+            }
             onClose={() => setReviewFormState(false)}
           />
         </BaseModal>
