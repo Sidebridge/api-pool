@@ -2,7 +2,7 @@ import BaseButton from "@/components/common/base/BaseButton";
 import AppIcon from "@/components/common/icons";
 
 const ApiBlogPosts = () => {
-  const articles: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const articles: number[] = [];
 
   return (
     <div className="relative w-full bg-body">
@@ -49,9 +49,12 @@ const ApiBlogPosts = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full font-light capitalize h-96 centered-col text-grey-lighter">
+        <div className="w-full font-light h-96 centered-col text-grey-lighter">
           <AppIcon icon="EmptyList" name="empty-blog" />
-          <span className="mt-3">No related articles yet 🙁</span>
+          <span className="mt-5 text-center">
+            No related usage articles yet 🙁
+            <br /> Please check back, we are working hard on this.
+          </span>
         </div>
       )}
     </div>

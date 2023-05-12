@@ -65,7 +65,7 @@ export default function App({
       <Toaster />
 
       <Offline>
-        <div className="z-[110] fixed top-0 w-full p-4 notice-banner bg-red-300 centered-col">
+        <div className="z-[110] fixed bottom-0 w-full p-4 notice-banner bg-red-300 centered-col">
           <p className="text-center">
             Network lost ⁉️. Please connect back to the internet to ensure the
             app continues to run smoothly.{" "}

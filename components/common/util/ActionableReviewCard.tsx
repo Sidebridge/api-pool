@@ -52,7 +52,7 @@ const ActionableReviewCard = ({
           </span>
         </div>
       </div>
-      <p className="mx-5 mt-4 mb-5 text-sm font-light text-grey-lighter">
+      <p className="mx-5 mt-4 mb-5 text-sm font-light text-grey">
         {review.review_message}
       </p>
 

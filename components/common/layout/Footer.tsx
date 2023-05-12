@@ -26,15 +26,16 @@ const Footer = () => {
       </div>
 
       <span className="text-white">
-        Made with 💚 by{" "}
-        <span className="font-light text-accent">
-          <Link href="https://twitter.com/GeekyAdams" target="_blank">
+        Made with 💚 by the {""}
+        <span className=" text-accent">
+          {/* <Link href="https://twitter.com/GeekyAdams" target="_blank">
             @GeekyAdams
           </Link>{" "}
           <span className="font-normal text-light">&</span>{" "}
           <Link href="https://twitter.com/emmah_ux" target="_blank">
             Emmanuel A.
-          </Link>
+          </Link> */}
+          <span>Duo</span>
         </span>
         {" of "}
         <b className="text-primary press">
