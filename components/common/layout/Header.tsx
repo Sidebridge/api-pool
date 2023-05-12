@@ -16,7 +16,7 @@ function Header() {
   const navItems = [
     { title: "Explore", route: "/explore" },
     { title: "Compare APIs", route: "/compare" },
-    { title: "Donate", route: "https://google.com", target: "_blank" },
+    { title: "Donate", route: "", target: "" },
   ];
 
   // const { auth } = useAuth();

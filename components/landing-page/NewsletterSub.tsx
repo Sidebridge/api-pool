@@ -83,7 +83,7 @@ const NewsletterSub = () => {
   return (
     <div
       className={clsx(
-        "w-full bg-contain text-center light-border font-light mt-16 align-col items-center py-14 pb-6 mb-5",
+        "w-full bg-contain text-center border-x-0 light-border font-light mt-16 align-col items-center py-14 pb-6 mb-5",
         classes["pattern-star__bg"]
       )}
     >

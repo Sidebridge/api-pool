@@ -15,6 +15,7 @@ import { supabaseClient } from "@/utils/services/supabase/client";
 
 import { getApiReviews } from "@/store/api-reviews";
 import type { ApiService } from "@/types/api-service.type";
+import { useUser } from "@supabase/auth-helpers-react";
 
 const ApiReviewForm = ({
   service,
@@ -23,6 +24,8 @@ const ApiReviewForm = ({
   service: ApiService;
   onClose: () => void;
 }) => {
+  const user = useUser();
+
   const [rating, setApiRating] = useState<number>(0);
 
   const [reviewFormValues, setReviewFormValue] = useState({
@@ -47,13 +50,17 @@ const ApiReviewForm = ({
     const { data, error } = hasExistingReview
       ? await supabaseClient
           .from("api_reviews")
-          .update({ ...reviewFormValues, review_stars: rating })
+          .update({
+            ...reviewFormValues,
+            review_stars: rating,
+            updated_at: new Date(),
+          })
           .eq("id", existingReviewId)
       : await supabaseClient.from("api_reviews").insert({
           ...reviewFormValues,
           review_stars: rating,
           api_service_id: service.service_id,
-          reviewer_id: "895ccb66-5bd3-41cf-912f-ead1490ca4d1",
+          reviewer_id: user?.id || "",
         });
 
     if (error) {

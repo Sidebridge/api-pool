@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     <MainLayout>
       <Head>
         <title>
-          APIPool - Find third-party api and services for your next project.
+          APIPool | Discover API products & services for your next project.
         </title>
         <meta
           name="description"

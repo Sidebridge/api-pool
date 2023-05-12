@@ -150,7 +150,7 @@ const Explore: NextPage = () => {
                 <AppIcon
                   icon="LoaderGif"
                   name="loader"
-                  styles={`w-10 h-10 mx-auto mt-16 mb-24 ${
+                  styles={`w-6 h-6 mx-auto mt-16 mb-24 ${
                     !isSearchingApis && "hidden"
                   }`}
                 />

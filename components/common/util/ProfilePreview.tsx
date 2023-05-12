@@ -21,7 +21,7 @@ const profileOptions = [
     icon: "CodeGreen",
     action: "suggestArticle",
   },
-  { title: "Added Reviews", icon: "ReviewStarGreen", action: "showReviews" },
+  { title: "Added Reviews", icon: "ReviewStarGreen", action: "showMyReviews" },
   { title: "Logout", icon: "LogoutGreen", action: "signout" },
 ];
 
@@ -53,6 +53,8 @@ const ProfilePreview = () => {
     if (action === "signout") handleLogout();
 
     if (action === "showBookmarks") toggleModal("bookmarksModal", true);
+
+    if (action === "showMyReviews") router.push("/added-reviews");
   };
 
   return (

@@ -89,7 +89,6 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
       setIsBookmarked(true);
       const { error } = await supabaseClient.from("user_api_bookmarks").insert({
         user_id: user?.id,
-        user_email: user?.email,
         api_service_id: currentApiDetail.service_id,
       });
 
@@ -106,7 +105,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks(user?.email || "");
+        getUserApiBookmarks(user?.id || "");
       }
     }
 
@@ -117,7 +116,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         .delete()
         .match({
           api_service_id: currentApiDetail.service_id,
-          user_email: user?.email,
+          user_id: user?.id,
         });
 
       if (error) {
@@ -133,7 +132,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             duration: 4000,
           }
         );
-        getUserApiBookmarks(user?.email || "");
+        getUserApiBookmarks(user?.id || "");
       }
     }
   }
@@ -360,7 +359,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             {!isFetchingReviews && (
               <div className="w-full overflow-y-scroll h-96 ">
                 {allApiReviews && allApiReviews.length ? (
-                  <div className="box-border grid w-full grid-flow-row grid-cols-3 px-6 my-6 featured-list gap-x-6 gap-y-6">
+                  <div className="box-border grid w-full grid-flow-row grid-cols-3 px-6 my-6 gap-x-6 gap-y-6">
                     {allApiReviews.map((review) => (
                       <div
                         className="h-fit press"

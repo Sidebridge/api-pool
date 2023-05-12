@@ -13,7 +13,7 @@ const BookmarksList = ({ onClose }: { onClose: () => void }) => {
   const allBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
-    getUserApiBookmarks(user?.email || "");
+    getUserApiBookmarks(user?.id || "");
   }, []);
 
   return (
