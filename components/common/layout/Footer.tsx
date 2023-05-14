@@ -9,21 +9,22 @@ const Footer = () => {
 
   return (
     <div className="items-center justify-between w-full text-base font-normal align-row bg-body">
-      {/* <a
+      <a
         href="https://sidebridge.lemonsqueezy.com/checkout/buy/f89996c5-b28b-4577-9875-564250c11893?embed=1&logo=0&discount=0&dark=1"
         className="lemonsqueezy-button"
-      ></a> */}
-      <div
-        className={clsx(
-          "view-brief press align-row items-center rounded-full  text-light",
-          "border border-dark leading-relaxed p-2 px-5 mr-2",
-          "hover:border-accent hover:bg-dark"
-        )}
       >
-        <AppIcon icon="DonateAccent" name="donate" styles="mr-2 mb-1" />
+        <div
+          className={clsx(
+            "view-brief press align-row items-center rounded-full  text-light",
+            "border border-dark leading-relaxed p-2 px-5 mr-2",
+            "hover:border-accent hover:bg-dark"
+          )}
+        >
+          <AppIcon icon="DonateAccent" name="donate" styles="mr-2 mb-1" />
 
-        <span>Donate</span>
-      </div>
+          <span>Donate</span>
+        </div>
+      </a>
 
       <span className="text-white">
         Made with 💚 by the {""}

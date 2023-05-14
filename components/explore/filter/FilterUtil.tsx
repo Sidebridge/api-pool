@@ -15,6 +15,8 @@ import {
 } from "@/utils/helper/filters";
 import { supabaseClient } from "@/utils/services/supabase/client";
 
+import { toggleModal } from "@/store/modal";
+
 import {
   pricings,
   supportedLanguages,
@@ -163,8 +165,11 @@ const FilterUtil = ({
             onFiltered(searchTerm, selectedFilterValues);
           }}
         />
-        <Tooltip title="Coming Soon ✨" placement="topLeft">
-          <div className="mr-2 centered-row press">
+        <Tooltip title="Cmd/Ctrl + K ✨" placement="topLeft">
+          <div
+            className="mr-2 centered-row press"
+            onClick={() => toggleModal("aiSearchModal", true)}
+          >
             <AppIcon icon={"MagicWand"} styles="mr-1.5" />
             <span className="font-light text-accent">Advance Search w/ AI</span>
           </div>

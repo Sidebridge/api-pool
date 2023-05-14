@@ -25,6 +25,7 @@ const ApiCard = ({ service, styles, onAction = () => {} }: CardProp) => {
   const [loadApiDetail, setApiDetailLoad] = useState<boolean>(false);
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   function cardHoverHandler(card: string | null) {
     setHoveredCard(card);
   }
@@ -113,7 +114,7 @@ const ApiCard = ({ service, styles, onAction = () => {} }: CardProp) => {
               }}
             />
 
-            <Tooltip title="Compare API" placement="topRight">
+            <Tooltip title="Compare API (Coming soon ✨)" placement="topRight">
               <div
                 className="bg-primary press rounded-full p-2.5 px-3"
                 onClick={() => onAction()}

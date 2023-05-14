@@ -42,6 +42,7 @@ import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
 import api from "@/utils/services/axios";
 import toast from "react-hot-toast";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
+import { Tooltip } from "antd";
 
 const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
@@ -247,6 +248,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                   type="default"
                   icon="CompareWhite"
                   iconStyles="w-5 h-5"
+                  tooltip="Coming soon 🙏🏻"
                   styles="ml-2.5 text-light px-8 py-2 bg-body border border-grey-border hover:border-primary hover:border-opacity-40"
                 />
               </div>

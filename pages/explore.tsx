@@ -6,14 +6,13 @@ import Slider from "react-slick";
 
 import classes from "@/styles/landing-page.module.css";
 
+import { Tooltip } from "antd";
 import MainLayout from "@/components/layout/MainLayout";
 import CustomInput from "@/components/common/util/CustomButtonedInput";
 import ApiCard from "@/components/common/util/ApiCard";
 import AppIcon from "@/components/common/icons";
 import BaseButton from "@/components/common/base/BaseButton";
 import FilterUtil from "@/components/explore/filter/FilterUtil";
-
-import type { ApiService } from "@/types/api-service.type";
 
 import {
   featuredApiServices,
@@ -23,7 +22,8 @@ import {
 } from "@/store/api-services";
 
 import { ApiFilters } from "@/public/constants/filters";
-import { Tooltip } from "antd";
+
+import { toggleModal } from "@/store/modal";
 
 const Explore: NextPage = () => {
   const sliderConfig = {
@@ -167,8 +167,11 @@ const Explore: NextPage = () => {
                         Your search did not match any available data.
                       </span>
 
-                      <Tooltip title="Coming Soon ✨" placement="bottom">
-                        <button className="p-3.5 px-5 mt-6 border rounded-full hover:border-accent hover:text-accent border-grey-border text-light press focus:outline-none">
+                      <Tooltip title="Cmd/Ctrl + K ✨" placement="bottom">
+                        <button
+                          className="p-3.5 px-5 mt-6 border rounded-full hover:border-accent hover:text-accent border-grey-border text-light press focus:outline-none"
+                          onClick={() => toggleModal("aiSearchModal", true)}
+                        >
                           <div className="centered-row">
                             <AppIcon icon="MagicWand" styles="mr-2 w-5 h-5" />
                             <span>Use AI Search </span>{" "}

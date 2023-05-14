@@ -1,6 +1,6 @@
 import { Offline } from "react-detect-offline";
 
-import { useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import {
@@ -20,7 +20,6 @@ import "@/styles/loader.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import ApiDetails from "@/components/modals/api-details";
 import LoginUI from "@/components/auth/LoginUI";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";
 import BaseModal from "@/components/common/base/BaseModal";
@@ -30,6 +29,7 @@ import { modals, toggleModal } from "@/store/modal";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 import { Database } from "@/types/supabase";
+import AiSearchModal from "@/components/modals/AiSearchModal";
 
 export default function App({
   Component,
@@ -43,7 +43,7 @@ export default function App({
 
   const user = useUser();
 
-  const { loginModal, apiBriefModal, apiRecommendationModal, bookmarksModal } =
+  const { loginModal, apiRecommendationModal, bookmarksModal, aiSearchModal } =
     modals.use();
   const allApiBookmarks = userApiBookmarks.use();
 
@@ -53,6 +53,24 @@ export default function App({
         getUserApiBookmarks(user?.id || "");
       }
     }
+  }, []);
+
+  const handleKeyDown = (event: Event) => {
+    const keyboardEvent = event as unknown as KeyboardEvent;
+    if (
+      (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
+      keyboardEvent.key === "k"
+    ) {
+      toggleModal("aiSearchModal", true);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
@@ -72,16 +90,6 @@ export default function App({
           </p>
         </div>
       </Offline>
-
-      {apiBriefModal && (
-        <BaseModal
-          styles="border-2 border-grey border-opacity-50"
-          isOpen={apiBriefModal}
-          onClose={() => toggleModal("apiBriefModal", false)}
-        >
-          <ApiDetails />
-        </BaseModal>
-      )}
 
       {loginModal && (
         <BaseModal
@@ -112,6 +120,16 @@ export default function App({
           onClose={() => toggleModal("bookmarksModal", false)}
         >
           <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
+        </BaseModal>
+      )}
+
+      {aiSearchModal && (
+        <BaseModal
+          innerWidth="60%"
+          isOpen={aiSearchModal}
+          onClose={() => toggleModal("aiSearchModal", false)}
+        >
+          <AiSearchModal onClose={() => toggleModal("aiSearchModal", false)} />
         </BaseModal>
       )}
 

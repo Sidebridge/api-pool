@@ -78,3 +78,12 @@ const Compare: NextPage = () => {
 };
 
 export default Compare;
+
+export const getServerSideProps = async () => {
+  return {
+    redirect: {
+      destination: "/explore",
+      permanent: false,
+    },
+  };
+};
