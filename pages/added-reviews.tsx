@@ -117,6 +117,7 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
 
   useEffect(() => {
     fetchUserReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.id]);
 
   return (
