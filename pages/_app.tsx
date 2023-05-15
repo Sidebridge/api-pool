@@ -53,6 +53,7 @@ export default function App({
         getUserApiBookmarks(user?.id || "");
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleKeyDown = (event: Event) => {
