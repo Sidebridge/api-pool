@@ -154,6 +154,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
       currentApiDetail.service_id,
       currentApiDetail.business_sector_id
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   return (
