@@ -9,8 +9,6 @@ import {
   Session,
 } from "@supabase/auth-helpers-react";
 
-import { isMobile } from "react-device-detect";
-
 // import { Analytics } from "@vercel/analytics/react";
 
 import { Toaster } from "react-hot-toast";
