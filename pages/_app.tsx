@@ -9,6 +9,8 @@ import {
   Session,
 } from "@supabase/auth-helpers-react";
 
+import { isMobile } from "react-device-detect";
+
 // import { Analytics } from "@vercel/analytics/react";
 
 import { Toaster } from "react-hot-toast";
@@ -30,6 +32,7 @@ import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 import { Database } from "@/types/supabase";
 import AiSearchModal from "@/components/modals/AiSearchModal";
+import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
 
 export default function App({
   Component,
@@ -133,6 +136,8 @@ export default function App({
           <AiSearchModal onClose={() => toggleModal("aiSearchModal", false)} />
         </BaseModal>
       )}
+
+      <MobilePlaceholder />
 
       {/* <Analytics /> */}
     </SessionContextProvider>

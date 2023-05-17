@@ -50,6 +50,7 @@ import TrashRed from "../../../assets/images/svg/trash_red.svg";
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
 import PromoLogo from "../../../assets/images/svg/promo_logo.svg";
+import MobileSoon from "../../../assets/images/svg/coming_soon_mobile.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 
@@ -107,6 +108,7 @@ const Icons = {
   PromoLogo,
   ErrorBroken,
   EmptyList,
+  MobileSoon,
   LoaderGif,
 } as const;
 
