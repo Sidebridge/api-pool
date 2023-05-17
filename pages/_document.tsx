@@ -7,7 +7,7 @@ export default function Document() {
         <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
       </Head>
       <body
-        className="overflow-x-hidden bg-body"
+        className="w-screen overflow-x-hidden bg-body"
         suppressHydrationWarning={true}
       >
         <Main />

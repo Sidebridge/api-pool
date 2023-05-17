@@ -87,6 +87,7 @@ const ApiReviewForm = ({
     // await getApiReviews(service.service_id);
 
     setIsSavingReview(false);
+    document.body.classList.remove("overflow-y-hidden");
     onClose();
   }
 

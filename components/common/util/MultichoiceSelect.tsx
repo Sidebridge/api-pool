@@ -75,16 +75,32 @@ const MultichoiceSelect = ({
           className="box-border items-center w-full h-full p-4 have-selections row-btwn"
           onClick={activeFilter === selectedFilterProp ? onClose : onOpen}
         >
-          <div className="items-center mr-2 align-row press">
-            <span className="p-2.5 py-1.5 text-center mr-2 border rounded-full text-grey-label border-dark">
-              {selectedValues.length}+
-            </span>
-            <span className="capitalize text-light">
-              {toCapitalizedString(selectedFilterProp)}
-            </span>
-          </div>
+          <Tooltip
+            title={
+              activeFilter === selectedFilterProp
+                ? "Close dropdown"
+                : "Show options"
+            }
+          >
+            <div className="items-center mr-2 align-row press">
+              <span className="p-2.5 py-1.5 text-center mr-2 border rounded-full text-grey-label border-dark">
+                {selectedValues.length}+
+              </span>
+              <span className="capitalize text-light">
+                {toCapitalizedString(selectedFilterProp)}
+              </span>
+            </div>
+          </Tooltip>
 
-          <Tooltip title="Clear selected options 🗑️" placement="left">
+          <Tooltip
+            title={
+              activeFilter === selectedFilterProp
+                ? ""
+                : "Clear selected options 🗑️"
+            }
+            placement="topRight"
+          >
+            <span></span>
             <AppIcon
               icon={
                 activeFilter === selectedFilterProp
@@ -97,16 +113,25 @@ const MultichoiceSelect = ({
           </Tooltip>
         </div>
       ) : (
-        <div
-          className="box-border items-center w-full h-full p-4 have-selections row-btwn press"
-          onClick={() =>
-            activeFilter === selectedFilterProp ? onClose() : onOpen()
+        <Tooltip
+          title={
+            activeFilter === selectedFilterProp
+              ? "Close dropdown"
+              : "Show options ↡"
           }
+          placement="topLeft"
         >
-          <span className="capitalize text-grey-label">{filterSection}</span>
+          <div
+            className="box-border items-center w-full h-full p-4 have-selections row-btwn press"
+            onClick={() =>
+              activeFilter === selectedFilterProp ? onClose() : onOpen()
+            }
+          >
+            <span className="capitalize text-grey-label">{filterSection}</span>
 
-          <AppIcon icon={"ArrowDownGreen"} />
-        </div>
+            <AppIcon icon={"ArrowDownGreen"} />
+          </div>
+        </Tooltip>
       )}
 
       <div

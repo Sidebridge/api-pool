@@ -12,6 +12,11 @@ const BookmarksList = ({ onClose }: { onClose: () => void }) => {
 
   const allBookmarks = userApiBookmarks.use();
 
+  function handleClose() {
+    document.body.classList.remove("overflow-y-hidden");
+    onClose();
+  }
+
   useEffect(() => {
     getUserApiBookmarks(user?.id || "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +43,7 @@ const BookmarksList = ({ onClose }: { onClose: () => void }) => {
             <ApiCard
               key={bookmark.id}
               service={bookmark.api_services}
-              onAction={() => onClose()}
+              onAction={handleClose}
             />
           ))}
         </div>

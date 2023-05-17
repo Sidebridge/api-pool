@@ -44,8 +44,16 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   scroll-behavior: smooth;
+}
+@media (max-width: 640px) {
+  body {
+    overflow: hidden;
+  }
 }
 
 .patternBg {

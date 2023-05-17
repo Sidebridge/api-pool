@@ -3,10 +3,11 @@ import AppLogo from "../base/AppLogo";
 import AppIcon from "../icons";
 
 import classes from "@/styles/landing-page.module.css";
+import { useEffect } from "react";
 
 const MobilePlaceholder = () => {
   return (
-    <div className="align-col text-center items-center md:hidden py-8 px-5 fixed top-0 left-0 w-screen h-screen bg-body z-[3000]">
+    <div className="align-col text-center items-center sm:hidden py-8 px-5 fixed top-0 left-0 w-screen h-screen overflow-hidden bg-body z-[3000]">
       <AppLogo />
 
       <AppIcon icon="MobileSoon" styles="mt-5 min-w-[300px]" />

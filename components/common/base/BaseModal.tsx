@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useEffect } from "react";
 import AppIcon from "../icons";
 
 type BaseModalProps = {
@@ -16,6 +17,15 @@ const BaseModal = ({
   innerWidth = "45%",
   onClose,
 }: BaseModalProps) => {
+  function handleClose() {
+    document.body.classList.remove("overflow-y-hidden");
+    onClose();
+  }
+
+  useEffect(() => {
+    document.body.classList.add("overflow-y-hidden");
+  }, []);
+
   return (
     <>
       {isOpen && (
@@ -36,7 +46,7 @@ const BaseModal = ({
               icon="RoundCloseWhite"
               name="close-btn"
               styles="w-7 h-7 press ml-auto"
-              onClick={onClose}
+              onClick={handleClose}
             />
 
             <div

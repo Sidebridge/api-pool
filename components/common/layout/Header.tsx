@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { clsx } from "clsx";
 
 import Link from "next/link";
@@ -16,7 +17,7 @@ function Header() {
   const navItems = [
     { title: "Explore", route: "/explore" },
     { title: "Compare APIs", route: "/compare" },
-    { title: "Donate", route: "", target: "" },
+    { title: "Donate", route: "/", target: "" },
   ];
 
   // const { auth } = useAuth();
@@ -51,7 +52,7 @@ function Header() {
                 </Link>
               </li>
             ))}
-            <Link href="/#promote-api">
+            <a href="/#promote-api">
               <li className="ml-8 press centered-row">
                 <span className="text-light hover:text-accent">
                   Promote API
@@ -61,7 +62,7 @@ function Header() {
                 </span>
                 <sup className="-mt-3 text-light">✦</sup>
               </li>
-            </Link>
+            </a>
           </ul>
         </nav>
 
