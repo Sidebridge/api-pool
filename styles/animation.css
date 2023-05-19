@@ -12,7 +12,7 @@
 }
 
 .hover-animate-pulse-rotate {
-  @apply transition duration-500 ease-in-out transform cursor-default hover:-translate-y-1 hover:scale-110 hover:-rotate-2;
+  @apply transition duration-500 ease-in-out transform cursor-default hover:-translate-y-1 hover:scale-110 hover:skew-x-6 hover:-rotate-2;
 }
 
 @keyframes bounce {

@@ -39,7 +39,8 @@ export const getFeaturedAPIs = async () => {
   const { data, error } = await supabaseClient
     .from("api_services")
     .select("*")
-    .eq("is_featured", true);
+    .eq("is_featured", true)
+    .limit(9);
 
   if (error) {
     setApiServices("featured", []);
@@ -57,7 +58,6 @@ export const getCommonAPIServices = async (
   let query = supabaseClient
     .from("api_services")
     .select("*")
-    // .eq("is_featured", false)
     .or(
       `service_name.ilike.%${searchTerm}%,service_description.ilike.%${searchTerm}%`
     );
