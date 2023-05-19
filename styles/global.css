@@ -46,13 +46,19 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100vw;
 }
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100vw;
 }
-@media (max-width: 640px) {
+@media (max-width: 540px) {
   body {
     overflow: hidden;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
   }
 }
 

@@ -20,6 +20,8 @@ import "@/styles/loader.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import { isMobile } from "react-device-detect";
+
 import LoginUI from "@/components/auth/LoginUI";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";
 import BaseModal from "@/components/common/base/BaseModal";
@@ -31,6 +33,7 @@ import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 import { Database } from "@/types/supabase";
 import AiSearchModal from "@/components/modals/AiSearchModal";
 import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
+import { useRouter } from "next/navigation";
 
 export default function App({
   Component,
@@ -38,6 +41,8 @@ export default function App({
 }: AppProps<{
   initialSession: Session;
 }>) {
+  const router = useRouter();
+
   const [supabaseClient] = useState(() =>
     createBrowserSupabaseClient<Database>()
   );
@@ -68,6 +73,8 @@ export default function App({
   };
 
   useEffect(() => {
+    // if (isMobile) router.push("/mobile");
+
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
