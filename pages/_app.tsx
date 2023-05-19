@@ -73,7 +73,7 @@ export default function App({
   };
 
   useEffect(() => {
-    if (isMobile) router.push("/mobile");
+    // if (isMobile) router.push("/mobile");
 
     document.addEventListener("keydown", handleKeyDown);
 
