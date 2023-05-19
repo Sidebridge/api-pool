@@ -10,7 +10,7 @@ const MobilePlaceholder = () => {
     <div className="align-col text-center items-center sm:hidden py-8 px-5 fixed top-0 left-0 w-screen h-screen overflow-hidden bg-body z-[3000]">
       <AppLogo />
 
-      <AppIcon icon="MobileSoon" styles="mt-3 min-w-[300px]" />
+      <AppIcon icon="MobileSoon" styles="mt-3 min-w-[300px]" priority={true} />
 
       <h1 className={clsx("text-3xl mt-8", classes["header-text__bg"])}>
         Mobile Availability Not Ready Yet!
