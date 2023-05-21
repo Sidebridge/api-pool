@@ -81,3 +81,24 @@ button:hover span:first-child {
     transform: rotateY(360deg);
   }
 } */
+
+@keyframes flare {
+  0% {
+    background: linear-gradient(to right, #f00, #ff0);
+    box-shadow: 0 0 10px #f00;
+  }
+  50% {
+    background: linear-gradient(to right, #ff0, #f00);
+    box-shadow: 0 0 20px #ff0;
+  }
+  100% {
+    background: linear-gradient(to right, #f00, #ff0);
+    box-shadow: 0 0 10px #f00;
+  }
+}
+
+.flare {
+  animation-name: flare;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
