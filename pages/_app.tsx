@@ -1,4 +1,4 @@
-import { Offline } from "react-detect-offline";
+// import { Offline } from "react-detect-offline";
 
 import { KeyboardEvent, useEffect, useState } from "react";
 import type { AppProps } from "next/app";
