@@ -75,11 +75,11 @@ export default function App({
   useEffect(() => {
     if (isMobile) router.push("/mobile");
 
-    document.addEventListener("keydown", handleKeyDown);
+    // document.addEventListener("keydown", handleKeyDown);
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    // return () => {
+    //   document.removeEventListener("keydown", handleKeyDown);
+    // };
   }, []);
 
   return (
@@ -91,14 +91,14 @@ export default function App({
 
       <Toaster />
 
-      <Offline>
+      {/* <Offline>
         <div className="z-[110] fixed bottom-0 w-full p-4 notice-banner centered-col">
           <p className="text-center">
             Network lost ⁉️. Please connect back to the internet to ensure the
             app continues to run smoothly.{" "}
           </p>
         </div>
-      </Offline>
+      </Offline> */}
 
       {loginModal && (
         <BaseModal

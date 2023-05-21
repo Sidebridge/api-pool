@@ -167,10 +167,10 @@ const Explore: NextPage = () => {
                         Your search did not match any available data.
                       </span>
 
-                      <Tooltip title="Cmd/Ctrl + K ✨" placement="bottom">
+                      <Tooltip title="Coming Soon ✨" placement="bottom">
                         <button
                           className="p-3.5 px-5 mt-6 border rounded-full hover:border-accent hover:text-accent border-grey-border text-light press focus:outline-none"
-                          onClick={() => toggleModal("aiSearchModal", true)}
+                          // onClick={() => toggleModal("aiSearchModal", true)}
                         >
                           <div className="centered-row">
                             <AppIcon icon="MagicWand" styles="mr-2 w-5 h-5" />
