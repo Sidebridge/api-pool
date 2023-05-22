@@ -41,7 +41,7 @@ const Footer = () => {
         {" of "}
         <b className="text-primary press">
           <i>
-            <Link href="https://www.sidebridge.io" target={"_blank"}>
+            <Link href="https://www.sidebridge.io/#team" target={"_blank"}>
               SideBridge.io
             </Link>
           </i>

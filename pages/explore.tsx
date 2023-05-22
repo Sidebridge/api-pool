@@ -202,12 +202,14 @@ const Explore: NextPage = () => {
                     styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
                     type="default"
                     text="⇜ Previous"
+                    disabled={true}
                   />
 
                   <BaseButton
                     styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
                     type="default"
                     text="Next ⇝"
+                    disabled={true}
                   />
                 </div> */}
               </div>

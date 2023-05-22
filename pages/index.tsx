@@ -38,8 +38,7 @@ const Home: NextPage = () => {
           <Explore
             tag="Featured Lists 🔥"
             title="Featured APIs"
-            subtitle="Simplify Your Development Workflow with these featured API’s - The
-          Game-Changing Solution for All Your Integration Needs"
+            subtitle="Some of the top featured game-changing API services in the wild; Explore & Integrate."
             cardSize="26.4rem"
             services={featuredAPIs}
           />

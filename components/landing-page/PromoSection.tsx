@@ -3,10 +3,11 @@ import BaseButton from "../common/base/BaseButton";
 import AppIcon from "../common/icons";
 
 const promotionBenefits = [
-  "Get in from of 1M+ developers worldwide",
+  "Get in front of Millions of Developers worldwide by featuring on our homepage and above other listings in the explore feed",
   "More than 10,000 API Doc visits per month",
-  "Related helper articles to facilitate your API service ease of use",
-  'Standout from thousands of listed API products with our fancy "Featured" tag',
+  "Published helper articles to facilitate the ease of use of your API product",
+  `Standout from thousands of listed API products with our prominent & fancy "Featured" tag`,
+  "Sponsored newsletters delivered to 10,000+ and growing email subscribers",
 ];
 
 const PromoSection = () => {

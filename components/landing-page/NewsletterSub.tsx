@@ -104,8 +104,9 @@ const NewsletterSub = () => {
           Be the first to learn about New Updates!
         </h3>
         <p className="mt-4 text-lg text-grey-lighter">
-          For exclusive updates, feature previews, announcements,
-          <br /> and fun surprises ✨, drop your email below.
+          For exclusive updates on new listings, feature previews,
+          announcements,
+          <br /> and fun surprises ✨, drop your details below.
         </p>
 
         <div
@@ -114,11 +115,11 @@ const NewsletterSub = () => {
             classes["fade-grey__bg-t2b"]
           )}
         >
-          <div className="w-9/12">
+          <div className="w-full centered-col">
             <BaseInput
               id="service-source-url"
               label="Provide Name & Email Address"
-              labelStyle="text-grey-lighter font-light"
+              labelStyle="text-grey-lighter font-light text-center mx-auto mb-3"
               inputStyle="rounded-xl w-full border border-grey-border rounded-2xl text-white"
               placeholder="Full Name e.g. John Doe"
               styles="w-8/12"
@@ -143,7 +144,7 @@ const NewsletterSub = () => {
             onChange={(email) => changeHandler(email as string, "email")}
           />
           <p className="mt-10 text-grey-lighter">
-            Need Help? Send us a mail at{" "}
+            Need Help? 🚀 Shoot us a mail at ({" "}
             <a
               href={`mailto:yo@useapipool.com?subject=Yo! APIPool Is Awesome And...`}
               target="_blank"
@@ -151,7 +152,8 @@ const NewsletterSub = () => {
               className="text-primary"
             >
               yo@useapipool.com
-            </a>
+            </a>{" "}
+            )
           </p>
         </div>
       </div>

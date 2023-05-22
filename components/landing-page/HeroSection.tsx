@@ -43,8 +43,8 @@ const Hero = () => {
           )}
           style={{ lineHeight: "58px" }}
         >
-          Discover The Right APIs w/ APIPOOL <wbr />፡ Your Ultimate Developer
-          Peephole ✨
+          Discover The Right API Products w/ APIPOOL <wbr />፡ Your Ultimate
+          Developer Peephole ✨
         </h1>
         <p className="w-9/12 text-lg font-normal capitalize text-grey-legacy">
           Landing the perfect API integrations shouldn&apos;t cause you sweat 💧
