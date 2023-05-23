@@ -26,6 +26,9 @@ import { ApiFilters } from "@/public/constants/filters";
 import { toggleModal } from "@/store/modal";
 
 const Explore: NextPage = () => {
+  const pageSize = 3;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   const sliderConfig = {
     dots: false,
     infinite: true,
@@ -60,7 +63,7 @@ const Explore: NextPage = () => {
     }
 
     setIsSearchingApis(true);
-    await getCommonAPIServices(searchText, filterObj);
+    await getCommonAPIServices(searchText, filterObj, currentPage, pageSize);
 
     if (
       searchTerm ||
@@ -79,7 +82,7 @@ const Explore: NextPage = () => {
   useEffect(() => {
     getFeaturedAPIs();
 
-    getCommonAPIServices("");
+    getCommonAPIServices("", undefined, currentPage, pageSize);
   }, []);
 
   return (
@@ -197,21 +200,29 @@ const Explore: NextPage = () => {
                   ))}
                 </div>
 
-                {/* <div className="items-center mx-auto my-8 w-fit pagination-btns align-row">
+                <div className="items-center mx-auto my-8 w-fit pagination-btns align-row">
                   <BaseButton
                     styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
                     type="default"
                     text="⇜ Previous"
-                    disabled={true}
+                    disabled={currentPage === 1}
+                    onClick={() => {
+                      setCurrentPage(currentPage - 1);
+                      searchApiService();
+                    }}
                   />
 
                   <BaseButton
                     styles="mr-4 border border-dark text-grey-lighter px-6 hover:border-primary hover:text-primary"
                     type="default"
                     text="Next ⇝"
-                    disabled={true}
+                    disabled={commonApis.length < pageSize}
+                    onClick={() => {
+                      setCurrentPage(currentPage + 1);
+                      searchApiService();
+                    }}
                   />
-                </div> */}
+                </div>
               </div>
             </div>
           </div>

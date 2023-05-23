@@ -53,8 +53,13 @@ export const getFeaturedAPIs = async () => {
 
 export const getCommonAPIServices = async (
   searchTerm: string,
-  filterObject?: { [key: string]: any }
+  filterObject?: { [key: string]: any },
+  currentPage: number = 1,
+  pageSize: number = 3
 ) => {
+  const rangeStart = (currentPage - 1) * pageSize;
+  const rangeEnd = currentPage * pageSize - 1;
+
   let query = supabaseClient
     .from("api_services")
     .select("*")
@@ -85,6 +90,9 @@ export const getCommonAPIServices = async (
       );
     }
   }
+
+  query = query.limit(3);
+  query = query.range(rangeStart, rangeEnd);
 
   const { data, error } = await query;
 

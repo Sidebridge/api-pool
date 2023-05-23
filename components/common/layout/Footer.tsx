@@ -28,16 +28,7 @@ const Footer = () => {
 
       <span className="text-white">
         Made with 💚 by the {""}
-        <span className=" text-accent">
-          {/* <Link href="https://twitter.com/GeekyAdams" target="_blank">
-            @GeekyAdams
-          </Link>{" "}
-          <span className="font-normal text-light">&</span>{" "}
-          <Link href="https://twitter.com/emmah_ux" target="_blank">
-            Emmanuel A.
-          </Link> */}
-          <span>Duo</span>
-        </span>
+        <span className=" text-accent">Duo</span>
         {" of "}
         <b className="text-primary press">
           <i>
