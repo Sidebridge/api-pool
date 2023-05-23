@@ -85,6 +85,10 @@ const Explore: NextPage = () => {
     getCommonAPIServices("", undefined, currentPage, pageSize);
   }, []);
 
+  useEffect(() => {
+    searchApiService();
+  }, [currentPage]);
+
   return (
     <MainLayout>
       <div className="items-center w-full px-24 align-col">
@@ -207,8 +211,7 @@ const Explore: NextPage = () => {
                     text="⇜ Previous"
                     disabled={currentPage === 1}
                     onClick={() => {
-                      setCurrentPage(currentPage - 1);
-                      searchApiService();
+                      setCurrentPage((prevPage) => prevPage - 1);
                     }}
                   />
 
@@ -218,8 +221,7 @@ const Explore: NextPage = () => {
                     text="Next ⇝"
                     disabled={commonApis.length < pageSize}
                     onClick={() => {
-                      setCurrentPage(currentPage + 1);
-                      searchApiService();
+                      setCurrentPage((prevPage) => prevPage + 1);
                     }}
                   />
                 </div>
