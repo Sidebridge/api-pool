@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 
 import Link from "next/link";
 
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 import AppLogo from "../base/AppLogo";
 import ProfilePreview from "../util/ProfilePreview";
 import BaseButton from "../base/BaseButton";
@@ -15,9 +15,9 @@ import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 function Header() {
   const navItems = [
-    { title: "Explore", route: "/explore" },
-    { title: "Compare APIs", route: "/compare" },
-    { title: "Donate", route: "/", target: "" },
+    { title: "Explore", route: "/explore", available: true },
+    { title: "Compare APIs", route: "/compare", available: false },
+    { title: "Donate", route: "/", target: "", available: true },
   ];
 
   // const { auth } = useAuth();
@@ -43,14 +43,17 @@ function Header() {
         <nav className="ml-10">
           <ul className="items-center align-row">
             {navItems.map((item) => (
-              <li
+              <Tooltip
                 key={item.title}
-                className="ml-8 text-light hover:text-accent press"
+                title={!item.available ? "Coming Soon ✨" : ""}
+                placement="bottom"
               >
-                <Link href={item.route} target={item.target || ""}>
-                  {item.title}
-                </Link>
-              </li>
+                <li className="ml-8 text-light hover:text-accent press">
+                  <Link href={item.route} target={item.target || ""}>
+                    {item.title}
+                  </Link>
+                </li>
+              </Tooltip>
             ))}
             <a href="/#promote-api">
               <li className="ml-8 press centered-row">
