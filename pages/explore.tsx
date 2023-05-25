@@ -82,11 +82,28 @@ const Explore: NextPage = () => {
   useEffect(() => {
     getFeaturedAPIs();
 
-    getCommonAPIServices("", undefined, currentPage, pageSize);
+    const localFilters = localStorage.getItem("localFilters");
+    getCommonAPIServices(
+      localStorage.getItem("localSearchTerm") || "",
+      localFilters
+        ? JSON.parse(localStorage.getItem("localFilters") as string)
+        : undefined,
+      currentPage,
+      pageSize
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    searchApiService();
+    const localFilters = localStorage.getItem("localFilters");
+
+    searchApiService(
+      localStorage.getItem("localSearchTerm") || "",
+      localFilters
+        ? JSON.parse(localStorage.getItem("localFilters") as string)
+        : undefined
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (
@@ -119,7 +136,8 @@ const Explore: NextPage = () => {
           <div className="w-full mt-4 overflow-x-hidden border rounded-t-none align-col border-dark rounded-xl">
             {featuredApis &&
               featuredApis.length &&
-              !isSearchOrFilterApplied && (
+              !isSearchOrFilterApplied &&
+              !isSearchingApis && (
                 <div className="w-full mb-3 featured-list border-dark">
                   <div className="section-header-tab">
                     <p className={clsx("mx-auto section-header-title")}>

@@ -32,7 +32,11 @@ const ReviewCard = ({ review }: { review: ApiReview }) => {
         <span className="mr-2.5 text-grey-lighter">
           {review.review_stars?.toFixed(1)}
         </span>
-        <RatingStars rate={review.review_stars || 0} type="fill" />
+        <RatingStars
+          id={review.id}
+          rate={review.review_stars || 0}
+          type="fill"
+        />
         <span className="ml-auto text-xs italic font-light capitalize text-grey-lighter">
           {review.updated_at ? "Updated " : "Added "}
           <TimeAgo date={review.updated_at || review.created_at} />

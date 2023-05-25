@@ -326,6 +326,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                   </span>
                   <div className="mt-3">
                     <RatingStars
+                      id={`details-rating`}
                       type="fill"
                       styles="text-lg"
                       rate={totalRating}

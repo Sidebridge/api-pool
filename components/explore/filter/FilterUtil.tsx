@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import clsx from "clsx";
@@ -69,6 +71,8 @@ const FilterUtil = ({
   const [selectedFilterValues, setSelectedFilterValues] =
     useState<ApiFilters>(initialFilterObject);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   function handleFilterCheck(
     e: React.ChangeEvent<HTMLInputElement>,
     filterSection: keyof ApiFilters
@@ -77,10 +81,10 @@ const FilterUtil = ({
 
     if (e.target.checked) {
       if (!selectedFilterValues[filterSection].includes(value)) {
-        setSelectedFilterValues({
-          ...selectedFilterValues,
-          [filterSection]: [...selectedFilterValues[filterSection], value],
-        });
+        updateFilterState(filterSection, [
+          ...selectedFilterValues[filterSection],
+          value,
+        ]);
       }
     } else {
       const valueIndex = selectedFilterValues[filterSection].indexOf(value);
@@ -88,15 +92,24 @@ const FilterUtil = ({
 
       if (valueIndex !== -1) {
         valueCopy.splice(valueIndex, 1);
-        setSelectedFilterValues({
-          ...selectedFilterValues,
-          [filterSection]: valueCopy,
-        });
+
+        updateFilterState(filterSection, valueCopy);
       }
     }
   }
 
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  function updateFilterState(property: string, value: string[]) {
+    const updatedFilterValues = {
+      ...selectedFilterValues,
+      [property]: value,
+    };
+
+    setSelectedFilterValues(updatedFilterValues);
+
+    console.log(updatedFilterValues);
+
+    localStorage.setItem("localFilters", JSON.stringify(updatedFilterValues));
+  }
 
   function onInputChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -118,15 +131,26 @@ const FilterUtil = ({
   function clearAppliedFilters() {
     setSelectedFilterValues(initialFilterObject);
     setVisibleDropdown("");
+
+    localStorage.setItem("localSearchTerm", "");
+    localStorage.setItem("localFilters", JSON.stringify(initialFilterObject));
   }
 
   useEffect(() => {
     onFiltered(searchTerm, selectedFilterValues);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilterValues]);
 
   useEffect(() => {
     fetchAPIServiceSectors();
+
+    const savedFilter = localStorage.getItem("localFilters");
+
+    setSearchTerm(() => localStorage.getItem("localSearchTerm") || "");
+    setSelectedFilterValues(() =>
+      savedFilter ? JSON.parse(savedFilter) : initialFilterObject
+    );
   }, []);
 
   return (
@@ -147,22 +171,29 @@ const FilterUtil = ({
           onKeyDown={handleKeyPress}
         />
         <span
-          className="mr-4 text-sm font-light text-light press hover:text-red-400"
+          className={clsx(
+            "mr-4 text-sm font-light text-light press hover:text-red-400",
+            !searchTerm && "hidden"
+          )}
           onClick={() => {
             setSearchTerm("");
             onFiltered("", selectedFilterValues);
+            localStorage.setItem("localSearchTerm", "");
           }}
         >
           Clear
         </span>
         <BaseButton
-          text={isSearching ? "Pooling..." : "Search"}
+          text={
+            isSearching ? "Pooling..." : !searchTerm ? "Refresh Data" : "Search"
+          }
           type="primary"
           styles="px-8 w-fit mr-4"
           loading={isSearching}
           loaderStyle="mr-2.5 w-4 h-4 absolute"
           onClick={() => {
             onFiltered(searchTerm, selectedFilterValues);
+            localStorage.setItem("localSearchTerm", searchTerm);
           }}
         />
         <Tooltip title="Coming Soon ✨" placement="topLeft">
@@ -189,13 +220,7 @@ const FilterUtil = ({
           filterHandler={filterCountryByNameAndAlphaCode}
           activeFilter={visibleDropdown}
           onCheck={(e) => handleFilterCheck(e, "countries")}
-          onReset={() => {
-            if (selectedFilterValues["countries"].length)
-              setSelectedFilterValues({
-                ...selectedFilterValues,
-                countries: [],
-              });
-          }}
+          onReset={() => updateFilterState("countries", [])}
           onOpen={() => setVisibleDropdown("countries")}
           onClose={() => setVisibleDropdown("")}
         />
@@ -212,13 +237,7 @@ const FilterUtil = ({
           filterHandler={filterItemsByName}
           activeFilter={visibleDropdown}
           onCheck={(e) => handleFilterCheck(e, "sectors")}
-          onReset={() => {
-            if (selectedFilterValues["sectors"].length)
-              setSelectedFilterValues({
-                ...selectedFilterValues,
-                sectors: [],
-              });
-          }}
+          onReset={() => updateFilterState("sectors", [])}
           onOpen={() => setVisibleDropdown("sectors")}
           onClose={() => setVisibleDropdown("")}
         />
@@ -234,13 +253,7 @@ const FilterUtil = ({
           filterHandler={filterItemsBySelfTitle}
           activeFilter={visibleDropdown}
           onCheck={(e) => handleFilterCheck(e, "supportedLanguages")}
-          onReset={() => {
-            if (selectedFilterValues["supportedLanguages"].length)
-              setSelectedFilterValues({
-                ...selectedFilterValues,
-                supportedLanguages: [],
-              });
-          }}
+          onReset={() => updateFilterState("supportedLanguages", [])}
           onOpen={() => setVisibleDropdown("supportedLanguages")}
           onClose={() => setVisibleDropdown("")}
         />
@@ -257,13 +270,7 @@ const FilterUtil = ({
           showSearch={false}
           activeFilter={visibleDropdown}
           onCheck={(e) => handleFilterCheck(e, "pricings")}
-          onReset={() => {
-            if (selectedFilterValues["pricings"].length)
-              setSelectedFilterValues({
-                ...selectedFilterValues,
-                pricings: [],
-              });
-          }}
+          onReset={() => updateFilterState("pricings", [])}
           onOpen={() => setVisibleDropdown("pricings")}
           onClose={() => setVisibleDropdown("")}
         />

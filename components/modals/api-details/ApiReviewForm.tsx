@@ -161,6 +161,7 @@ const ApiReviewForm = ({
           <div className="align-col">
             <span className="ml-auto text-2xl">
               <RatingStars
+                id="review-form-rating"
                 rate={rating}
                 type="fill"
                 action="mark"

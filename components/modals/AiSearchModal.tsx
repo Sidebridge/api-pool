@@ -56,7 +56,11 @@ const AiSearchModal = ({ onClose }: { onClose: () => void }) => {
 
                     <div className="items-center text-sm align-row">
                       <span className="text-grey-label mr-1.5">4.0</span>
-                      <RatingStars rate={4} type="fill" />
+                      <RatingStars
+                        id="ai-results-rating"
+                        rate={4}
+                        type="fill"
+                      />
                     </div>
                   </div>
 
