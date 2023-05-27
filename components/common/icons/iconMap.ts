@@ -47,6 +47,13 @@ import ExpandRoundWhite from "../../../assets/images/svg/expand_round_white.svg"
 import EditGreen from "../../../assets/images/svg/edit_green.svg";
 import TrashRed from "../../../assets/images/svg/trash_red.svg";
 
+import BasicTagGrey from "../../../assets/images/svg/basic_plan_grey.svg";
+import BasicTagBlack from "../../../assets/images/svg/basic_plan_black.svg";
+import ProTrophyGrey from "../../../assets/images/svg/pro_trophy_grey.svg";
+import ProTrophyBlack from "../../../assets/images/svg/pro_trophy_black.svg";
+import UltimateCrownGrey from "../../../assets/images/svg/ultimate_crown_grey.svg";
+import UltimateCrownBlack from "../../../assets/images/svg/ultimate_crown_black.svg";
+
 import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
 import PromoLogo from "../../../assets/images/svg/promo_logo.svg";
@@ -104,6 +111,12 @@ const Icons = {
   ExpandRoundWhite,
   EditGreen,
   TrashRed,
+  BasicTagBlack,
+  BasicTagGrey,
+  ProTrophyBlack,
+  ProTrophyGrey,
+  UltimateCrownBlack,
+  UltimateCrownGrey,
 
   PromoLogo,
   ErrorBroken,

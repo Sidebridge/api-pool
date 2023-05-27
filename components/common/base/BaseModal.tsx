@@ -51,7 +51,7 @@ const BaseModal = ({
 
             <div
               className={clsx(
-                "mt-4 w-full rounded-3xl  bg-dark-matte  overflow-y-scroll scrollbar-hide",
+                "mt-4 w-full rounded-3xl  bg-dark-matte  overflow-y-scroll scrollbar-hide overflow-x-hidden",
                 styles
               )}
               style={{ maxHeight: "85vh" }}
