@@ -9,7 +9,7 @@ import type { IconType } from "../common/icons/iconMap";
 const promotionBenefits = [
   "Get in front of Millions of Developers worldwide by featuring on our homepage and above other listings in the explore feed",
   "More than 10,000 API Doc visits per month",
-  "Published helper articles to facilitate the ease of use of your API product",
+  "Sponsored helper articles to facilitate the ease of use of your API product",
   `Standout from thousands of listed API products with our prominent & fancy "Featured" tag`,
   "Sponsored newsletters delivered to 10,000+ and growing email subscribers",
 ];
@@ -18,22 +18,38 @@ const promoPlans = [
   {
     title: "Basic",
     icon: "BasicTag",
-    benefits: [],
+    benefits: [
+      "Get limited spot feature on our homepage",
+      `Standout out with our exclusive "Featured Tag" among a sea of API products in explore results`,
+      "All benefits for the duration of 2 weeks",
+      "More detailed product profile",
+    ],
     amount: "$299.00",
     recommended: false,
   },
   {
     title: "Pro",
     icon: "ProTrophy",
-    benefits: [],
-    amount: "$800.00",
+    benefits: [
+      "* Everything in the Basic Plan (for 3 weeks)",
+      "Minimum of 2 tweets spotlighting your products as a sponsor",
+      "2 promoted newsletter issue",
+      "1 sponsored blog article about the API product usage",
+    ],
+    amount: "$799.00",
     recommended: true,
   },
   {
     title: "Ultimate",
     icon: "UltimateCrown",
-    benefits: [],
-    amount: "$1,200.00",
+    benefits: [
+      "* Everything in the Basic Plan (for 5 weeks) ",
+      "Minimum of 3 tweets spotlighting your products as a sponsor",
+      "3 promoted newsletter issues",
+      "2 sponsored blog article about the API product usage",
+      "Collected and ranked unbiased (+ve) reviews",
+    ],
+    amount: "$1,199.00",
     recommended: false,
   },
 ];
@@ -41,7 +57,7 @@ const promoPlans = [
 const PromoSection = () => {
   const [isShowPromoPlans, setShowPromoPlans] = useState<boolean>(false);
 
-  const [selectedPlanIndex, setSelectedPlanIndex] = useState(0);
+  const [selectedPlanIndex, setSelectedPlanIndex] = useState<number>(0);
 
   return (
     <>
@@ -61,7 +77,7 @@ const PromoSection = () => {
             {promotionBenefits.map((benefit, benefitIndex) => (
               <div
                 key={`benefit-${benefitIndex}`}
-                className="items-start mb-3 align-row"
+                className="items-start mb-2 align-row"
               >
                 <AppIcon icon={"FeaturedBadgeAccent"} styles="mr-3 mt-1.5" />
                 <span className="">{benefit}</span>
@@ -73,7 +89,7 @@ const PromoSection = () => {
           </div>
 
           <BaseButton
-            text="Get Featured From $299"
+            text="Get Featured From $399"
             type="default"
             styles={clsx(
               "text-accent rounded-full text-lg border border-accent mt-12 w-fit px-6",
@@ -108,7 +124,7 @@ const PromoSection = () => {
           <div className="z-0 w-[100rem] h-[100rem] rounded-full absolute left-1/2 transform -translate-x-1/2 top-24 pb-[100%] bg-body"></div>
           <div className="items-center w-full align-col">
             <div className="z-10 w-20 h-20 rounded-md light-primary-shadow mt-14 centered-col bg-body">
-              <AppIcon icon={"LogoPlaceholder"} />
+              <AppIcon icon={"LogoPlaceholder"} styles="w-10 h-10" />
             </div>
 
             <section className="z-10 items-center w-full mt-10 text-center heading align-col">
@@ -125,18 +141,33 @@ const PromoSection = () => {
                 <div
                   key={plan.title}
                   className={clsx(
-                    "border relative border-dark press rounded-2xl p-3 px-3.5 align-col",
-                    "hover:bg-dark hover:bg-opacity-40"
+                    "border relative press rounded-2xl p-3 px-3.5 align-col",
+                    "hover:bg-dark hover:bg-opacity-40",
+                    selectedPlanIndex === planIndex
+                      ? "border-primary"
+                      : "border-dark"
                   )}
                   onClick={() => setSelectedPlanIndex(planIndex)}
                 >
                   {plan.recommended && (
-                    <span className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-xs bg-[#22CB58] p-1 px-3 rounded-full">
+                    <span
+                      className={clsx(
+                        "absolute -top-4 left-1/2 transform -translate-x-1/2 text-xs p-1 px-3 rounded-full",
+                        selectedPlanIndex === planIndex
+                          ? "bg-primary"
+                          : "bg-[#22CB58]"
+                      )}
+                    >
                       Recommended
                     </span>
                   )}
                   <div className="w-full row-btwn">
-                    <div className="p-2 border rounded-xl border-dark">
+                    <div
+                      className={clsx(
+                        "p-2 border rounded-xl border-dark",
+                        selectedPlanIndex === planIndex && "bg-accent"
+                      )}
+                    >
                       <AppIcon
                         icon={
                           `${plan.icon}${
@@ -146,7 +177,14 @@ const PromoSection = () => {
                       />
                     </div>
 
-                    <div className="mt-1.5 w-5 h-5 rounded-full border-[5px] border-[#201F1F]"></div>
+                    <div
+                      className={clsx(
+                        "mt-1.5 w-5 h-5 rounded-full border-[5px]",
+                        selectedPlanIndex === planIndex
+                          ? "border-primary"
+                          : "border-[#201F1F]"
+                      )}
+                    ></div>
                   </div>
 
                   <span className="mt-4 text-sm font-light plan-title text-grey-lighter">
@@ -161,12 +199,12 @@ const PromoSection = () => {
               <p className="text-xl">
                 {promoPlans[selectedPlanIndex].title} Plan
               </p>
-              <div className="w-full h-[1px] my-5 border-[0.5px] border-dark"></div>
+              <div className="w-full h-[1px] my-5 border border-dark"></div>
               {promoPlans[selectedPlanIndex].benefits.map(
                 (benefit, benefitIndex) => (
                   <div
                     key={`benefit-${benefitIndex}`}
-                    className="items-start mb-3 align-row"
+                    className="items-start mb-2 align-row"
                   >
                     <AppIcon
                       icon={"FeaturedBadgeAccent"}
@@ -179,10 +217,10 @@ const PromoSection = () => {
             </div>
           </div>
 
-          <div className="fixed z-50 w-full py-4 text-center transform -translate-x-1/2 bottom-3 left-1/2 centered-col">
+          <div className="fixed z-50 w-full py-4 text-center transform -translate-x-1/2 bottom-2 left-1/2 centered-col">
             <BaseButton
               text={`Pay ${promoPlans[selectedPlanIndex].amount}`}
-              styles=" px-8 font-semibold"
+              styles="text-lg px-8"
             />
             <span className="z-10 mt-3 text-sm font-light text-grey-lighter">
               Terms & Conditions Apply
