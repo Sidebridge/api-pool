@@ -10,7 +10,8 @@ const nextConfig = {
   reactStrictMode: true,
 
   experimental: {
-    appDir: true,
+    appDir: false,
+    serverActions: true,
   },
 
   images: {

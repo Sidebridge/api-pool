@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-import cardClasses from "@/styles/api-card.module.css";
+import cardClasses from "../../../styles/api-card.module.css";
 
 import AppIcon from "@/components/common/icons";
 import MainLayout from "@/components/layout/MainLayout";
