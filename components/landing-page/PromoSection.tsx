@@ -1,3 +1,4 @@
+import { formatMoney } from "@/utils/helper/formatter";
 import clsx from "clsx";
 import { useState } from "react";
 import BaseButton from "../common/base/BaseButton";
@@ -25,7 +26,7 @@ const promoPlans = [
       "All benefits for the duration of 2 weeks",
       "More detailed product profile",
     ],
-    amount: "$299.00",
+    amount: 299,
     recommended: false,
   },
   {
@@ -37,7 +38,7 @@ const promoPlans = [
       "2 promoted newsletter issue",
       "1 sponsored blog article about the API product usage",
     ],
-    amount: "$799.00",
+    amount: 799,
     recommended: true,
   },
   {
@@ -50,7 +51,7 @@ const promoPlans = [
       "2 sponsored blog article about the API product usage",
       "Collected and ranked unbiased (+ve) reviews",
     ],
-    amount: "$1,199.00",
+    amount: 1199,
     recommended: false,
   },
 ];
@@ -70,7 +71,11 @@ const PromoSection = () => {
   }
 
   function handleButtonClick() {
-    return formStep === 0 ? setFormStep(1) : 0;
+    return formStep === 0 ? setFormStep(1) : setFormStep(2);
+  }
+
+  function savePromotionRequest() {
+    // handles promotion request form submission
   }
 
   return (
@@ -103,15 +108,15 @@ const PromoSection = () => {
           </div>
 
           <BaseButton
-            text="Get Featured From $399"
+            text="Get Featured From $299"
             type="default"
             styles={clsx(
               "text-accent rounded-full text-lg border border-accent mt-12 w-fit px-6",
               "hover:text-dark hover:bg-accent"
             )}
-            onClick={() => {
-              setShowPromoPlans(true);
-            }}
+            // onClick={() => {
+            //   setShowPromoPlans(true);
+            // }}
           />
           <p className="mt-2 text-sm font-light text-grey-lighter">
             Any doubt or special requirements?{" "}
@@ -130,196 +135,237 @@ const PromoSection = () => {
 
       {isShowPromoPlans && (
         <BaseModal isOpen={isShowPromoPlans} onClose={resetModal}>
-          <div className="relative w-full h-[85vh] overflow-hidden bg-primary">
-            <div className="z-0 w-[100rem] h-[100rem] rounded-full absolute left-1/2 transform -translate-x-1/2 top-24 pb-[100%] bg-body"></div>
-            <div className="items-center w-full align-col">
-              <div className="z-10 w-20 h-20 rounded-md light-primary-shadow mt-14 centered-col bg-body">
-                <AppIcon icon={"LogoPlaceholder"} styles="w-10 h-10" />
-              </div>
+          {[0, 1].includes(formStep) && (
+            <div className="relative w-full h-[85vh] overflow-hidden bg-primary">
+              <div className="z-0 w-[100rem] h-[100rem] rounded-full absolute left-1/2 transform -translate-x-1/2 top-24 pb-[100%] bg-body"></div>
+              <div className="items-center w-full align-col">
+                <div className="z-10 w-20 h-20 rounded-md light-primary-shadow mt-14 centered-col bg-body">
+                  <AppIcon icon={"LogoPlaceholder"} styles="w-10 h-10" />
+                </div>
 
-              <section className="z-10 items-center w-full mt-10 text-center heading align-col">
-                <h1 className="text-3xl text-light">
-                  Promotion {formStep === 0 ? "Plans" : "Request"}
-                </h1>
-                <p className="mt-1 text-sm font-light text-grey-lighter">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  <br />
-                  Etiam eu turpis molestie, dictum est a, mattis tellus.
-                </p>
-              </section>
+                <section className="z-10 items-center w-full mt-10 text-center heading align-col">
+                  <h1 className="text-3xl text-light">
+                    Promotion {formStep === 0 ? "Plans" : "Request"}
+                  </h1>
+                  <p className="mt-1 text-sm font-light text-grey-lighter">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    <br />
+                    Etiam eu turpis molestie, dictum est a, mattis tellus.
+                  </p>
+                </section>
 
-              {formStep === 0 && (
-                <>
-                  <div className="z-10 grid w-11/12 grid-flow-row grid-cols-3 mt-12 gap-x-3 promo-plans">
-                    {promoPlans.map((plan, planIndex) => (
-                      <div
-                        key={plan.title}
-                        className={clsx(
-                          "border relative press rounded-2xl p-3 px-3.5 align-col",
-                          "hover:bg-dark hover:bg-opacity-40",
-                          selectedPlanIndex === planIndex
-                            ? "border-primary"
-                            : "border-dark"
-                        )}
-                        onClick={() => setSelectedPlanIndex(planIndex)}
-                      >
-                        {plan.recommended && (
-                          <span
-                            className={clsx(
-                              "absolute -top-4 left-1/2 transform -translate-x-1/2 text-xs p-1 px-3 rounded-full",
-                              selectedPlanIndex === planIndex
-                                ? "bg-primary"
-                                : "bg-[#22CB58]"
-                            )}
-                          >
-                            Recommended
-                          </span>
-                        )}
-                        <div className="w-full row-btwn">
-                          <div
-                            className={clsx(
-                              "p-2 border rounded-xl border-dark",
-                              selectedPlanIndex === planIndex && "bg-accent"
-                            )}
-                          >
-                            <AppIcon
-                              icon={
-                                `${plan.icon}${
-                                  selectedPlanIndex === planIndex
-                                    ? "Black"
-                                    : "Grey"
-                                }` as IconType
-                              }
-                            />
+                {formStep === 0 && (
+                  <>
+                    <div className="z-10 grid w-11/12 grid-flow-row grid-cols-3 mt-12 gap-x-3 promo-plans">
+                      {promoPlans.map((plan, planIndex) => (
+                        <div
+                          key={plan.title}
+                          className={clsx(
+                            "border relative press rounded-2xl p-3 px-3.5 align-col",
+                            "hover:bg-dark hover:bg-opacity-40",
+                            selectedPlanIndex === planIndex
+                              ? "border-primary"
+                              : "border-dark"
+                          )}
+                          onClick={() => setSelectedPlanIndex(planIndex)}
+                        >
+                          {plan.recommended && (
+                            <span
+                              className={clsx(
+                                "absolute -top-4 left-1/2 transform -translate-x-1/2 text-xs p-1 px-3 rounded-full",
+                                selectedPlanIndex === planIndex
+                                  ? "bg-primary"
+                                  : "bg-[#22CB58]"
+                              )}
+                            >
+                              Recommended
+                            </span>
+                          )}
+                          <div className="w-full row-btwn">
+                            <div
+                              className={clsx(
+                                "p-2 border rounded-xl border-dark",
+                                selectedPlanIndex === planIndex && "bg-accent"
+                              )}
+                            >
+                              <AppIcon
+                                icon={
+                                  `${plan.icon}${
+                                    selectedPlanIndex === planIndex
+                                      ? "Black"
+                                      : "Grey"
+                                  }` as IconType
+                                }
+                              />
+                            </div>
+
+                            <div
+                              className={clsx(
+                                "mt-1.5 w-5 h-5 rounded-full border-[5px]",
+                                selectedPlanIndex === planIndex
+                                  ? "border-primary"
+                                  : "border-[#201F1F]"
+                              )}
+                            ></div>
                           </div>
 
+                          <span className="mt-4 text-sm font-light plan-title text-grey-lighter">
+                            {plan.title} Plan
+                          </span>
+                          <span className="mt-1 text-xl text-light">
+                            {formatMoney(plan.amount, "USD")}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="z-10 w-11/12 p-6 mt-10 border border-dark align-col text-grey-lighter rounded-2xl">
+                      <p className="text-xl">
+                        {promoPlans[selectedPlanIndex].title} Plan
+                      </p>
+                      <div className="w-full h-[1px] my-5 border border-dark"></div>
+                      {promoPlans[selectedPlanIndex].benefits.map(
+                        (benefit, benefitIndex) => (
                           <div
-                            className={clsx(
-                              "mt-1.5 w-5 h-5 rounded-full border-[5px]",
-                              selectedPlanIndex === planIndex
-                                ? "border-primary"
-                                : "border-[#201F1F]"
-                            )}
-                          ></div>
-                        </div>
+                            key={`benefit-${benefitIndex}`}
+                            className="items-start mb-2 align-row"
+                          >
+                            <AppIcon
+                              icon={"FeaturedBadgeAccent"}
+                              styles="mr-3 mt-1.5"
+                            />
+                            <span className="">{benefit}</span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </>
+                )}
 
-                        <span className="mt-4 text-sm font-light plan-title text-grey-lighter">
-                          {plan.title} Plan
-                        </span>
-                        <span className="mt-1 text-xl text-light">
-                          {plan.amount}
-                        </span>
+                {formStep === 1 && (
+                  <>
+                    <div
+                      className="z-50 items-center mt-10 ml-6 mr-auto align-row press"
+                      onClick={() => setFormStep((prevStep) => prevStep - 1)}
+                    >
+                      <AppIcon icon={"ArrowLeftGreen"} styles="mr-2" />
+                      <span className="text-sm font-light hover:text-primary text-light">
+                        Go Back
+                      </span>
+                    </div>
+                    <form
+                      action="savePromotionRequest"
+                      className="z-50 w-11/12 p-5 py-4 mt-4 border rounded-lg border-grey-border text-grey-lighter"
+                    >
+                      <h2 className="mb-3 text-xl">Personal Information</h2>
+                      <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
+                        <BaseInput
+                          id="promoter-name"
+                          name="promoterName"
+                          label="Your Name"
+                          labelStyle="text-grey-lighter font-light"
+                          inputStyle="rounded-xl border-grey-border"
+                          placeholder="What's your full name?"
+                        />
+
+                        <BaseInput
+                          id="promoter-email"
+                          name="promoterEmail"
+                          label="Email Address"
+                          labelStyle="text-grey-lighter font-light "
+                          inputStyle="rounded-xl border-grey-border"
+                          placeholder="e.g. amazing-person@you.com"
+                        />
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="z-10 w-11/12 p-6 mt-10 border border-dark align-col text-grey-lighter rounded-2xl">
-                    <p className="text-xl">
-                      {promoPlans[selectedPlanIndex].title} Plan
-                    </p>
-                    <div className="w-full h-[1px] my-5 border border-dark"></div>
-                    {promoPlans[selectedPlanIndex].benefits.map(
-                      (benefit, benefitIndex) => (
-                        <div
-                          key={`benefit-${benefitIndex}`}
-                          className="items-start mb-2 align-row"
-                        >
-                          <AppIcon
-                            icon={"FeaturedBadgeAccent"}
-                            styles="mr-3 mt-1.5"
-                          />
-                          <span className="">{benefit}</span>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </>
-              )}
+                      <div className="w-full h-[1px] my-6 mt-3 border border-dark"></div>
 
-              {formStep === 1 && (
-                <>
-                  <div
-                    className="z-50 items-center mt-10 ml-6 mr-auto align-row press"
-                    onClick={() => setFormStep((prevStep) => prevStep - 1)}
-                  >
-                    <AppIcon icon={"ArrowLeftGreen"} styles="mr-2" />
-                    <span className="text-sm font-light hover:text-primary text-light">
-                      Go Back
-                    </span>
-                  </div>
-                  <form
-                    action="savePromotionIntent"
-                    className="z-50 w-11/12 p-5 py-4 mt-4 border rounded-lg border-grey-border text-grey-lighter"
-                  >
-                    <h2 className="mb-3 text-xl">Personal Information</h2>
-                    <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
+                      <h2 className="text-xl ,b-3">Product Information</h2>
+                      <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
+                        <BaseInput
+                          id="product-name"
+                          name="productName"
+                          label="Product Name"
+                          labelStyle="text-grey-lighter font-light"
+                          inputStyle="rounded-xl border-grey-border"
+                          placeholder="e.g. Apipool API"
+                        />
+
+                        <BaseInput
+                          id="company-name"
+                          name="companyName"
+                          label="Company's Name"
+                          labelStyle="text-grey-lighter font-light"
+                          inputStyle="rounded-xl border-grey-border"
+                          placeholder="e.g. Awesome company"
+                          required={false}
+                        />
+                      </div>
+
                       <BaseInput
-                        id="promoter-name"
-                        name="promoterName"
-                        label="Your Name"
+                        id="product-link"
+                        name="productLink"
+                        label="Product Link/Url"
                         labelStyle="text-grey-lighter font-light"
                         inputStyle="rounded-xl border-grey-border"
-                        placeholder="What's your full name?"
+                        placeholder="e.g. https://product-page.show"
                       />
+                    </form>
+                  </>
+                )}
+              </div>
 
-                      <BaseInput
-                        id="promoter-email"
-                        name="promoterEmail"
-                        label="Email Address"
-                        labelStyle="text-grey-lighter font-light "
-                        inputStyle="rounded-xl border-grey-border"
-                        placeholder="e.g. amazing-person@you.com"
-                      />
-                    </div>
-
-                    <div className="w-full h-[1px] my-6 mt-3 border border-dark"></div>
-
-                    <h2 className="text-xl ,b-3">Product Information</h2>
-                    <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
-                      <BaseInput
-                        id="product-name"
-                        name="productName"
-                        label="Product Name"
-                        labelStyle="text-grey-lighter font-light"
-                        inputStyle="rounded-xl border-grey-border"
-                        placeholder="e.g. Apipool API"
-                      />
-
-                      <BaseInput
-                        id="company-name"
-                        name="companyName"
-                        label="Company's Name"
-                        labelStyle="text-grey-lighter font-light"
-                        inputStyle="rounded-xl border-grey-border"
-                        placeholder="e.g. Awesome company"
-                        required={false}
-                      />
-                    </div>
-
-                    <BaseInput
-                      id="product-link"
-                      name="productLink"
-                      label="Product Link/Url"
-                      labelStyle="text-grey-lighter font-light"
-                      inputStyle="rounded-xl border-grey-border"
-                      placeholder="e.g. https://product-page.show"
-                    />
-                  </form>
-                </>
-              )}
+              <div className="fixed z-50 w-full py-4 text-center transform -translate-x-1/2 bottom-2 left-1/2 centered-col">
+                <BaseButton
+                  text={formStep === 0 ? "Continue" : `Submit Request`}
+                  styles="text-lg px-8"
+                  onClick={handleButtonClick}
+                />
+                <span className="z-10 mt-3 text-sm font-light text-grey-lighter">
+                  Terms & Conditions Apply
+                </span>
+              </div>
             </div>
+          )}
 
-            <div className="fixed z-50 w-full py-4 text-center transform -translate-x-1/2 bottom-2 left-1/2 centered-col">
-              <BaseButton
-                text={formStep === 0 ? "Continue" : `Submit Request`}
-                styles="text-lg px-8"
-                onClick={handleButtonClick}
-              />
-              <span className="z-10 mt-3 text-sm font-light text-grey-lighter">
-                Terms & Conditions Apply
-              </span>
+          {formStep === 2 && (
+            <div className="relative  p-8 box-border w-full h-[85vh] overflow-hidden bg-body border-[0.5px] border-grey-border align-col">
+              <div className="absolute opacity-60 -top-52 -left-16">
+                <AppIcon icon={"SpotlightRayGrey"} />
+              </div>
+              <div className="w-full overflow-hidden code-pattern-bg h-96 centered-col rounded-xl">
+                <div className="p-16 square-pattern-bg">
+                  <AppIcon icon={"SuccessCheckOrange"} styles="w-40 h-40" />
+                </div>
+              </div>
+
+              <div className="w-full mt-6 text-center centered-col">
+                <h2 className="text-3xl header-text__bg">
+                  Product Promotion Request
+                  <br />
+                  Submitted Successfully
+                </h2>
+                <p className="w-9/12 mt-4 font-light text-grey-lighter">
+                  We've received the promotion intent request for your API
+                  product and we'll be reaching out. In the meantime, you can
+                  proceed to finalise by making payment for the selected plan
+                  using the button below.
+                </p>
+              </div>
+
+              <a
+                href="https://example.com"
+                target="_blank"
+                className="mx-auto mt-auto mb-5"
+              >
+                <BaseButton
+                  text={`Pay $${promoPlans[selectedPlanIndex].amount} Now`}
+                  styles=" w-fit px-8"
+                  onClick={resetModal}
+                />
+              </a>
             </div>
-          </div>
+          )}
         </BaseModal>
       )}
     </>

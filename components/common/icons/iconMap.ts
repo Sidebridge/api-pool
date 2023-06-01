@@ -58,6 +58,8 @@ import ErrorBroken from "../../../assets/images/svg/error_broken.svg";
 import EmptyList from "../../../assets/images/svg/empty_list_illustration.svg";
 import PromoLogo from "../../../assets/images/svg/promo_logo.svg";
 import MobileSoon from "../../../assets/images/svg/coming_soon_mobile.svg";
+import SuccessCheckOrange from "../../../assets/images/svg/success_check_orange.svg";
+import SpotlightRayGrey from "../../../assets/images/svg/grey_spotlight_ray.svg";
 
 import LoaderGif from "../../../assets/images/gifs/loading-gif.gif";
 
@@ -122,6 +124,8 @@ const Icons = {
   ErrorBroken,
   EmptyList,
   MobileSoon,
+  SuccessCheckOrange,
+  SpotlightRayGrey,
   LoaderGif,
 } as const;
 
