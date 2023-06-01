@@ -432,7 +432,7 @@ const PromoSection = () => {
               </div>
 
               <a
-                href="https://example.com"
+                href="https://sidebridge.lemonsqueezy.com/checkout/buy/6b637bf6-25ae-4d8b-aee5-2ad17596aaec"
                 target="_blank"
                 className="mx-auto mt-auto mb-5"
               >
