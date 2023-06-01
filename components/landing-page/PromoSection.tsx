@@ -1,6 +1,9 @@
 import { formatMoney } from "@/utils/helper/formatter";
+import { validateEmail } from "@/utils/helper/validator";
+import { supabaseClient } from "@/utils/services/supabase/client";
 import clsx from "clsx";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import BaseButton from "../common/base/BaseButton";
 import BaseInput from "../common/base/BaseInput";
 import BaseModal from "../common/base/BaseModal";
@@ -56,26 +59,83 @@ const promoPlans = [
   },
 ];
 
+const initializePromoDetails = {
+  clientName: "",
+  clientEmail: "",
+  productName: "",
+  companyName: "",
+  productUrl: "",
+};
+
 const PromoSection = () => {
   const [isShowPromoPlans, setShowPromoPlans] = useState<boolean>(false);
 
   const [selectedPlanIndex, setSelectedPlanIndex] = useState<number>(0);
 
-  const [formStep, setFormStep] = useState<number>(1);
-  const [promoterDetails, setPromoterDetails] = useState({});
+  const [formStep, setFormStep] = useState<number>(0);
+
+  const [promotionDetails, setPromotionDetails] = useState<{
+    [key: string]: string;
+  }>(initializePromoDetails);
+
+  const [isSavingPromoRequest, setIsSavingPromo] = useState<boolean>(false);
 
   function resetModal() {
     setShowPromoPlans(false);
     setFormStep(0);
     setSelectedPlanIndex(0);
+    setPromotionDetails(initializePromoDetails);
   }
 
   function handleButtonClick() {
-    return formStep === 0 ? setFormStep(1) : setFormStep(2);
+    return formStep === 0 ? setFormStep(1) : savePromotionRequest();
   }
 
-  function savePromotionRequest() {
+  async function savePromotionRequest() {
     // handles promotion request form submission
+    const { clientName, clientEmail, productName, companyName, productUrl } =
+      promotionDetails;
+
+    if ([clientName, productName, productUrl].includes("")) {
+      return toast.error("Please fill up required empty fields");
+    }
+
+    if (!validateEmail(clientEmail))
+      return toast.error(
+        "Please enter a valid email address for your email field"
+      );
+
+    setIsSavingPromo(true);
+
+    const { data, error } = await supabaseClient
+      .from("promotion_requests")
+      .insert({
+        promo_plan: promoPlans[selectedPlanIndex].title,
+        promo_amount: promoPlans[selectedPlanIndex].amount,
+        client_name: clientName,
+        client_email: clientEmail,
+        product_name: productName,
+        company_name: companyName,
+        product_url: productUrl,
+      });
+
+    setIsSavingPromo(false);
+    if (error) {
+      toast.error(
+        "Sorry! Promotion request couldn't be submitted. Please try again."
+      );
+    }
+
+    setPromotionDetails(initializePromoDetails);
+    setFormStep(2);
+  }
+
+  function handleFormUpdate(property: string, val: string) {
+    const formData: { [key: string]: string } = { ...promotionDetails };
+
+    formData[property] = val;
+
+    setPromotionDetails(formData);
   }
 
   return (
@@ -114,9 +174,9 @@ const PromoSection = () => {
               "text-accent rounded-full text-lg border border-accent mt-12 w-fit px-6",
               "hover:text-dark hover:bg-accent"
             )}
-            // onClick={() => {
-            //   setShowPromoPlans(true);
-            // }}
+            onClick={() => {
+              setShowPromoPlans(true);
+            }}
           />
           <p className="mt-2 text-sm font-light text-grey-lighter">
             Any doubt or special requirements?{" "}
@@ -142,7 +202,6 @@ const PromoSection = () => {
                 <div className="z-10 w-20 h-20 rounded-md light-primary-shadow mt-14 centered-col bg-body">
                   <AppIcon icon={"LogoPlaceholder"} styles="w-10 h-10" />
                 </div>
-
                 <section className="z-10 items-center w-full mt-10 text-center heading align-col">
                   <h1 className="text-3xl text-light">
                     Promotion {formStep === 0 ? "Plans" : "Request"}
@@ -153,7 +212,6 @@ const PromoSection = () => {
                     Etiam eu turpis molestie, dictum est a, mattis tellus.
                   </p>
                 </section>
-
                 {formStep === 0 && (
                   <>
                     <div className="z-10 grid w-11/12 grid-flow-row grid-cols-3 mt-12 gap-x-3 promo-plans">
@@ -242,82 +300,102 @@ const PromoSection = () => {
                   </>
                 )}
 
-                {formStep === 1 && (
-                  <>
-                    <div
-                      className="z-50 items-center mt-10 ml-6 mr-auto align-row press"
-                      onClick={() => setFormStep((prevStep) => prevStep - 1)}
-                    >
-                      <AppIcon icon={"ArrowLeftGreen"} styles="mr-2" />
-                      <span className="text-sm font-light hover:text-primary text-light">
-                        Go Back
-                      </span>
-                    </div>
-                    <form
-                      action="savePromotionRequest"
-                      className="z-50 w-11/12 p-5 py-4 mt-4 border rounded-lg border-grey-border text-grey-lighter"
-                    >
-                      <h2 className="mb-3 text-xl">Personal Information</h2>
-                      <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
-                        <BaseInput
-                          id="promoter-name"
-                          name="promoterName"
-                          label="Your Name"
-                          labelStyle="text-grey-lighter font-light"
-                          inputStyle="rounded-xl border-grey-border"
-                          placeholder="What's your full name?"
-                        />
-
-                        <BaseInput
-                          id="promoter-email"
-                          name="promoterEmail"
-                          label="Email Address"
-                          labelStyle="text-grey-lighter font-light "
-                          inputStyle="rounded-xl border-grey-border"
-                          placeholder="e.g. amazing-person@you.com"
-                        />
-                      </div>
-
-                      <div className="w-full h-[1px] my-6 mt-3 border border-dark"></div>
-
-                      <h2 className="text-xl ,b-3">Product Information</h2>
-                      <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
-                        <BaseInput
-                          id="product-name"
-                          name="productName"
-                          label="Product Name"
-                          labelStyle="text-grey-lighter font-light"
-                          inputStyle="rounded-xl border-grey-border"
-                          placeholder="e.g. Apipool API"
-                        />
-
-                        <BaseInput
-                          id="company-name"
-                          name="companyName"
-                          label="Company's Name"
-                          labelStyle="text-grey-lighter font-light"
-                          inputStyle="rounded-xl border-grey-border"
-                          placeholder="e.g. Awesome company"
-                          required={false}
-                        />
-                      </div>
-
+                <section
+                  className={clsx("z-50 w-11/12 mt-10 align-col")}
+                  style={{ display: formStep === 1 ? "flex" : "none" }}
+                >
+                  <div
+                    className="z-50 items-center mr-auto align-row press"
+                    onClick={() => setFormStep((prevStep) => prevStep - 1)}
+                  >
+                    <AppIcon icon={"ArrowLeftGreen"} styles="mr-2" />
+                    <span className="text-sm font-light hover:text-primary text-light">
+                      Go Back
+                    </span>
+                  </div>
+                  <form className="z-50 w-full p-5 py-4 mt-4 border rounded-lg border-grey-border text-grey-lighter">
+                    <h2 className="mb-3 text-xl">Personal Information</h2>
+                    <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
                       <BaseInput
-                        id="product-link"
-                        name="productLink"
-                        label="Product Link/Url"
+                        id="promoter-name"
+                        name="promoterName"
+                        label="Your Name"
                         labelStyle="text-grey-lighter font-light"
                         inputStyle="rounded-xl border-grey-border"
-                        placeholder="e.g. https://product-page.show"
+                        placeholder="What's your full name?"
+                        onChange={(value) => {
+                          handleFormUpdate("clientName", value);
+                        }}
                       />
-                    </form>
-                  </>
-                )}
+
+                      <BaseInput
+                        id="promoter-email"
+                        name="promoterEmail"
+                        label="Email Address"
+                        labelStyle="text-grey-lighter font-light "
+                        inputStyle="rounded-xl border-grey-border"
+                        placeholder="e.g. amazing-person@you.com"
+                        onChange={(value) => {
+                          handleFormUpdate("clientEmail", value);
+                        }}
+                      />
+                    </div>
+
+                    <div className="w-full h-[1px] my-6 mt-3 border border-dark"></div>
+
+                    <h2 className="text-xl ,b-3">Product Information</h2>
+                    <div className="grid w-full grid-flow-row grid-cols-2 mt-1 gap-x-4">
+                      <BaseInput
+                        id="product-name"
+                        name="productName"
+                        label="Product Name"
+                        labelStyle="text-grey-lighter font-light"
+                        inputStyle="rounded-xl border-grey-border"
+                        placeholder="e.g. Apipool API"
+                        onChange={(value) => {
+                          handleFormUpdate("productName", value);
+                        }}
+                      />
+
+                      <BaseInput
+                        id="company-name"
+                        name="companyName"
+                        label="Company's Name"
+                        labelStyle="text-grey-lighter font-light"
+                        inputStyle="rounded-xl border-grey-border"
+                        placeholder="e.g. Awesome company"
+                        required={false}
+                        onChange={(value) => {
+                          handleFormUpdate("companyName", value);
+                        }}
+                      />
+                    </div>
+
+                    <BaseInput
+                      id="product-link"
+                      name="productLink"
+                      label="Product Link/Url"
+                      labelStyle="text-grey-lighter font-light"
+                      inputStyle="rounded-xl border-grey-border"
+                      placeholder="e.g. https://product-page.show"
+                      onChange={(value) => {
+                        handleFormUpdate("productUrl", value);
+                      }}
+                    />
+                  </form>
+                </section>
               </div>
 
               <div className="fixed z-50 w-full py-4 text-center transform -translate-x-1/2 bottom-2 left-1/2 centered-col">
                 <BaseButton
-                  text={formStep === 0 ? "Continue" : `Submit Request`}
+                  text={
+                    !isSavingPromoRequest
+                      ? formStep === 0
+                        ? "Continue"
+                        : `Submit Request`
+                      : "Submitting"
+                  }
+                  loading={isSavingPromoRequest}
                   styles="text-lg px-8"
                   onClick={handleButtonClick}
                 />
