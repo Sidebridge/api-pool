@@ -430,10 +430,10 @@ const PromoSection = () => {
                   Submitted
                 </h2>
                 <p className="w-9/12 mt-4 font-light text-grey-lighter">
-                  We've received the promotion intent request for your API
-                  product and we'll be reaching out. In the meantime, you can
-                  proceed to finalise by making payment for the selected plan
-                  using the button below.
+                  We&apos;ve received the promotion intent request for your API
+                  product and we&apos;ll be reaching out. In the meantime, you
+                  can proceed to finalise by making payment for the selected
+                  plan using the button below.
                 </p>
               </div>
 
