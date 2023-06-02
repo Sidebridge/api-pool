@@ -31,6 +31,8 @@ const promoPlans = [
     ],
     amount: 299,
     recommended: false,
+    paymentLink:
+      "https://sidebridge.lemonsqueezy.com/checkout/buy/4599c854-597b-4ce6-a575-7bbc201b33fb",
   },
   {
     title: "Pro",
@@ -43,6 +45,8 @@ const promoPlans = [
     ],
     amount: 799,
     recommended: true,
+    paymentLink:
+      "https://sidebridge.lemonsqueezy.com/checkout/buy/8c9320d7-5a3b-4e64-9766-de404ec5cc93",
   },
   {
     title: "Ultimate",
@@ -56,6 +60,8 @@ const promoPlans = [
     ],
     amount: 1199,
     recommended: false,
+    paymentLink:
+      "https://sidebridge.lemonsqueezy.com/checkout/buy/a4553a3e-e538-41e5-8b66-a979741776c3",
   },
 ];
 
@@ -419,9 +425,9 @@ const PromoSection = () => {
 
               <div className="w-full mt-6 text-center centered-col">
                 <h2 className="text-3xl header-text__bg">
-                  Product Promotion Request
+                  Product Promotion Intent
                   <br />
-                  Submitted Successfully
+                  Submitted
                 </h2>
                 <p className="w-9/12 mt-4 font-light text-grey-lighter">
                   We've received the promotion intent request for your API
@@ -432,7 +438,7 @@ const PromoSection = () => {
               </div>
 
               <a
-                href="https://sidebridge.lemonsqueezy.com/checkout/buy/6b637bf6-25ae-4d8b-aee5-2ad17596aaec"
+                href={promoPlans[selectedPlanIndex].paymentLink}
                 target="_blank"
                 className="mx-auto mt-auto mb-5"
               >
