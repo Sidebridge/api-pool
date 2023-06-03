@@ -66,9 +66,16 @@ export default function App({
     const keyboardEvent = event as unknown as KeyboardEvent;
     if (
       (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
-      keyboardEvent.key === "k"
+      keyboardEvent.key.toLowerCase() === "k"
     ) {
       toggleModal("aiSearchModal", true);
+    }
+
+    if (
+      (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
+      keyboardEvent.key.toLowerCase() === "f"
+    ) {
+      toggleModal("quickFindPopover", true);
     }
   };
 

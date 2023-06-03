@@ -36,6 +36,14 @@ const Hero = () => {
       </div>
 
       <div className={clsx("align-col items-center w-10/12 text-center")}>
+        <span className="mb-12  text-grey-label">
+          Use
+          <span className="p-4 py-3 mx-3 text-white press glass-bg">
+            {" "}
+            Cmd(⌘) + F{" "}
+          </span>
+          for quick find
+        </span>
         <h1
           className={clsx(
             "w-10/12 mb-8 text-5xl font-semibold text-white break-keep",
@@ -75,7 +83,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="items-center align-row">
+        <div className="items-center mt-4 align-row">
           <BaseButton
             text="Explore APIs"
             type="primary"
@@ -106,7 +114,7 @@ const Hero = () => {
       </div>
 
       <Image
-        className={clsx("mt-20 w-11/12 hover-animate-pulse-rotate")}
+        className={clsx("mt-10 w-11/12 hover-animate-pulse-rotate")}
         src={heroImage}
         height="480"
         alt="APIPool Logo"

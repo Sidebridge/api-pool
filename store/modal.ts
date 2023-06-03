@@ -6,6 +6,7 @@ interface Modal {
   apiRecommendationModal: boolean;
   bookmarksModal: boolean;
   aiSearchModal: boolean;
+  quickFindPopover: boolean;
 }
 
 export const modals: Entity<Modal> = entity({
@@ -13,6 +14,7 @@ export const modals: Entity<Modal> = entity({
   apiRecommendationModal: false,
   bookmarksModal: false,
   aiSearchModal: false,
+  quickFindPopover: false,
 } as Modal);
 
 export const toggleModal = (modal: string, value: boolean) => {
