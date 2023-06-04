@@ -1,7 +1,6 @@
 import { entity, type Entity } from "simpler-state";
-import produce from "immer";
 
-interface Modal {
+interface Modals {
   loginModal: boolean;
   apiRecommendationModal: boolean;
   bookmarksModal: boolean;
@@ -9,18 +8,16 @@ interface Modal {
   quickFindPopover: boolean;
 }
 
-export const modals: Entity<Modal> = entity({
+export const modals: Entity<Modals> = entity({
   loginModal: false,
   apiRecommendationModal: false,
   bookmarksModal: false,
   aiSearchModal: false,
   quickFindPopover: false,
-} as Modal);
+} as Modals);
 
-export const toggleModal = (modal: string, value: boolean) => {
-  modals.set(
-    produce((draft) => {
-      draft[modal] = value;
-    })
-  );
+export const toggleModal = (modal: keyof Modals, value: boolean) => {
+  modals.set((prev) => {
+    return { ...prev, [modal]: value };
+  });
 };

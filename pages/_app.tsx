@@ -22,17 +22,13 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { isMobile } from "react-device-detect";
 
-import LoginUI from "@/components/auth/LoginUI";
-import ApiRequestForm from "@/components/modals/ApiRequestForm";
-import BaseModal from "@/components/common/base/BaseModal";
-import BookmarksList from "@/components/modals/BookmarksList";
+import GlobalModal from "@/components/modals/GlobalModals";
+import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
 
 import { modals, toggleModal } from "@/store/modal";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 
 import { Database } from "@/types/supabase";
-import AiSearchModal from "@/components/modals/AiSearchModal";
-import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
 import { useRouter } from "next/navigation";
 
 export default function App({
@@ -107,49 +103,9 @@ export default function App({
         </div>
       </Offline> */}
 
-      {loginModal && (
-        <BaseModal
-          styles="border-t-2 border-primary"
-          isOpen={loginModal}
-          onClose={() => toggleModal("loginModal", false)}
-        >
-          <LoginUI />
-        </BaseModal>
-      )}
-
-      {apiRecommendationModal && (
-        <BaseModal
-          innerWidth="50%"
-          isOpen={apiRecommendationModal}
-          onClose={() => toggleModal("apiRecommendationModal", false)}
-        >
-          <ApiRequestForm
-            onSubmitted={() => toggleModal("apiRecommendationModal", false)}
-          />
-        </BaseModal>
-      )}
-
-      {bookmarksModal && (
-        <BaseModal
-          innerWidth="60%"
-          isOpen={bookmarksModal}
-          onClose={() => toggleModal("bookmarksModal", false)}
-        >
-          <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
-        </BaseModal>
-      )}
-
-      {aiSearchModal && (
-        <BaseModal
-          innerWidth="60%"
-          isOpen={aiSearchModal}
-          onClose={() => toggleModal("aiSearchModal", false)}
-        >
-          <AiSearchModal onClose={() => toggleModal("aiSearchModal", false)} />
-        </BaseModal>
-      )}
-
       <MobilePlaceholder />
+
+      <GlobalModal />
 
       {/* <Analytics /> */}
     </SessionContextProvider>

@@ -1,7 +1,4 @@
-import useSWR from "swr";
-
 import { entity, type Entity } from "simpler-state";
-import produce from "immer";
 
 import type { ApiBookmark } from "@/types/api-service.type";
 

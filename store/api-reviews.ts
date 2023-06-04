@@ -1,7 +1,6 @@
 import useSWR from "swr";
 
 import { entity, type Entity } from "simpler-state";
-import produce from "immer";
 
 import { supabaseClient } from "@/utils/services/supabase/client";
 import { ApiReview } from "@/types/api-service.type";

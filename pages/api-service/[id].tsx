@@ -410,51 +410,43 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
         </section>
       </div>
 
-      {isShowingRelatedArticles && (
-        <BaseModal
-          styles="border border-grey-border"
-          isOpen={isShowingRelatedArticles}
-          innerWidth="50%"
-          onClose={() => {
-            setArticlesModalState(false);
-          }}
-        >
-          <ApiBlogPosts />
-        </BaseModal>
-      )}
+      <BaseModal
+        styles="border border-grey-border"
+        isOpen={isShowingRelatedArticles}
+        innerWidth="50%"
+        onClose={() => {
+          setArticlesModalState(false);
+        }}
+      >
+        <ApiBlogPosts />
+      </BaseModal>
 
-      {isShowingReviewForm && (
-        <BaseModal
-          styles="border border-grey-border"
-          isOpen={isShowingReviewForm}
-          innerWidth="50%"
-          onClose={() => {
-            setReviewFormState(false);
-          }}
-        >
-          <ApiReviewForm
-            service={currentApiDetail}
-            onSave={async () =>
-              await getApiReviews(currentApiDetail.service_id)
-            }
-            onClose={() => setReviewFormState(false)}
-          />
-        </BaseModal>
-      )}
+      <BaseModal
+        styles="border border-grey-border"
+        isOpen={isShowingReviewForm}
+        innerWidth="50%"
+        onClose={() => {
+          setReviewFormState(false);
+        }}
+      >
+        <ApiReviewForm
+          service={currentApiDetail}
+          onSave={async () => await getApiReviews(currentApiDetail.service_id)}
+          onClose={() => setReviewFormState(false)}
+        />
+      </BaseModal>
 
-      {isShowingDocPreview && (
-        <LinkPreviewFrame
-          srcLink={currentApiDetail.source_url || ""}
-          isOpen={isShowingDocPreview}
-          onClose={() => setDocPreviewState(false)}
-        >
-          <iframe
-            src={currentApiDetail.source_url || ""}
-            frameBorder="0"
-            className="w-full h-full"
-          ></iframe>
-        </LinkPreviewFrame>
-      )}
+      <LinkPreviewFrame
+        srcLink={currentApiDetail.source_url || ""}
+        isOpen={isShowingDocPreview}
+        onClose={() => setDocPreviewState(false)}
+      >
+        <iframe
+          src={currentApiDetail.source_url || ""}
+          frameBorder="0"
+          className="w-full h-full"
+        ></iframe>
+      </LinkPreviewFrame>
     </MainLayout>
   );
 };

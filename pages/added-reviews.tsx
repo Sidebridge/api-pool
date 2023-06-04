@@ -184,23 +184,21 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
         <NewsletterSub />
       </main>
 
-      {isShowingReviewForm && (
-        <BaseModal
-          styles="border border-grey-border"
-          isOpen={isShowingReviewForm}
-          innerWidth="50%"
-          onClose={() => {
-            setReviewFormState(false);
-          }}
-        >
-          <ApiReviewForm
-            currentReview={reviewToEdit as ApiReview}
-            service={reviewToEdit?.api_services}
-            onSave={fetchUserReviews}
-            onClose={() => setReviewFormState(false)}
-          />
-        </BaseModal>
-      )}
+      <BaseModal
+        styles="border border-grey-border"
+        isOpen={isShowingReviewForm}
+        innerWidth="50%"
+        onClose={() => {
+          setReviewFormState(false);
+        }}
+      >
+        <ApiReviewForm
+          currentReview={reviewToEdit as ApiReview}
+          service={reviewToEdit?.api_services}
+          onSave={fetchUserReviews}
+          onClose={() => setReviewFormState(false)}
+        />
+      </BaseModal>
     </MainLayout>
   );
 };

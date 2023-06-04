@@ -21,6 +21,8 @@ const LinkPreviewFrame = ({
   srcLink,
   onClose,
 }: PreviewFrameProps) => {
+  if (!isOpen) return null;
+
   return (
     <>
       {isOpen && (

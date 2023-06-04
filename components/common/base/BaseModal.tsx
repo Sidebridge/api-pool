@@ -13,15 +13,18 @@ type BaseModalProps = {
 const BaseModal = ({
   children,
   styles,
-  isOpen = true,
+  isOpen = false,
   innerWidth = "45%",
   onClose,
 }: BaseModalProps) => {
+  if (!isOpen) return null;
+
   function handleClose() {
     document.body.classList.remove("overflow-y-hidden");
     onClose();
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     document.body.classList.add("overflow-y-hidden");
   }, []);
