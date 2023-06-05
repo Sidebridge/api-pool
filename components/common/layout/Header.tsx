@@ -24,7 +24,7 @@ function Header() {
   const user = useUser();
 
   return (
-    <div className="">
+    <>
       <div className="z-[50] sticky top-0 w-full p-4 notice-banner bg-accent centered-col">
         <p>This platform is still a work in progress ⚙️</p>
       </div>
@@ -82,7 +82,7 @@ function Header() {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

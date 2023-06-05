@@ -15,7 +15,7 @@ const promotionBenefits = [
   "Get in front of Millions of Developers worldwide by featuring on our homepage and above other listings in the explore feed",
   "More than 10,000 API Doc visits per month",
   "Sponsored helper articles to facilitate the ease of use of your API product",
-  `Standout from thousands of listed API products with our prominent & fancy "Featured" tag`,
+  `Standout from thousands of listed API products with our prominent & fancy "Featured" tag, also a prioritsed custom display logo`,
   "Sponsored newsletters delivered to 10,000+ and growing email subscribers",
 ];
 
