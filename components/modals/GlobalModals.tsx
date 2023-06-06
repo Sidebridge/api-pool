@@ -5,10 +5,16 @@ import LoginUI from "@/components/auth/LoginUI";
 import ApiRequestForm from "@/components/modals/ApiRequestForm";
 import BookmarksList from "@/components/modals/BookmarksList";
 import AiSearchModal from "@/components/modals/AiSearchModal";
+import QuickFindPopover from "@/components/modals/QuickFindPopover";
 
 export const GlobalModals = () => {
-  const { loginModal, apiRecommendationModal, bookmarksModal, aiSearchModal } =
-    modals.use();
+  const {
+    loginModal,
+    apiRecommendationModal,
+    bookmarksModal,
+    aiSearchModal,
+    quickFindPopover,
+  } = modals.use();
 
   return (
     <>
@@ -44,6 +50,19 @@ export const GlobalModals = () => {
         onClose={() => toggleModal("aiSearchModal", false)}
       >
         <AiSearchModal onClose={() => toggleModal("aiSearchModal", false)} />
+      </BaseModal>
+
+      <BaseModal
+        innerWidth="60%"
+        isOpen={quickFindPopover}
+        showCloseBtn={false}
+        styles="mt-20 bg-transparent rounded-none"
+        onClose={() => toggleModal("quickFindPopover", false)}
+        onOutClick={() => toggleModal("quickFindPopover", false)}
+      >
+        <QuickFindPopover
+          onClose={() => toggleModal("quickFindPopover", false)}
+        />
       </BaseModal>
     </>
   );

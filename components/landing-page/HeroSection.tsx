@@ -36,14 +36,27 @@ const Hero = () => {
       </div>
 
       <div className={clsx("align-col items-center w-10/12 text-center")}>
-        <span className="mb-12  text-grey-label">
-          Use
-          <span className="p-4 py-3 mx-3 text-white press glass-bg">
-            {" "}
-            Cmd(⌘) + F{" "}
-          </span>
-          for quick find
-        </span>
+        <div className="items-center p-1 mb-8 text-grey-label align-row">
+          <span>Use</span>
+          <div
+            className={clsx(
+              "box-content h-10 p-1 mx-3 border border-grey-legacy border-opacity-20 centered-row",
+              "rounded-xl  hover:border-opacity-40"
+            )}
+            onClick={() => toggleModal("quickFindPopover", true)}
+          >
+            <span className="h-full px-4 rounded-lg text-light centered-col py-auto press glass-bg">
+              {" "}
+              Cmd ⌘{" "}
+            </span>{" "}
+            <span className="mx-1.5">+</span>
+            <span className="h-full px-4 rounded-lg text-light centered-col press glass-bg">
+              {" "}
+              K{" "}
+            </span>
+          </div>
+          <span>for quick find</span>
+        </div>
         <h1
           className={clsx(
             "w-10/12 mb-8 text-5xl font-semibold text-white break-keep",

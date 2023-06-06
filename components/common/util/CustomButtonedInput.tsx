@@ -14,7 +14,8 @@ type CustomInputProps = {
   btnText: string;
   placeholder: string;
   processing: boolean;
-  icon: IconType;
+  symbol?: string;
+  icon?: IconType;
   disabled?: boolean;
   value: string;
   onClick: (value: string) => void;
@@ -33,6 +34,7 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
       placeholder,
       processing,
       disabled = false,
+      symbol,
       icon,
       value,
       onClick,
@@ -66,7 +68,8 @@ const CustomInput = forwardRef<HTMLInputElement, Props>(
         )}
       >
         <div className="items-center w-full p-1 pl-3 align-row">
-          <AppIcon icon={icon} name={icon.toLowerCase()} />
+          {symbol && <span className={clsx("text-primary")}>{symbol}</span>}
+          {icon && <AppIcon icon={icon} name={icon.toLowerCase()} />}
           <input
             className={clsx(
               "bg-transparent outline-none border-none text-white placeholder-grey-label text-base ml-2 flex flex-grow",

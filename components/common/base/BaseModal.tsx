@@ -7,7 +7,9 @@ type BaseModalProps = {
   isOpen: boolean;
   styles?: string;
   innerWidth?: string;
+  showCloseBtn?: boolean;
   onClose: () => void;
+  onOutClick?: () => void;
 };
 
 const BaseModal = ({
@@ -15,19 +17,20 @@ const BaseModal = ({
   styles,
   isOpen = false,
   innerWidth = "45%",
+  showCloseBtn = true,
+  onOutClick = () => {},
   onClose,
 }: BaseModalProps) => {
-  if (!isOpen) return null;
-
   function handleClose() {
     document.body.classList.remove("overflow-y-hidden");
     onClose();
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     document.body.classList.add("overflow-y-hidden");
   }, []);
+
+  if (!isOpen) return null;
 
   return (
     <>
@@ -36,7 +39,10 @@ const BaseModal = ({
           className="fixed top-0 left-0 w-screen h-screen modal"
           style={{ zIndex: 99 }}
         >
-          <div className="absolute z-20 w-full h-full backdrop bg-dark bg-opacity-80 backdrop-blur"></div>
+          <div
+            className="absolute z-20 w-full h-full backdrop bg-dark bg-opacity-80 backdrop-blur"
+            onClick={onOutClick}
+          ></div>
 
           <div
             className={clsx(
@@ -45,12 +51,14 @@ const BaseModal = ({
             )}
             style={{ maxHeight: "90%", width: `${innerWidth}` }}
           >
-            <AppIcon
-              icon="RoundCloseWhite"
-              name="close-btn"
-              styles="w-7 h-7 press ml-auto"
-              onClick={handleClose}
-            />
+            {showCloseBtn && (
+              <AppIcon
+                icon="RoundCloseWhite"
+                name="close-btn"
+                styles="w-7 h-7 press ml-auto"
+                onClick={handleClose}
+              />
+            )}
 
             <div
               className={clsx(

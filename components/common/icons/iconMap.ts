@@ -46,6 +46,7 @@ import MagicWand from "../../../assets/images/svg/magicwand_orange.svg";
 import ExpandRoundWhite from "../../../assets/images/svg/expand_round_white.svg";
 import EditGreen from "../../../assets/images/svg/edit_green.svg";
 import TrashRed from "../../../assets/images/svg/trash_red.svg";
+import TipsGreen from "../../../assets/images/svg/tips_green.svg";
 
 import BasicTagGrey from "../../../assets/images/svg/basic_plan_grey.svg";
 import BasicTagBlack from "../../../assets/images/svg/basic_plan_black.svg";
@@ -113,6 +114,8 @@ const Icons = {
   ExpandRoundWhite,
   EditGreen,
   TrashRed,
+  TipsGreen,
+
   BasicTagBlack,
   BasicTagGrey,
   ProTrophyBlack,

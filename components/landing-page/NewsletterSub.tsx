@@ -137,7 +137,8 @@ const NewsletterSub = () => {
             disabled={
               !(validateEmail(subscriptionForm.email) && subscriptionForm.name)
             }
-            icon="MailWhite"
+            // icon="MailWhite"
+            symbol="@"
             value={subscriptionForm.email}
             onClick={subscriptionHandler}
             onEnter={subscriptionHandler}

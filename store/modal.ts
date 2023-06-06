@@ -1,4 +1,5 @@
 import { entity, type Entity } from "simpler-state";
+import produce from "immer";
 
 interface Modals {
   loginModal: boolean;
@@ -17,7 +18,9 @@ export const modals: Entity<Modals> = entity({
 } as Modals);
 
 export const toggleModal = (modal: keyof Modals, value: boolean) => {
-  modals.set((prev) => {
-    return { ...prev, [modal]: value };
-  });
+  modals.set(
+    produce((modalsProxy) => {
+      modalsProxy[modal] = value;
+    })
+  );
 };

@@ -45,8 +45,7 @@ export default function App({
 
   const user = useUser();
 
-  const { loginModal, apiRecommendationModal, bookmarksModal, aiSearchModal } =
-    modals.use();
+  const { quickFindPopover } = modals.use();
   const allApiBookmarks = userApiBookmarks.use();
 
   useEffect(() => {
@@ -60,29 +59,25 @@ export default function App({
 
   const handleKeyDown = (event: Event) => {
     const keyboardEvent = event as unknown as KeyboardEvent;
-    if (
-      (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
-      keyboardEvent.key.toLowerCase() === "k"
-    ) {
-      toggleModal("aiSearchModal", true);
-    }
+
+    if (keyboardEvent.key === "Escape")
+      return toggleModal("quickFindPopover", false);
 
     if (
       (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
-      keyboardEvent.key.toLowerCase() === "f"
-    ) {
+      keyboardEvent.key.toLowerCase() === "k"
+    )
       toggleModal("quickFindPopover", true);
-    }
   };
 
   useEffect(() => {
     if (isMobile) router.push("/mobile");
 
-    // document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
-    // return () => {
-    //   document.removeEventListener("keydown", handleKeyDown);
-    // };
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
