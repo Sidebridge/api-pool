@@ -16,6 +16,7 @@ type GoToPages = {
   displayText: string;
   aliases: string[];
   route: string;
+  available?: boolean;
 };
 
 type QuickOpenActions = {
@@ -31,12 +32,14 @@ const gotoPages: GoToPages[] = [
     displayText: "Explore Page (find APIs by use case)",
     aliases: ["explore", "find API", "explore", "search api", "search"],
     route: "/explore",
+    available: true,
   },
   {
     name: "Compare",
     displayText: "Compare Page (compare similar APIs by features)",
     aliases: ["compare", "compare api", "choose api"],
     route: "/compare",
+    available: false,
   },
   {
     name: "Contribution",
@@ -51,12 +54,14 @@ const gotoPages: GoToPages[] = [
       "support",
     ],
     route: "",
+    available: false,
   },
   {
     name: "Promo",
     displayText: "Promote/Sponsor API Product",
     aliases: ["promo", "promotion", "promote", "sponsor", "sponsorship"],
     route: "/#promote-api",
+    available: true,
   },
 ];
 
@@ -251,7 +256,7 @@ const QuickFindPopover = ({ onClose = () => {} }: { onClose?: () => void }) => {
           )}
         >
           {(matchingPages.length || matchingQuickOpenActions.length) && (
-            <div className={clsx("w-full mt-4 align-col")}>
+            <div className={clsx("w-full my-4 align-col")}>
               <p className="mx-5 mb-2 text-sm text-grey-legacy">Page Actions</p>
               {matchingPages.map((page) => (
                 <SearchSuggestion
@@ -259,10 +264,13 @@ const QuickFindPopover = ({ onClose = () => {} }: { onClose?: () => void }) => {
                   icon="DocScanner"
                   tag="Go To"
                   btnText="Open"
+                  btnTooltip={page.available ? "" : "Coming Soon ✨"}
                   text={page.displayText}
                   action={() => {
-                    onClose();
-                    router.push(page.route);
+                    if (page.available) {
+                      onClose();
+                      router.push(page.route);
+                    }
                   }}
                 />
               ))}
@@ -279,7 +287,8 @@ const QuickFindPopover = ({ onClose = () => {} }: { onClose?: () => void }) => {
               ))}
             </div>
           )}
-          <div className="w-full mt-4 align-col">
+
+          <div className="w-full align-col">
             <p className="mx-5 mb-2 text-sm text-grey-legacy">Resources</p>
             {!(
               searchTerm.startsWith("go to ") || searchTerm.startsWith("goto ")
