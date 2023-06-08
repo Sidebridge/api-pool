@@ -12,6 +12,8 @@ import { toggleModal } from "@/store/modal";
 
 // import { useAuth } from "@/store/context/AuthProvider";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 function Header() {
   const navItems = [
@@ -22,6 +24,8 @@ function Header() {
 
   // const { auth } = useAuth();
   const user = useUser();
+
+  const router = useRouter();
 
   return (
     <>
@@ -48,7 +52,12 @@ function Header() {
                 title={!item.available ? "Coming Soon ✨" : ""}
                 placement="bottom"
               >
-                <li className="ml-8 text-light hover:text-accent press">
+                <li
+                  className={clsx(
+                    "ml-8 text-light hover:text-accent press",
+                    router.pathname === item.route && "opacity-50 disabled"
+                  )}
+                >
                   <Link href={item.route} target={item.target || ""}>
                     {item.title}
                   </Link>
