@@ -1,5 +1,6 @@
 import LogoPlaceholder from "../../../assets/images/logo/apipool-favicon_grey.svg";
 import Search from "../../../assets/images/svg/search.svg";
+import SearchGreen from "../../../assets/images/svg/search_green.svg";
 import Ecommerce from "../../../assets/images/svg/ecommerce.svg";
 import Sport from "../../../assets/images/svg/sports.svg";
 import Movie from "../../../assets/images/svg/movie.svg";
@@ -47,6 +48,7 @@ import ExpandRoundWhite from "../../../assets/images/svg/expand_round_white.svg"
 import EditGreen from "../../../assets/images/svg/edit_green.svg";
 import TrashRed from "../../../assets/images/svg/trash_red.svg";
 import TipsGreen from "../../../assets/images/svg/tips_green.svg";
+import DocScanner from "../../../assets/images/svg/doc_scanner_green.svg";
 
 import BasicTagGrey from "../../../assets/images/svg/basic_plan_grey.svg";
 import BasicTagBlack from "../../../assets/images/svg/basic_plan_black.svg";
@@ -69,6 +71,7 @@ export type IconType = keyof typeof Icons;
 const Icons = {
   LogoPlaceholder,
   Search,
+  SearchGreen,
   Ecommerce,
   Sport,
   Movie,
@@ -115,6 +118,7 @@ const Icons = {
   EditGreen,
   TrashRed,
   TipsGreen,
+  DocScanner,
 
   BasicTagBlack,
   BasicTagGrey,

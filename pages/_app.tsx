@@ -65,7 +65,7 @@ export default function App({
 
     if (
       (keyboardEvent.ctrlKey || keyboardEvent.metaKey) &&
-      keyboardEvent.key.toLowerCase() === "k"
+      keyboardEvent.key.toLowerCase() === "/"
     )
       toggleModal("quickFindPopover", true);
   };

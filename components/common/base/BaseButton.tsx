@@ -9,6 +9,7 @@ type BaseButtonProps = {
   id?: string;
   styles?: string;
   icon?: IconType;
+  postIcon?: IconType;
   iconStyles?: string;
   text?: string;
   type?: "primary" | "secondary" | "default";
@@ -24,6 +25,7 @@ const BaseButton = ({
   id,
   styles,
   icon,
+  postIcon,
   iconStyles,
   text,
   type = "primary",
@@ -68,6 +70,10 @@ const BaseButton = ({
 
           {text && (
             <p className={clsx((icon || children) && "ml-2.5")}>{text}</p>
+          )}
+
+          {postIcon && (
+            <AppIcon icon={postIcon} name="icon" styles={iconStyles} />
           )}
         </div>
       </button>

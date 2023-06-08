@@ -52,7 +52,7 @@ const Hero = () => {
             <span className="mx-1.5">+</span>
             <span className="h-full px-4 rounded-lg text-light centered-col press glass-bg">
               {" "}
-              K{" "}
+              /{" "}
             </span>
           </div>
           <span>for quick find</span>
