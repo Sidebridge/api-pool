@@ -281,12 +281,16 @@ const QuickFindPopover = ({ onClose = () => {} }: { onClose?: () => void }) => {
           )}
           <div className="w-full mt-4 align-col">
             <p className="mx-5 mb-2 text-sm text-grey-legacy">Resources</p>
-            <SearchSuggestion
-              icon="TipsGreen"
-              tag="Find API"
-              btnText="Find"
-              action={quickSearchAPI}
-            />
+            {!(
+              searchTerm.startsWith("go to ") || searchTerm.startsWith("goto ")
+            ) && (
+              <SearchSuggestion
+                icon="TipsGreen"
+                tag="Find API"
+                btnText="Find"
+                action={quickSearchAPI}
+              />
+            )}
             <SearchSuggestion
               icon="MagicWand"
               tag="AI Search"
