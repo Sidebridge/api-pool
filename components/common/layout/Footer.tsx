@@ -8,7 +8,7 @@ const Footer = () => {
   const [isDonateHovered] = useState(false);
 
   return (
-    <div className="w-full text-base font-normal row-btwn bg-body">
+    <div className="items-center w-full text-base font-normal row-btwn bg-body">
       <a href="" className="">
         <div
           className={clsx(

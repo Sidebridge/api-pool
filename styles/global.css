@@ -59,7 +59,7 @@ body {
   overflow-x: hidden;
   width: 100vw;
 }
-@media (max-width: 540px) {
+@media (max-width: 450px) {
   body {
     overflow: hidden;
     -ms-overflow-style: none; /* IE and Edge */

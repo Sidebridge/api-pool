@@ -18,7 +18,7 @@ function MainLayout({ children }: MainLayoutProps) {
       </main>
       <section
         id="footer"
-        className="w-full p-20 py-6 border-t border-opacity-75 border-grey-light bg-body"
+        className="w-full px-10 py-6 border-t border-opacity-75 lg:px-20 border-grey-light bg-body"
       >
         <Footer />
       </section>

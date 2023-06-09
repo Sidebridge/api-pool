@@ -23,7 +23,7 @@ const Hero = () => {
     <section
       id="hero-section"
       className={clsx(
-        "align-col w-full justify-between items-center pb-14 pt-28 px-24",
+        "align-col w-full justify-between items-center pb-14 pt-28 lg:2xl:px-24 px-10",
         classes["hero__bg"]
       )}
     >
@@ -35,13 +35,17 @@ const Hero = () => {
         />
       </div>
 
-      <div className={clsx("align-col items-center w-10/12 text-center")}>
+      <div
+        className={clsx(
+          "align-col items-center w-11/12 lg:w-10/12 text-center"
+        )}
+      >
         <div className="items-center p-1 mb-8 text-grey-label align-row">
           <span>Use</span>
           <div
             className={clsx(
               "box-content h-10 p-1 mx-3 border border-grey-legacy border-opacity-20 centered-row",
-              "rounded-xl  hover:border-opacity-40"
+              "rounded-xl hover:border-opacity-40"
             )}
             onClick={() => toggleModal("quickFindPopover", true)}
           >
@@ -59,7 +63,7 @@ const Hero = () => {
         </div>
         <h1
           className={clsx(
-            "w-10/12 mb-8 text-5xl font-semibold text-white break-keep",
+            "w-full lg:w-10/12 mb-8 text-5xl font-semibold text-white break-keep",
             classes["header-text__bg"]
           )}
           style={{ lineHeight: "58px" }}
@@ -67,7 +71,7 @@ const Hero = () => {
           Discover The Right API Products w/ APIPOOL <wbr />፡ Your Ultimate
           Developer Peephole ✨
         </h1>
-        <p className="w-9/12 text-lg font-normal capitalize text-grey-legacy">
+        <p className="w-11/12 text-lg font-normal capitalize lg:w-9/12 text-grey-legacy">
           Landing the perfect API integrations shouldn&apos;t cause you sweat 💧
           <br />
           APIPOOL Is The Ultimate Search Engine for API Products/Services With
@@ -115,19 +119,19 @@ const Hero = () => {
 
       <div className="relative w-11/12 mt-12">
         <Image
-          className={clsx("mt-10 absolute left-0  animate-move")}
+          className={clsx("-mt-10 absolute left-0 animate-move")}
           src={shortBar}
           alt=""
         />
         <Image
-          className={clsx("absolute right-64 animate-move-2s")}
+          className={clsx("mt-5 absolute right-64 animate-move-2s")}
           src={mediumBar}
           alt=""
         />
       </div>
 
       <Image
-        className={clsx("mt-10 w-11/12 hover-animate-pulse-rotate")}
+        className={clsx("mt-16 w-11/12 hover-animate-pulse-rotate")}
         src={heroImage}
         height="480"
         alt="APIPool Logo"

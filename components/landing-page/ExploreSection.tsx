@@ -30,7 +30,9 @@ const Explore = ({
   return (
     <section
       id="explore-section"
-      className={clsx("align-col w-full items-center pt-10 px-24 pb-10")}
+      className={clsx(
+        "align-col w-full items-center pt-10 lg:px-24 px-10 pb-10"
+      )}
     >
       {tag && (
         <div className="px-10 py-3 mb-4 font-normal text-center border rounded-full featured-pill bg-dark-matte-new text-grey-legacy border-dark">
@@ -44,12 +46,12 @@ const Explore = ({
         >
           {title}
         </h2>
-        <p className="w-5/12 mt-4 text-lg font-normal capitalize text-grey-legacy">
+        <p className="w-10/12 mt-4 text-lg font-normal capitalize lg:w-5/12 text-grey-legacy">
           {subtitle}
         </p>
       </div>
 
-      <div className="grid w-full grid-flow-row grid-cols-3 mt-16 featured-list gap-y-8 gap-x-5">
+      <div className="grid w-full grid-flow-row grid-cols-2 mt-16 lg:grid-cols-3 featured-list gap-y-8 gap-x-5">
         {services?.map((service) => (
           <div
             className="h-fit press"

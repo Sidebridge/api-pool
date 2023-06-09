@@ -35,7 +35,7 @@ function Header() {
 
       <div
         className={clsx(
-          "align-row py-4 px-24 bg-body items-center",
+          "align-row py-4 px-10 lg:px-24 bg-body items-center",
           "border-b border-grey-legacy border-opacity-10"
         )}
         style={{ zIndex: 90 }}
@@ -44,7 +44,7 @@ function Header() {
           <AppLogo />
         </Link>
 
-        <nav className="ml-10">
+        <nav className="hidden ml-10 lg:flex">
           <ul className="items-center align-row">
             {navItems.map((item) => (
               <Tooltip

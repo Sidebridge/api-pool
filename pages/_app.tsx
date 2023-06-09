@@ -20,7 +20,7 @@ import "@/styles/loader.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { isMobile } from "react-device-detect";
+import { isMobile, isTablet } from "react-device-detect";
 
 import GlobalModal from "@/components/modals/GlobalModals";
 import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
@@ -71,7 +71,7 @@ export default function App({
   };
 
   useEffect(() => {
-    if (isMobile) router.push("/mobile");
+    // if (isMobile) router.push("/mobile");
 
     document.addEventListener("keydown", handleKeyDown);
 

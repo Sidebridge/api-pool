@@ -148,9 +148,9 @@ const PromoSection = () => {
     <>
       <section
         id="promote-api"
-        className="w-full bg-[#333333] bg-opacity-20 mt-20 p-24 py-16 row-btwn items-center"
+        className="w-full bg-[#333333] bg-opacity-20 mt-20 lg:px-24 px-10 py-16 flex flex-col lg:flex-row  lg:items-center lg:justify-between"
       >
-        <div className="w-5/12 align-col">
+        <div className="w-11/12 lg:w-5/12 align-col">
           <h1 className="text-3xl text-transparent accent-text-stroke">
             Get Your API Product Featured
           </h1>
@@ -168,7 +168,7 @@ const PromoSection = () => {
                 <span className="">{benefit}</span>
               </div>
             ))}
-            <p className="ml-6 ">
+            <p className="lg:ml-6 ml-[28px]">
               and more to help you get to your target users and drive sales...
             </p>
           </div>
@@ -184,7 +184,7 @@ const PromoSection = () => {
               setShowPromoPlans(true);
             }}
           />
-          <p className="mt-2 text-sm font-light text-grey-lighter">
+          <p className="mt-3 text-sm font-light text-grey-lighter">
             Any doubt or special requirements?{" "}
             <a
               href="mailto:partnerships@useapipool.com?subject=APIPOOL PARTNERSHIP REQUEST"
@@ -196,7 +196,10 @@ const PromoSection = () => {
           </p>
         </div>
 
-        <AppIcon icon={"PromoLogo"} styles="opacity-50" />
+        <AppIcon
+          icon={"PromoLogo"}
+          styles="opacity-50 mx-auto lg:mx-0 lg:mt-0 mt-12"
+        />
       </section>
 
       <BaseModal isOpen={isShowPromoPlans} onClose={resetModal}>

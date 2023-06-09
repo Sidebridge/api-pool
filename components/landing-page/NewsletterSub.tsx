@@ -83,13 +83,13 @@ const NewsletterSub = () => {
   return (
     <div
       className={clsx(
-        "w-full bg-contain text-center border-x-0 light-border font-light mt-16 align-col items-center py-14 pb-6 mb-5",
+        "w-full bg-contain text-center border-x-0 light-border font-light mt-16 align-col items-center pt-6 lg:pt-14 pt pb-6 mb-5",
         classes["pattern-star__bg"]
       )}
     >
       <div
         className={clsx(
-          "w-7/12 pt-12 pb-16 text-center rounded-t-xl overflow-hidden mt-14 bg-dark-matte centered-col",
+          "w-10/12 px-16 lg:px-0 lg:w-7/12 pt-12 pb-16 text-center rounded-t-xl overflow-hidden mt-14 bg-dark-matte centered-col",
           classes["fade-grey__bg-t2b"]
         )}
       >
@@ -106,12 +106,13 @@ const NewsletterSub = () => {
         <p className="mt-4 text-lg text-grey-lighter">
           For exclusive updates on new listings, feature previews,
           announcements,
-          <br /> and fun surprises ✨, drop your details below.
+          <br className="hidden lg:flex" /> and fun surprises ✨, drop your
+          details below.
         </p>
 
         <div
           className={clsx(
-            "items-center align-col w-9/12 mt-10 rounded-t-lg py-8 pb-12",
+            "items-center align-col w-full lg:w-9/12 lg:mt-10 mt-14 rounded-t-lg py-8 pb-12",
             classes["fade-grey__bg-t2b"]
           )}
         >
