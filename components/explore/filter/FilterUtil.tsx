@@ -162,9 +162,7 @@ const FilterUtil = ({
             "bg-transparent outline-none border-none text-white py-2 text-base ml-2 flex flex-grow mx-2",
             "focus:border-none focus:outline-none placeholder:text-grey-light hover:placeholder:text-grey-label hover:placeholder:font-light"
           )}
-          placeholder={
-            "Search APIs by name, function, coverage, pricing and more..."
-          }
+          placeholder={"Search APIs by name, use case, description and more..."}
           type="text"
           value={searchTerm}
           onChange={onInputChange}
@@ -202,7 +200,9 @@ const FilterUtil = ({
             // onClick={() => toggleModal("aiSearchModal", true)}
           >
             <AppIcon icon={"MagicWand"} styles="mr-1.5" />
-            <span className="font-light text-accent">Advance Search w/ AI</span>
+            <span className="hidden font-light text-accent lg:block">
+              Advance Search w/ AI
+            </span>
           </div>
         </Tooltip>
       </div>

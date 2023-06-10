@@ -24,9 +24,10 @@ import {
 import { ApiFilters } from "@/public/constants/filters";
 
 import { toggleModal } from "@/store/modal";
+import { isMobile, isTablet } from "react-device-detect";
 
 const Explore: NextPage = () => {
-  const pageSize = 3;
+  const pageSize = isMobile || isTablet ? 10 : 12;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const sliderConfig = {
@@ -35,7 +36,7 @@ const Explore: NextPage = () => {
     autoplay: true,
     autoplaySpeed: 4000,
     speed: 500,
-    slidesToShow: 2.6,
+    slidesToShow: isMobile || isTablet ? 1.4 : 2.6,
     slidesToScroll: 1,
     arrows: false,
     swipeToSlide: true,
@@ -103,29 +104,32 @@ const Explore: NextPage = () => {
         ? JSON.parse(localStorage.getItem("localFilters") as string)
         : undefined
     );
+
+    document
+      .getElementById("explore-results")
+      ?.scrollIntoView({ behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (
     <MainLayout>
-      <div className="items-center w-full px-24 align-col">
+      <div className="items-center w-full px-10 lg:px-24 align-col">
         <div className="w-full py-16 text-center explore-header centered-col">
           <h1
             className={clsx("text-5xl font-medium", classes["header-text__bg"])}
           >
             Explore Thousands of API Services
           </h1>
-          <p className="mt-4 text-lg font-normal text-grey-legacy">
+          <p className="w-11/12 mt-4 text-lg font-normal text-grey-legacy lg:w-full">
             Easily find the right API for your next project. Filter by tags,
-            availability, function and more. <br />
+            availability, function and more. <br className="hidden lg:flex" />
             Detailed info, helpers, & accurate reviews. Latest offerings from
-            top companies.
-            <br />
+            top companies. <br className="hidden lg:flex" />
             Search now!
           </p>
         </div>
 
-        <section className="w-full mb-32 align-col">
+        <section id="explore-util" className="w-full mb-32 align-col">
           <FilterUtil
             isSearching={isSearchingApis}
             onFiltered={(searchString, filterSelections) =>
@@ -164,7 +168,10 @@ const Explore: NextPage = () => {
                 </div>
               )}
 
-            <div className={clsx("w-full result-list border-dark")}>
+            <div
+              id="explore-results"
+              className={clsx("w-full result-list border-dark")}
+            >
               <div className="w-full">
                 <div className="section-header-tab">
                   <p className={clsx("mx-auto section-header-title")}>
@@ -208,13 +215,13 @@ const Explore: NextPage = () => {
 
                 <div
                   className={clsx(
-                    "grid grid-flow-row grid-cols-3 px-8 box-border w-full mt-8 gap-x-5"
+                    "grid grid-flow-row grid-cols-2 lg:grid-cols-3 px-8 box-border w-full mt-8 gap-x-5"
                   )}
                 >
                   {commonApis.map((service, serviceIndex) => (
                     <div
                       className={clsx("mb-8 h-fit press")}
-                      style={{ minWidth: "22rem" }}
+                      // style={!isTablet ? { minWidth: "22rem" } : {}}
                       key={serviceIndex}
                     >
                       <ApiCard service={service} />
