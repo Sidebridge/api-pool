@@ -57,10 +57,6 @@ const ProfilePreview = () => {
     if (action === "showMyReviews") router.push("/added-reviews");
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
-
   return (
     <div
       className="relative items-center cursor-pointer align-row min-w-[220px]"
