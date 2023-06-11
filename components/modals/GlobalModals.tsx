@@ -19,15 +19,14 @@ export const GlobalModals = () => {
   return (
     <>
       <BaseModal
-        styles="border-t-2 border-primary"
         isOpen={loginModal}
+        styles="border-t-2 border-primary"
         onClose={() => toggleModal("loginModal", false)}
       >
         <LoginUI />
       </BaseModal>
 
       <BaseModal
-        innerWidth="50%"
         isOpen={apiRecommendationModal}
         onClose={() => toggleModal("apiRecommendationModal", false)}
       >
@@ -37,26 +36,26 @@ export const GlobalModals = () => {
       </BaseModal>
 
       <BaseModal
-        innerWidth="60%"
         isOpen={bookmarksModal}
+        innerStyles="lg:w-[60%]"
         onClose={() => toggleModal("bookmarksModal", false)}
       >
         <BookmarksList onClose={() => toggleModal("bookmarksModal", false)} />
       </BaseModal>
 
       <BaseModal
-        innerWidth="60%"
         isOpen={aiSearchModal}
+        innerStyles="lg:w-[60%]"
         onClose={() => toggleModal("aiSearchModal", false)}
       >
         <AiSearchModal onClose={() => toggleModal("aiSearchModal", false)} />
       </BaseModal>
 
       <BaseModal
-        innerWidth="60%"
         isOpen={quickFindPopover}
         showCloseBtn={false}
         styles="mt-20 bg-transparent rounded-none"
+        innerStyles="lg:w-[60%]"
         onClose={() => toggleModal("quickFindPopover", false)}
         onOutClick={() => toggleModal("quickFindPopover", false)}
       >

@@ -6,7 +6,7 @@ type BaseModalProps = {
   children: React.ReactNode;
   isOpen: boolean;
   styles?: string;
-  innerWidth?: string;
+  innerStyles?: string;
   showCloseBtn?: boolean;
   onClose: () => void;
   onOutClick?: () => void;
@@ -16,7 +16,7 @@ const BaseModal = ({
   children,
   styles,
   isOpen = false,
-  innerWidth = "45%",
+  innerStyles = "lg:w-[50%]",
   showCloseBtn = true,
   onOutClick = () => {},
   onClose,
@@ -46,10 +46,10 @@ const BaseModal = ({
 
           <div
             className={clsx(
-              "inner-modal z-30 absolute top-10 left-0 right-0 mx-auto",
-              innerWidth
+              "w-9/12  inner-modal z-30 absolute top-10 left-0 right-0 mx-auto",
+              innerStyles
             )}
-            style={{ maxHeight: "90%", width: `${innerWidth}` }}
+            style={{ maxHeight: "90%" }}
           >
             {showCloseBtn && (
               <AppIcon
@@ -62,7 +62,7 @@ const BaseModal = ({
 
             <div
               className={clsx(
-                "mt-4 w-full rounded-3xl  bg-dark-matte  overflow-y-scroll scrollbar-hide overflow-x-hidden",
+                "mt-4 w-full rounded-3xl bg-dark-matte  overflow-y-scroll scrollbar-hide overflow-x-hidden",
                 styles
               )}
               style={{ maxHeight: "85vh" }}

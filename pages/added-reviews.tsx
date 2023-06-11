@@ -123,7 +123,7 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
   return (
     <MainLayout>
       <main className="">
-        <div className="h-full mx-24 mt-10">
+        <div className="h-full mx-10 mt-10 lg:mx-24">
           <div className="items-center font-light align-row text-grey-lighter">
             <div
               className="items-center align-row press hover:text-primary"
@@ -150,7 +150,7 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
               )}
 
               {!isLoadingReviews && addedReviews.length && (
-                <div className="grid w-full grid-flow-row grid-cols-3 gap-x-6 gap-y-6">
+                <div className="grid w-full grid-flow-row grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
                   {addedReviews.map((review) => (
                     <ActionableReviewCard
                       key={review.id}
@@ -185,9 +185,8 @@ const AddedReviews: NextPage<UserReviewsPageProps> = ({ user }) => {
       </main>
 
       <BaseModal
-        styles="border border-grey-border"
         isOpen={isShowingReviewForm}
-        innerWidth="50%"
+        styles="border border-grey-border"
         onClose={() => {
           setReviewFormState(false);
         }}

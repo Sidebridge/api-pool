@@ -413,20 +413,18 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
       </div>
 
       <BaseModal
-        styles="border border-grey-border"
         isOpen={isShowingRelatedArticles}
-        innerWidth="50%"
+        styles="border border-grey-border"
         onClose={() => {
           setArticlesModalState(false);
         }}
       >
-        <ApiBlogPosts />
+        <ApiBlogPosts apiService={currentApiDetail} />
       </BaseModal>
 
       <BaseModal
-        styles="border border-grey-border"
         isOpen={isShowingReviewForm}
-        innerWidth="50%"
+        styles="border border-grey-border"
         onClose={() => {
           setReviewFormState(false);
         }}

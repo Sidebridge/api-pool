@@ -1,7 +1,8 @@
 import BaseButton from "@/components/common/base/BaseButton";
 import AppIcon from "@/components/common/icons";
+import { ApiService } from "@/types/api-service.type";
 
-const ApiBlogPosts = () => {
+const ApiBlogPosts = ({ apiService }: { apiService: ApiService }) => {
   const articles: number[] = [];
 
   return (
@@ -11,7 +12,8 @@ const ApiBlogPosts = () => {
           Relevant Helper Articles
         </h1>
         <span className="font-light text-grey-lighter">
-          Read the relevant articles about Flutterwave&apos;s API service(s)
+          Read the relevant articles about {apiService.service_name}&apos;s API
+          service(s)
         </span>
       </div>
 

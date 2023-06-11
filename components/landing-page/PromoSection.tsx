@@ -309,7 +309,7 @@ const PromoSection = () => {
               )}
 
               <section
-                className={clsx("z-50 w-11/12 mt-10 align-col")}
+                className={clsx("z-50 w-11/12 mt-5 lg:mt-10 align-col")}
                 style={{ display: formStep === 1 ? "flex" : "none" }}
               >
                 <div
@@ -415,7 +415,7 @@ const PromoSection = () => {
         )}
 
         {formStep === 2 && (
-          <div className="relative  p-8 box-border w-full h-[85vh] overflow-hidden bg-body border-[0.5px] border-grey-border align-col">
+          <div className="relative p-8 box-border w-full h-[85vh] overflow-hidden bg-body border-[0.5px] border-grey-border align-col">
             <div className="absolute opacity-60 -top-52 -left-16">
               <AppIcon icon={"SpotlightRayGrey"} />
             </div>
