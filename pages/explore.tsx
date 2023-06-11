@@ -96,6 +96,10 @@ const Explore: NextPage = () => {
   }, []);
 
   useEffect(() => {
+    document
+      .getElementById("explore-results")
+      ?.scrollIntoView({ behavior: "smooth" });
+
     const localFilters = localStorage.getItem("localFilters");
 
     searchApiService(
@@ -105,9 +109,6 @@ const Explore: NextPage = () => {
         : undefined
     );
 
-    document
-      .getElementById("explore-results")
-      ?.scrollIntoView({ behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 

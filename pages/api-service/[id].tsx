@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { isTablet } from "react-device-detect";
 
 import cardClasses from "@/styles/api-card.module.css";
 
+import { Tooltip } from "antd";
 import AppIcon from "@/components/common/icons";
 import MainLayout from "@/components/layout/MainLayout";
 import FeaturedTag from "@/components/common/util/FeaturedTag";
@@ -42,7 +44,6 @@ import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
 import api from "@/utils/services/axios";
 import toast from "react-hot-toast";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
-import { Tooltip } from "antd";
 
 const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   const router = useRouter();
@@ -160,9 +161,9 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
   return (
     <MainLayout>
       <div className="w-full py-10 align-col">
-        <section className="w-full px-24 align-col">
+        <section className="w-full px-10 lg:px-24 align-col">
           <div
-            className="items-center align-row press"
+            className="items-center w-fit align-row press"
             onClick={() =>
               router.push("/explore", undefined, {
                 shallow: true,
@@ -176,7 +177,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
 
           <section
             className={clsx(
-              "relative w-full my-6  mb-5 mt-24 p-6 border border-dark border-lg rounded-b-2xl",
+              "relative w-full my-6  mb-5 lg:mt-24 mt-16 p-6 border border-dark border-lg rounded-b-2xl",
               cardClasses["detail-header__bg"]
             )}
           >
@@ -203,8 +204,8 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
               {currentApiDetail.is_featured && <FeaturedTag />}
             </div>
 
-            <div className="w-full mt-4 row-btwn">
-              <div className="items-center text-sm align-row">
+            <div className="flex flex-col-reverse justify-between w-full mt-4 transition-all lg:items-center lg:flex-row">
+              <div className="items-center text-sm transition-all align-row">
                 <div className="p-1 px-3 mr-2 capitalize rounded-full bg-accent">
                   #{currentApiDetail.business_sector_name}
                 </div>
@@ -215,7 +216,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                 />
               </div>
 
-              <div className="items-center align-row">
+              <div className="items-center mb-4 ml-auto transition-all -mt-14 lg:mb-0 lg:mt-0 align-row lg:ml-0">
                 <BaseButton
                   icon="WebGlobe"
                   type="primary"
@@ -333,12 +334,13 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                       onClick={() => {}}
                     />
                   </div>
-                  <span className="mt-4 font-light text-grey-lighter">
-                    Ratings & Reviews ({allApiReviews.length} Review
+                  <span className="mt-4 font-light text-center text-grey-lighter">
+                    Ratings & Reviews <br className="flex lg:hidden" />(
+                    {allApiReviews.length} Review
                     {allApiReviews.length === 1 ? "" : "s"})
                   </span>
 
-                  <div className="items-center mt-8 align-col actions">
+                  <div className="items-center mt-12 lg:mt-8 align-col actions">
                     <BaseButton
                       id="write-review"
                       text="Write a review"
@@ -348,7 +350,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
                     />
 
                     <BaseButton
-                      text="See related articles"
+                      text={isTablet ? "See related articles" : "See articles"}
                       type="secondary"
                       styles="hover:text-body mt-3 px-8"
                       onClick={() => {
@@ -363,7 +365,7 @@ const ApiDetails = ({ currentApiDetail }: { currentApiDetail: ApiService }) => {
             {!isFetchingReviews && (
               <div className="w-full overflow-y-scroll h-96 ">
                 {allApiReviews && allApiReviews.length ? (
-                  <div className="box-border grid w-full grid-flow-row grid-cols-3 px-6 my-6 gap-x-6 gap-y-6">
+                  <div className="box-border grid w-full grid-flow-row grid-cols-2 px-6 my-6 lg:grid-cols-3 gap-x-6 gap-y-6">
                     {allApiReviews.map((review) => (
                       <div
                         className="h-fit press"
