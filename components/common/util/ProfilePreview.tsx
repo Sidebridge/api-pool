@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { IconMap } from "antd/es/result";
@@ -57,6 +57,10 @@ const ProfilePreview = () => {
     if (action === "showMyReviews") router.push("/added-reviews");
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
   return (
     <div
       className="relative items-center cursor-pointer align-row min-w-[220px]"
@@ -80,7 +84,11 @@ const ProfilePreview = () => {
         )}
       </div>
 
-      <p className="mr-3 font-light text-light">{user?.user_metadata.name}</p>
+      <p className="mr-3 font-light text-light">
+        {user?.user_metadata.name.split(" ")[1] ||
+          user?.user_metadata.user_name ||
+          user?.user_metadata.name.split(" ")[0]}
+      </p>
 
       <AppIcon name="arrow" icon="DropArrowGreen" styles="ml-auto mt-1" />
 
