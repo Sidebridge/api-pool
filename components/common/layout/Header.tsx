@@ -1,26 +1,28 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import { clsx } from "clsx";
-
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { Button, Tooltip } from "antd";
 import AppLogo from "../base/AppLogo";
 import ProfilePreview from "../util/ProfilePreview";
 import BaseButton from "../base/BaseButton";
+import TabBurgerMenu from "../util/TabletBurgerMenu";
 
 import { toggleModal } from "@/store/modal";
 
 // import { useAuth } from "@/store/context/AuthProvider";
-import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+
+const navItems = [
+  { title: "Explore", route: "/explore", available: true },
+  { title: "Compare APIs", route: "/compare", available: false },
+  { title: "Donate", route: "/", target: "", available: true },
+];
 
 function Header() {
-  const navItems = [
-    { title: "Explore", route: "/explore", available: true },
-    { title: "Compare APIs", route: "/compare", available: false },
-    { title: "Donate", route: "/", target: "", available: true },
-  ];
+  const [droppedMenu, setDroppedMenu] = useState<string>("");
 
   // const { auth } = useAuth();
   const user = useUser();
@@ -79,7 +81,12 @@ function Header() {
         </nav>
 
         <div className="items-center ml-auto align-row">
-          {user && <ProfilePreview />}
+          {user && (
+            <ProfilePreview
+              drop={droppedMenu === "profile"}
+              onOpen={() => setDroppedMenu("profile")}
+            />
+          )}
 
           {!user && (
             <BaseButton
@@ -89,6 +96,15 @@ function Header() {
               onClick={() => toggleModal("loginModal", true)}
             />
           )}
+
+          <TabBurgerMenu
+            styles="ml-4 lg:hidden"
+            options={navItems}
+            drop={droppedMenu === "navigation"}
+            onOpen={() => {
+              setDroppedMenu("navigation");
+            }}
+          />
         </div>
       </div>
     </>

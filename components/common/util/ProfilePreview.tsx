@@ -25,7 +25,13 @@ const profileOptions = [
   { title: "Logout", icon: "LogoutGreen", action: "signout" },
 ];
 
-const ProfilePreview = () => {
+const ProfilePreview = ({
+  drop = true,
+  onOpen,
+}: {
+  drop: boolean;
+  onOpen?: () => void;
+}) => {
   // const { signOut, user } = useAuth();
 
   const [isShowProfileOptions, setProfileOptionsState] = useState(false);
@@ -46,6 +52,8 @@ const ProfilePreview = () => {
   };
 
   const handleProfileOptionsToggle = (state: boolean) => {
+    if (state && onOpen) onOpen();
+
     setProfileOptionsState(state);
   };
 
@@ -56,6 +64,10 @@ const ProfilePreview = () => {
 
     if (action === "showMyReviews") router.push("/added-reviews");
   };
+
+  useEffect(() => {
+    if (!drop) setProfileOptionsState(false);
+  }, [drop]);
 
   return (
     <div
@@ -88,7 +100,7 @@ const ProfilePreview = () => {
 
       <AppIcon name="arrow" icon="DropArrowGreen" styles="ml-auto mt-1" />
 
-      {isShowProfileOptions && (
+      {isShowProfileOptions && drop && (
         <div
           className={clsx(
             "absolute bottom-0 left-auto right-auto z-50 w-full overflow-hidden border border-t-0 h-fit light-border rounded-b-2xl top-14 bg-dark align-col"

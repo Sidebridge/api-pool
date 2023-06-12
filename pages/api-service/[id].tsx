@@ -41,7 +41,6 @@ import { Database } from "@/types/supabase";
 
 import LinkPreviewFrame from "@/components/modals/LinkPreviewFrame";
 
-import api from "@/utils/services/axios";
 import toast from "react-hot-toast";
 import { userApiBookmarks, getUserApiBookmarks } from "@/store/bookmarks";
 

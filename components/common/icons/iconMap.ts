@@ -49,6 +49,7 @@ import EditGreen from "../../../assets/images/svg/edit_green.svg";
 import TrashRed from "../../../assets/images/svg/trash_red.svg";
 import TipsGreen from "../../../assets/images/svg/tips_green.svg";
 import DocScanner from "../../../assets/images/svg/doc_scanner_green.svg";
+import BurgerMenu from "../../../assets/images/svg/burger_menu.svg";
 
 import BasicTagGrey from "../../../assets/images/svg/basic_plan_grey.svg";
 import BasicTagBlack from "../../../assets/images/svg/basic_plan_black.svg";
@@ -119,6 +120,7 @@ const Icons = {
   TrashRed,
   TipsGreen,
   DocScanner,
+  BurgerMenu,
 
   BasicTagBlack,
   BasicTagGrey,
