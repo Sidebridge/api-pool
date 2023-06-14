@@ -1,19 +1,12 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import clsx from "clsx";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import toast from "react-hot-toast";
-import { IconMap } from "antd/es/result";
-import type { IconType } from "../icons/iconMap";
-
-import classes from "@/styles/profile-preview.module.css";
 
 import AppIcon from "../icons";
 
 import { toggleModal } from "@/store/modal";
 
-import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Tooltip } from "antd";
 import Link from "next/link";
 

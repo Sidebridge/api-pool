@@ -214,10 +214,10 @@ const PromoSection = () => {
                 <h1 className="text-3xl text-light">
                   Promotion {formStep === 0 ? "Plans" : "Request"}
                 </h1>
-                <p className="mt-1 text-sm font-light text-grey-lighter">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  <br />
-                  Etiam eu turpis molestie, dictum est a, mattis tellus.
+                <p className="w-8/12 mt-1 text-sm font-light text-grey-lighter">
+                  Promote and get your API product in the hands of thousands of
+                  developers and target audience. Choose a plan and fill in the
+                  product details.
                 </p>
               </section>
               {formStep === 0 && (
