@@ -134,7 +134,7 @@ const Hero = () => {
         className={clsx("mt-16 w-11/12 hover-animate-pulse-rotate")}
         src={heroImage}
         height="480"
-        alt="APIPool Logo"
+        alt="APIPool Dashboard Snapshot"
         priority
       />
     </section>

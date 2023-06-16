@@ -20,8 +20,6 @@ import "@/styles/loader.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { isMobile, isTablet } from "react-device-detect";
-
 import GlobalModal from "@/components/modals/GlobalModals";
 import MobilePlaceholder from "@/components/common/util/MobilePlaceholder";
 

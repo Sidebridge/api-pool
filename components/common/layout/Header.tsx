@@ -31,9 +31,9 @@ function Header() {
 
   return (
     <>
-      <div className="z-[50] sticky top-0 w-full p-4 notice-banner bg-accent centered-col">
+      {/* <div className="z-[50] sticky top-0 w-full p-4 notice-banner bg-accent centered-col">
         <p>This platform is still a work in progress ⚙️</p>
-      </div>
+      </div> */}
 
       <div
         className={clsx(
